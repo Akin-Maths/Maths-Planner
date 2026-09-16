@@ -1,0 +1,978 @@
+<title>Maths Half-Term Planner</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Atkinson+Hyperlegible:wght@400;700&family=JetBrains+Mono:wght@400;500;600&display=swap">
+<style>
+  :root{
+    --paper:#F5F4EF;
+    --surface:#FFFFFF;
+    --ink:#1C2B32;
+    --ink-soft:#5B6B70;
+    --line:#DAD9CE;
+    --line-strong:#C3C2B4;
+    --accent:#1F6F5C;
+    --accent-soft:#DCEAE3;
+    --mark:#C0562E;
+    --focus:#3B6EA5;
+    --class-11b:#C1662B;
+    --class-10b:#3B6EA5;
+    --class-11a:#4C8C52;
+    --class-12d:#A8477B;
+    --lunch:#8B8F86;
+    --lunch-bg:#ECEBE3;
+    --oncall:#A8791E;
+    --oncall-bg:#F3E7CC;
+    --linemgmt:#5B6B8C;
+    --linemgmt-bg:#E7EAF2;
+    --inset-bg:#EFEDE4;
+    --shadow: 0 1px 2px rgba(28,43,50,0.06), 0 8px 24px -12px rgba(28,43,50,0.18);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --paper:#12181B;
+      --surface:#1A2226;
+      --ink:#ECEEE6;
+      --ink-soft:#9AA6A5;
+      --line:#2C3639;
+      --line-strong:#3A4548;
+      --accent:#49A98D;
+      --accent-soft:#1E3630;
+      --mark:#E17A50;
+      --focus:#7FA8DE;
+      --class-11b:#E0935B;
+      --class-10b:#7FA8DE;
+      --class-11a:#78C182;
+      --class-12d:#DB84B4;
+      --lunch:#9AA098;
+      --lunch-bg:#232B27;
+      --oncall:#D9AE55;
+      --oncall-bg:#2E2A1C;
+      --linemgmt:#9FB0D9;
+      --linemgmt-bg:#232A38;
+      --inset-bg:#1E2528;
+      --shadow: 0 1px 2px rgba(0,0,0,0.3), 0 8px 24px -12px rgba(0,0,0,0.5);
+    }
+  }
+  :root[data-theme="dark"]{
+    --paper:#12181B;
+    --surface:#1A2226;
+    --ink:#ECEEE6;
+    --ink-soft:#9AA6A5;
+    --line:#2C3639;
+    --line-strong:#3A4548;
+    --accent:#49A98D;
+    --accent-soft:#1E3630;
+    --mark:#E17A50;
+    --focus:#7FA8DE;
+    --class-11b:#E0935B;
+    --class-10b:#7FA8DE;
+    --class-11a:#78C182;
+    --class-12d:#DB84B4;
+    --lunch:#9AA098;
+    --lunch-bg:#232B27;
+    --oncall:#D9AE55;
+    --oncall-bg:#2E2A1C;
+    --linemgmt:#9FB0D9;
+    --linemgmt-bg:#232A38;
+    --inset-bg:#1E2528;
+    --shadow: 0 1px 2px rgba(0,0,0,0.3), 0 8px 24px -12px rgba(0,0,0,0.5);
+  }
+
+  *{ box-sizing:border-box; }
+  html{ color-scheme: light dark; }
+  body{
+    margin:0;
+    background:
+      linear-gradient(var(--line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--line) 1px, transparent 1px),
+      var(--paper);
+    background-size: 28px 28px, 28px 28px, auto;
+    background-attachment: local;
+    color:var(--ink);
+    font-family:"Atkinson Hyperlegible", ui-sans-serif, system-ui, sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  .mono{ font-family:"JetBrains Mono", ui-monospace, monospace; font-variant-numeric: tabular-nums; }
+
+  .shell{ max-width: 1080px; margin: 0 auto; padding: 44px 20px 90px; }
+
+  /* ---------- header ---------- */
+  .header{
+    background: var(--surface);
+    border:1px solid var(--line-strong);
+    border-radius: 14px;
+    padding: 28px 28px 22px;
+    box-shadow: var(--shadow);
+  }
+  .eyebrow{
+    margin:0 0 10px;
+    font-family:"JetBrains Mono", monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.11em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight:600;
+  }
+  .title-input{
+    display:block; width:100%; border:none; background:transparent; color:var(--ink);
+    font-family:"Fraunces", Georgia, serif; font-weight:600;
+    font-size: clamp(1.5rem, 3.6vw, 2.15rem); line-height:1.15; padding:2px 0; text-wrap: balance;
+  }
+  .class-input{
+    display:block; width:100%; border:none; background:transparent; color: var(--ink-soft);
+    font-size: 0.95rem; padding: 2px 0 0; margin-bottom: 18px;
+  }
+  .title-input:focus-visible, .class-input:focus-visible, .range:focus,
+  .topic:focus-visible, .homework:focus-visible, .note:focus-visible{
+    outline: 2px solid var(--focus); outline-offset: 2px; border-radius: 4px;
+  }
+  .title-input::placeholder, .class-input::placeholder{ color: var(--ink-soft); opacity:0.7; }
+
+  .header-row{
+    display:flex; flex-wrap:wrap; align-items:flex-end; gap: 18px 28px;
+    padding-top: 14px; border-top: 1px solid var(--line);
+  }
+  .progress-block{ flex: 1 1 220px; min-width:200px; }
+  .progress-bar{ height:8px; border-radius:5px; background: var(--accent-soft); overflow:hidden; }
+  .progress-fill{ height:100%; background: var(--accent); border-radius:5px; transition: width 0.35s ease; }
+  .progress-label{ margin: 7px 0 0; font-size:0.85rem; color: var(--ink-soft); }
+  .progress-label .mono{ color:var(--ink); font-weight:600; }
+
+  .legend{ list-style:none; margin:0; padding:0; display:flex; flex-wrap:wrap; gap: 8px 14px; flex: 1 1 320px; }
+  .chip{ display:inline-flex; align-items:center; gap:6px; font-size:0.8rem; color: var(--ink-soft); white-space:nowrap; }
+  .chip .dot{ width:9px; height:9px; border-radius:50%; flex:none; }
+  .chip .mono{ color:var(--ink); font-weight:600; }
+  .chip[data-class="11b"] .dot{ background: var(--class-11b); }
+  .chip[data-class="10b"] .dot{ background: var(--class-10b); }
+  .chip[data-class="11a"] .dot{ background: var(--class-11a); }
+  .chip[data-class="12d"] .dot{ background: var(--class-12d); }
+
+  .header-actions{ display:flex; align-items:center; gap:10px; margin-left:auto; }
+  .save-status{ font-size:0.76rem; font-family:"JetBrains Mono", monospace; color: var(--ink-soft); white-space:nowrap; }
+  .save-status[data-state="saving"]{ color: var(--oncall); }
+  .save-status[data-state="saved"]{ color: var(--accent); }
+  .save-status[data-state="savedLocal"]{ color: var(--accent); }
+  .save-status[data-state="error"]{ color: var(--mark); }
+
+  button{ font-family:inherit; }
+  .print-btn{
+    border:1px solid var(--line-strong); background: var(--surface); color: var(--ink);
+    font-size:0.82rem; padding:7px 14px; border-radius:8px; cursor:pointer;
+  }
+  .print-btn:hover{ border-color: var(--accent); color: var(--accent); }
+
+  .hint{ margin: 16px 0 0; font-size: 0.8rem; color: var(--ink-soft); line-height:1.5; }
+
+  /* ---------- weeks ---------- */
+  .weeks{ display:flex; flex-direction:column; gap: 22px; margin-top: 26px; }
+  .week{
+    background: var(--surface); border:1px solid var(--line-strong); border-radius: 14px;
+    padding: 18px 20px 20px; box-shadow: var(--shadow);
+  }
+  .week-head{
+    display:flex; align-items:baseline; flex-wrap:wrap; gap:10px 14px;
+    padding-bottom:12px; margin-bottom:14px; border-bottom:1px dashed var(--line-strong);
+  }
+  .week-no{ font-size:0.85rem; font-weight:700; color: var(--ink); flex:none; }
+  .week-type{
+    flex:none; font-size:0.7rem; font-weight:600; letter-spacing:0.05em; text-transform:uppercase;
+    color: var(--accent); background: var(--accent-soft); border-radius:20px; padding:2px 9px;
+  }
+  .week-range{ flex:1; font-size:0.82rem; color: var(--ink-soft); min-width:120px; }
+
+  .days-grid{
+    display:grid; grid-template-columns: repeat(5, 1fr); gap: 12px; align-items:start;
+  }
+  @media (max-width: 760px){ .days-grid{ grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 480px){ .days-grid{ grid-template-columns: 1fr; } }
+
+  .day{ display:flex; flex-direction:column; gap:8px; min-width:0; }
+  .day-head{ display:flex; align-items:baseline; justify-content:space-between; gap:6px; }
+  .day-name{ font-size:0.78rem; font-weight:700; color: var(--ink); }
+  .day-date{ font-size:0.72rem; color: var(--ink-soft); }
+  .day.inset .day-head{ opacity:0.7; }
+  .inset-note{
+    margin:0; padding:10px 8px; text-align:center; border-radius:8px;
+    background: var(--inset-bg); color: var(--ink-soft); font-size:0.76rem; font-style:italic;
+  }
+
+  .entries{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:8px; }
+
+  .lesson{
+    border:1px solid var(--line-strong); border-left: 3px solid var(--class-11b);
+    border-radius: 9px; padding: 8px 9px 9px; background: var(--paper);
+    display:flex; flex-direction:column; gap:6px;
+  }
+  .lesson[data-class="11b"]{ border-left-color: var(--class-11b); }
+  .lesson[data-class="10b"]{ border-left-color: var(--class-10b); }
+  .lesson[data-class="11a"]{ border-left-color: var(--class-11a); }
+  .lesson[data-class="12d"]{ border-left-color: var(--class-12d); }
+  .lesson.done{ opacity: 0.58; }
+  .lesson.done .topic{ text-decoration: line-through; text-decoration-color: var(--ink-soft); }
+
+  .lesson-top{ display:flex; align-items:center; gap:6px; }
+  .check{ position:relative; display:inline-flex; flex:none; cursor:pointer; }
+  .check input{ position:absolute; opacity:0; width:18px; height:18px; margin:0; cursor:pointer; }
+  .check .box{
+    width:17px; height:17px; border-radius:5px; border:1.5px solid var(--line-strong); background: var(--surface);
+    display:inline-flex; align-items:center; justify-content:center;
+  }
+  .check input:checked + .box{ background: var(--accent); border-color: var(--accent); }
+  .check input:checked + .box::after{
+    content:""; width:4px; height:8px; border-right:2px solid var(--surface); border-bottom:2px solid var(--surface);
+    transform: rotate(45deg) translate(-1px,-1px);
+  }
+  .check input:focus-visible + .box{ outline:2px solid var(--focus); outline-offset:2px; }
+
+  .class-tag{ flex:1; min-width:0; display:flex; flex-direction:column; line-height:1.2; }
+  .class-tag .code{ font-size: 0.76rem; font-weight:700; }
+  .lesson[data-class="11b"] .code{ color: var(--class-11b); }
+  .lesson[data-class="10b"] .code{ color: var(--class-10b); }
+  .lesson[data-class="11a"] .code{ color: var(--class-11a); }
+  .lesson[data-class="12d"] .code{ color: var(--class-12d); }
+  .class-tag .meta{ font-size: 0.68rem; color: var(--ink-soft); }
+  .class-tag .meta .period{ font-family:"JetBrains Mono", monospace; }
+
+  .del{
+    flex:none; width:20px; height:20px; border:none; background:transparent; color: var(--ink-soft);
+    font-size:0.78rem; border-radius:5px; cursor:pointer; line-height:1;
+  }
+  .del:hover{ color: var(--mark); background: var(--surface); }
+
+  .carry-flag{
+    margin:0; display:flex; align-items:center; gap:4px;
+    font-size:0.68rem; font-weight:700; color: var(--mark);
+  }
+
+  .topic{ border:none; background:transparent; color: var(--ink); font-size: 0.85rem; font-weight:600; padding: 1px 0; width:100%; }
+  .homework{ border:none; background:transparent; color: var(--ink-soft); font-size: 0.74rem; padding: 1px 0; width:100%; }
+  .topic::placeholder, .homework::placeholder, .note::placeholder{ color: var(--ink-soft); opacity:0.6; }
+
+  .fixed-entry{
+    border:1px solid var(--line-strong); border-radius: 9px; padding: 6px 9px;
+    display:flex; align-items:center; gap:7px; font-size:0.76rem;
+  }
+  .fixed-entry .period{ font-family:"JetBrains Mono", monospace; font-size:0.68rem; color: var(--ink-soft); flex:none; }
+  .fixed-entry .label{ flex:1; font-weight:600; }
+  .fixed-entry[data-kind="lunch"]{ background: var(--lunch-bg); color: var(--lunch); }
+  .fixed-entry[data-kind="oncall"]{ background: var(--oncall-bg); color: var(--oncall); }
+  .fixed-entry[data-kind="linemgmt"]{ background: var(--linemgmt-bg); color: var(--linemgmt); }
+
+  .free-entry{
+    border:1px dashed var(--line-strong); border-radius: 9px; padding: 6px 9px;
+    display:flex; align-items:center; gap:7px; background:transparent;
+  }
+  .free-entry .period{ font-family:"JetBrains Mono", monospace; font-size:0.68rem; color: var(--ink-soft); flex:none; }
+  .free-entry .note{ flex:1; min-width:0; border:none; background:transparent; color: var(--ink-soft); font-size:0.74rem; }
+
+  .add-row{
+    border: 1px dashed var(--line-strong); background: transparent; color: var(--ink-soft);
+    font-size: 0.72rem; padding: 6px 8px; border-radius: 8px; cursor:pointer; width:100%;
+  }
+  .add-row:hover{ border-color: var(--accent); color: var(--accent); }
+  .add-menu{ display:flex; flex-direction:column; gap:4px; }
+  .add-menu button{
+    border: 1px dashed var(--line-strong); background: transparent; color: var(--ink-soft);
+    font-size: 0.68rem; padding: 5px 6px; border-radius: 7px; cursor:pointer;
+  }
+  .add-menu button:hover{ border-color: var(--accent); color: var(--accent); }
+
+  @media (max-width: 480px){
+    .header{ padding: 22px 18px 18px; }
+    .week{ padding: 16px 14px 16px; }
+    .header-actions{ margin-left:0; width:100%; justify-content:space-between; }
+  }
+
+  @media print{
+    body{ background: #fff; }
+    .header-actions, .add-row, .add-menu, .del, .hint{ display:none !important; }
+    .week{ break-inside: avoid; box-shadow:none; }
+    .header{ box-shadow:none; }
+    .days-grid{ grid-template-columns: repeat(5,1fr) !important; }
+  }
+</style>
+<div id="app" class="shell"></div>
+
+<script id="state-json" type="application/json">
+{
+  "title": "Autumn 1 Half Term",
+  "className": "10b/Ma2 · 11a/Ma2 · 11b/Ma3 · 12d/Ma — 2-week timetable rotation",
+  "weeks": [
+    { "weekType":"1", "range":"7–11 Sep 2026", "days":[
+      { "date":"2026-09-07","label":"Mon","dateLabel":"7 Sep","inset":false,"entries":[
+        {"period":"P1","kind":"lesson","class":"11b","topic":"","homework":"","done":false},
+        {"period":"P2","kind":"lesson","class":"10b","topic":"","homework":"","done":false},
+        {"period":"P3","kind":"lesson","class":"11a","topic":"","homework":"","done":false},
+        {"period":"P4a","kind":"lunch"},
+        {"period":"P4b","kind":"lesson","class":"12d","topic":"","homework":"","done":false},
+        {"period":"P5","kind":"free","note":""},
+        {"period":"P6","kind":"linemgmt","with":"PAH"}
+      ]},
+      { "date":"2026-09-08","label":"Tue","dateLabel":"8 Sep","inset":false,"entries":[
+        {"period":"P1","kind":"linemgmt","with":"PBY"},
+        {"period":"P2","kind":"lesson","class":"11b","topic":"","homework":"","done":false},
+        {"period":"P3","kind":"free","note":""},
+        {"period":"P4a","kind":"lesson","class":"11a","topic":"","homework":"","done":false},
+        {"period":"P4b","kind":"lunch"},
+        {"period":"P5","kind":"free","note":""},
+        {"period":"P6","kind":"lesson","class":"11b","topic":"","homework":"","done":false}
+      ]},
+      { "date":"2026-09-09","label":"Wed","dateLabel":"9 Sep","inset":false,"entries":[
+        {"period":"P1","kind":"lesson","class":"12d","topic":"","homework":"","done":false},
+        {"period":"P2","kind":"linemgmt","with":"CWI"},
+        {"period":"P3","kind":"linemgmt","with":"CB"},
+        {"period":"P4a","kind":"lunch"},
+        {"period":"P4b","kind":"lesson","class":"10b","topic":"","homework":"","done":false},
+        {"period":"P5","kind":"lesson","class":"11a","topic":"","homework":"","done":false}
+      ]},
+      { "date":"2026-09-10","label":"Thu","dateLabel":"10 Sep","inset":false,"entries":[
+        {"period":"P1","kind":"lesson","class":"11a","topic":"","homework":"","done":false},
+        {"period":"P2","kind":"free","note":""},
+        {"period":"P3","kind":"free","note":""},
+        {"period":"P4a","kind":"lesson","class":"11b","topic":"","homework":"","done":false},
+        {"period":"P4b","kind":"lunch"},
+        {"period":"P5","kind":"lesson","class":"10b","topic":"","homework":"","done":false}
+      ]},
+      { "date":"2026-09-11","label":"Fri","dateLabel":"11 Sep","inset":false,"entries":[
+        {"period":"P1","kind":"lesson","class":"10b","topic":"","homework":"","done":false},
+        {"period":"P2","kind":"lesson","class":"11a","topic":"","homework":"","done":false},
+        {"period":"P3","kind":"lesson","class":"12d","topic":"","homework":"","done":false},
+        {"period":"P4a","kind":"oncall"},
+        {"period":"P4b","kind":"lunch"},
+        {"period":"P5","kind":"lesson","class":"11b","topic":"","homework":"","done":false}
+      ]}
+    ]},
+    { "weekType":"2", "range":"14–18 Sep 2026", "days":[
+      { "date":"2026-09-14","label":"Mon","dateLabel":"14 Sep","inset":false,"entries":[
+        {"period":"P1","kind":"lesson","class":"11b","topic":"","homework":"","done":true},
+        {"period":"P2","kind":"lesson","class":"10b","topic":"","homework":"","done":false},
+        {"period":"P3","kind":"lesson","class":"11a","topic":"","homework":"","done":false},
+        {"period":"P4a","kind":"lunch"},
+        {"period":"P4b","kind":"lesson","class":"12d","topic":"","homework":"","done":false},
+        {"period":"P5","kind":"free","note":""},
+        {"period":"P6","kind":"free","note":""}
+      ]},
+      { "date":"2026-09-15","label":"Tue","dateLabel":"15 Sep","inset":false,"entries":[
+        {"period":"P1","kind":"free","note":""},
+        {"period":"P2","kind":"lesson","class":"11b","topic":"","homework":"","done":false},
+        {"period":"P3","kind":"free","note":""},
+        {"period":"P4a","kind":"lesson","class":"11a","topic":"","homework":"","done":false},
+        {"period":"P4b","kind":"lunch"},
+        {"period":"P5","kind":"free","note":""},
+        {"period":"P6","kind":"free","note":""}
+      ]},
+      { "date":"2026-09-16","label":"Wed","dateLabel":"16 Sep","inset":false,"entries":[
+        {"period":"P1","kind":"lesson","class":"12d","topic":"","homework":"","done":false},
+        {"period":"P2","kind":"free","note":""},
+        {"period":"P3","kind":"linemgmt","with":"PAH"},
+        {"period":"P4a","kind":"lunch"},
+        {"period":"P4b","kind":"lesson","class":"10b","topic":"","homework":"","done":false},
+        {"period":"P5","kind":"lesson","class":"11a","topic":"","homework":"","done":false}
+      ]},
+      { "date":"2026-09-17","label":"Thu","dateLabel":"17 Sep","inset":false,"entries":[
+        {"period":"P1","kind":"lesson","class":"11a","topic":"","homework":"","done":false},
+        {"period":"P2","kind":"free","note":""},
+        {"period":"P3","kind":"free","note":""},
+        {"period":"P4a","kind":"lesson","class":"11b","topic":"","homework":"","done":false},
+        {"period":"P4b","kind":"lunch"},
+        {"period":"P5","kind":"lesson","class":"10b","topic":"","homework":"","done":false}
+      ]},
+      { "date":"2026-09-18","label":"Fri","dateLabel":"18 Sep","inset":false,"entries":[
+        {"period":"P1","kind":"lesson","class":"10b","topic":"","homework":"","done":false},
+        {"period":"P2","kind":"linemgmt","with":"AWA"},
+        {"period":"P3","kind":"lesson","class":"12d","topic":"","homework":"","done":false},
+        {"period":"P4a","kind":"lunch"},
+        {"period":"P4b","kind":"oncall"},
+        {"period":"P5","kind":"lesson","class":"11b","topic":"","homework":"","done":false}
+      ]}
+    ]},
+    { "weekType":"1", "range":"21–25 Sep 2026", "days":[
+      { "date":"2026-09-21","label":"Mon","dateLabel":"21 Sep","inset":false,"entries":[
+        {"period":"P1","kind":"lesson","class":"11b","topic":"","homework":"","done":false},
+        {"period":"P2","kind":"lesson","class":"10b","topic":"","homework":"","done":false},
+        {"period":"P3","kind":"lesson","class":"11a","topic":"","homework":"","done":false},
+        {"period":"P4a","kind":"lunch"},
+        {"period":"P4b","kind":"lesson","class":"12d","topic":"","homework":"","done":false},
+        {"period":"P5","kind":"free","note":""},
+        {"period":"P6","kind":"linemgmt","with":"PAH"}
+      ]},
+      { "date":"2026-09-22","label":"Tue","dateLabel":"22 Sep","inset":false,"entries":[
+        {"period":"P1","kind":"linemgmt","with":"PBY"},
+        {"period":"P2","kind":"lesson","class":"11b","topic":"","homework":"","done":false},
+        {"period":"P3","kind":"free","note":""},
+        {"period":"P4a","kind":"lesson","class":"11a","topic":"","homework":"","done":false},
+        {"period":"P4b","kind":"lunch"},
+        {"period":"P5","kind":"free","note":""},
+        {"period":"P6","kind":"lesson","class":"11b","topic":"","homework":"","done":false}
+      ]},
+      { "date":"2026-09-23","label":"Wed","dateLabel":"23 Sep","inset":false,"entries":[
+        {"period":"P1","kind":"lesson","class":"12d","topic":"","homework":"","done":false},
+        {"period":"P2","kind":"linemgmt","with":"CWI"},
+        {"period":"P3","kind":"linemgmt","with":"CB"},
+        {"period":"P4a","kind":"lunch"},
+        {"period":"P4b","kind":"lesson","class":"10b","topic":"","homework":"","done":false},
+        {"period":"P5","kind":"lesson","class":"11a","topic":"","homework":"","done":false}
+      ]},
+      { "date":"2026-09-24","label":"Thu","dateLabel":"24 Sep","inset":false,"entries":[
+        {"period":"P1","kind":"lesson","class":"11a","topic":"","homework":"","done":false},
+        {"period":"P2","kind":"free","note":""},
+        {"period":"P3","kind":"free","note":""},
+        {"period":"P4a","kind":"lesson","class":"11b","topic":"","homework":"","done":false},
+        {"period":"P4b","kind":"lunch"},
+        {"period":"P5","kind":"lesson","class":"10b","topic":"","homework":"","done":false}
+      ]},
+      { "date":"2026-09-25","label":"Fri","dateLabel":"25 Sep","inset":false,"entries":[
+        {"period":"P1","kind":"lesson","class":"10b","topic":"","homework":"","done":false},
+        {"period":"P2","kind":"lesson","class":"11a","topic":"","homework":"","done":false},
+        {"period":"P3","kind":"lesson","class":"12d","topic":"","homework":"","done":false},
+        {"period":"P4a","kind":"oncall"},
+        {"period":"P4b","kind":"lunch"},
+        {"period":"P5","kind":"lesson","class":"11b","topic":"","homework":"","done":false}
+      ]}
+    ]},
+    { "weekType":"2", "range":"28 Sep–2 Oct 2026", "days":[
+      { "date":"2026-09-28","label":"Mon","dateLabel":"28 Sep","inset":false,"entries":[
+        {"period":"P1","kind":"lesson","class":"11b","topic":"","homework":"","done":false},
+        {"period":"P2","kind":"lesson","class":"10b","topic":"","homework":"","done":false},
+        {"period":"P3","kind":"lesson","class":"11a","topic":"","homework":"","done":false},
+        {"period":"P4a","kind":"lunch"},
+        {"period":"P4b","kind":"lesson","class":"12d","topic":"","homework":"","done":false},
+        {"period":"P5","kind":"free","note":""},
+        {"period":"P6","kind":"free","note":""}
+      ]},
+      { "date":"2026-09-29","label":"Tue","dateLabel":"29 Sep","inset":false,"entries":[
+        {"period":"P1","kind":"free","note":""},
+        {"period":"P2","kind":"lesson","class":"11b","topic":"","homework":"","done":false},
+        {"period":"P3","kind":"free","note":""},
+        {"period":"P4a","kind":"lesson","class":"11a","topic":"","homework":"","done":false},
+        {"period":"P4b","kind":"lunch"},
+        {"period":"P5","kind":"free","note":""},
+        {"period":"P6","kind":"free","note":""}
+      ]},
+      { "date":"2026-09-30","label":"Wed","dateLabel":"30 Sep","inset":false,"entries":[
+        {"period":"P1","kind":"lesson","class":"12d","topic":"","homework":"","done":false},
+        {"period":"P2","kind":"free","note":""},
+        {"period":"P3","kind":"linemgmt","with":"PAH"},
+        {"period":"P4a","kind":"lunch"},
+        {"period":"P4b","kind":"lesson","class":"10b","topic":"","homework":"","done":false},
+        {"period":"P5","kind":"lesson","class":"11a","topic":"","homework":"","done":false}
+      ]},
+      { "date":"2026-10-01","label":"Thu","dateLabel":"1 Oct","inset":false,"entries":[
+        {"period":"P1","kind":"lesson","class":"11a","topic":"","homework":"","done":false},
+        {"period":"P2","kind":"free","note":""},
+        {"period":"P3","kind":"free","note":""},
+        {"period":"P4a","kind":"lesson","class":"11b","topic":"","homework":"","done":false},
+        {"period":"P4b","kind":"lunch"},
+        {"period":"P5","kind":"lesson","class":"10b","topic":"","homework":"","done":false}
+      ]},
+      { "date":"2026-10-02","label":"Fri","dateLabel":"2 Oct","inset":true,"entries":[]}
+    ]},
+    { "weekType":"1", "range":"5–9 Oct 2026", "days":[
+      { "date":"2026-10-05","label":"Mon","dateLabel":"5 Oct","inset":false,"entries":[
+        {"period":"P1","kind":"lesson","class":"11b","topic":"","homework":"","done":false},
+        {"period":"P2","kind":"lesson","class":"10b","topic":"","homework":"","done":false},
+        {"period":"P3","kind":"lesson","class":"11a","topic":"","homework":"","done":false},
+        {"period":"P4a","kind":"lunch"},
+        {"period":"P4b","kind":"lesson","class":"12d","topic":"","homework":"","done":false},
+        {"period":"P5","kind":"free","note":""},
+        {"period":"P6","kind":"linemgmt","with":"PAH"}
+      ]},
+      { "date":"2026-10-06","label":"Tue","dateLabel":"6 Oct","inset":false,"entries":[
+        {"period":"P1","kind":"linemgmt","with":"PBY"},
+        {"period":"P2","kind":"lesson","class":"11b","topic":"","homework":"","done":false},
+        {"period":"P3","kind":"free","note":""},
+        {"period":"P4a","kind":"lesson","class":"11a","topic":"","homework":"","done":false},
+        {"period":"P4b","kind":"lunch"},
+        {"period":"P5","kind":"free","note":""},
+        {"period":"P6","kind":"lesson","class":"11b","topic":"","homework":"","done":false}
+      ]},
+      { "date":"2026-10-07","label":"Wed","dateLabel":"7 Oct","inset":false,"entries":[
+        {"period":"P1","kind":"lesson","class":"12d","topic":"","homework":"","done":false},
+        {"period":"P2","kind":"linemgmt","with":"CWI"},
+        {"period":"P3","kind":"linemgmt","with":"CB"},
+        {"period":"P4a","kind":"lunch"},
+        {"period":"P4b","kind":"lesson","class":"10b","topic":"","homework":"","done":false},
+        {"period":"P5","kind":"lesson","class":"11a","topic":"","homework":"","done":false}
+      ]},
+      { "date":"2026-10-08","label":"Thu","dateLabel":"8 Oct","inset":false,"entries":[
+        {"period":"P1","kind":"lesson","class":"11a","topic":"","homework":"","done":false},
+        {"period":"P2","kind":"free","note":""},
+        {"period":"P3","kind":"free","note":""},
+        {"period":"P4a","kind":"lesson","class":"11b","topic":"","homework":"","done":false},
+        {"period":"P4b","kind":"lunch"},
+        {"period":"P5","kind":"lesson","class":"10b","topic":"","homework":"","done":false}
+      ]},
+      { "date":"2026-10-09","label":"Fri","dateLabel":"9 Oct","inset":false,"entries":[
+        {"period":"P1","kind":"lesson","class":"10b","topic":"","homework":"","done":false},
+        {"period":"P2","kind":"lesson","class":"11a","topic":"","homework":"","done":false},
+        {"period":"P3","kind":"lesson","class":"12d","topic":"","homework":"","done":false},
+        {"period":"P4a","kind":"oncall"},
+        {"period":"P4b","kind":"lunch"},
+        {"period":"P5","kind":"lesson","class":"11b","topic":"","homework":"","done":false}
+      ]}
+    ]},
+    { "weekType":"2", "range":"12–16 Oct 2026", "days":[
+      { "date":"2026-10-12","label":"Mon","dateLabel":"12 Oct","inset":false,"entries":[
+        {"period":"P1","kind":"lesson","class":"11b","topic":"","homework":"","done":false},
+        {"period":"P2","kind":"lesson","class":"10b","topic":"","homework":"","done":false},
+        {"period":"P3","kind":"lesson","class":"11a","topic":"","homework":"","done":false},
+        {"period":"P4a","kind":"lunch"},
+        {"period":"P4b","kind":"lesson","class":"12d","topic":"","homework":"","done":false},
+        {"period":"P5","kind":"free","note":""},
+        {"period":"P6","kind":"free","note":""}
+      ]},
+      { "date":"2026-10-13","label":"Tue","dateLabel":"13 Oct","inset":false,"entries":[
+        {"period":"P1","kind":"free","note":""},
+        {"period":"P2","kind":"lesson","class":"11b","topic":"","homework":"","done":false},
+        {"period":"P3","kind":"free","note":""},
+        {"period":"P4a","kind":"lesson","class":"11a","topic":"","homework":"","done":false},
+        {"period":"P4b","kind":"lunch"},
+        {"period":"P5","kind":"free","note":""},
+        {"period":"P6","kind":"free","note":""}
+      ]},
+      { "date":"2026-10-14","label":"Wed","dateLabel":"14 Oct","inset":false,"entries":[
+        {"period":"P1","kind":"lesson","class":"12d","topic":"","homework":"","done":false},
+        {"period":"P2","kind":"free","note":""},
+        {"period":"P3","kind":"linemgmt","with":"PAH"},
+        {"period":"P4a","kind":"lunch"},
+        {"period":"P4b","kind":"lesson","class":"10b","topic":"","homework":"","done":false},
+        {"period":"P5","kind":"lesson","class":"11a","topic":"","homework":"","done":false}
+      ]},
+      { "date":"2026-10-15","label":"Thu","dateLabel":"15 Oct","inset":false,"entries":[
+        {"period":"P1","kind":"lesson","class":"11a","topic":"","homework":"","done":false},
+        {"period":"P2","kind":"free","note":""},
+        {"period":"P3","kind":"free","note":""},
+        {"period":"P4a","kind":"lesson","class":"11b","topic":"","homework":"","done":false},
+        {"period":"P4b","kind":"lunch"},
+        {"period":"P5","kind":"lesson","class":"10b","topic":"","homework":"","done":false}
+      ]},
+      { "date":"2026-10-16","label":"Fri","dateLabel":"16 Oct","inset":false,"entries":[
+        {"period":"P1","kind":"lesson","class":"10b","topic":"","homework":"","done":false},
+        {"period":"P2","kind":"linemgmt","with":"AWA"},
+        {"period":"P3","kind":"lesson","class":"12d","topic":"","homework":"","done":false},
+        {"period":"P4a","kind":"lunch"},
+        {"period":"P4b","kind":"oncall"},
+        {"period":"P5","kind":"lesson","class":"11b","topic":"","homework":"","done":false}
+      ]}
+    ]},
+    { "weekType":"1", "range":"19–23 Oct 2026", "days":[
+      { "date":"2026-10-19","label":"Mon","dateLabel":"19 Oct","inset":false,"entries":[
+        {"period":"P1","kind":"lesson","class":"11b","topic":"","homework":"","done":false},
+        {"period":"P2","kind":"lesson","class":"10b","topic":"","homework":"","done":false},
+        {"period":"P3","kind":"lesson","class":"11a","topic":"","homework":"","done":false},
+        {"period":"P4a","kind":"lunch"},
+        {"period":"P4b","kind":"lesson","class":"12d","topic":"","homework":"","done":false},
+        {"period":"P5","kind":"free","note":""},
+        {"period":"P6","kind":"linemgmt","with":"PAH"}
+      ]},
+      { "date":"2026-10-20","label":"Tue","dateLabel":"20 Oct","inset":false,"entries":[
+        {"period":"P1","kind":"linemgmt","with":"PBY"},
+        {"period":"P2","kind":"lesson","class":"11b","topic":"","homework":"","done":false},
+        {"period":"P3","kind":"free","note":""},
+        {"period":"P4a","kind":"lesson","class":"11a","topic":"","homework":"","done":false},
+        {"period":"P4b","kind":"lunch"},
+        {"period":"P5","kind":"free","note":""},
+        {"period":"P6","kind":"lesson","class":"11b","topic":"","homework":"","done":false}
+      ]},
+      { "date":"2026-10-21","label":"Wed","dateLabel":"21 Oct","inset":false,"entries":[
+        {"period":"P1","kind":"lesson","class":"12d","topic":"","homework":"","done":false},
+        {"period":"P2","kind":"linemgmt","with":"CWI"},
+        {"period":"P3","kind":"linemgmt","with":"CB"},
+        {"period":"P4a","kind":"lunch"},
+        {"period":"P4b","kind":"lesson","class":"10b","topic":"","homework":"","done":false},
+        {"period":"P5","kind":"lesson","class":"11a","topic":"","homework":"","done":false}
+      ]},
+      { "date":"2026-10-22","label":"Thu","dateLabel":"22 Oct","inset":false,"entries":[
+        {"period":"P1","kind":"lesson","class":"11a","topic":"","homework":"","done":false},
+        {"period":"P2","kind":"free","note":""},
+        {"period":"P3","kind":"free","note":""},
+        {"period":"P4a","kind":"lesson","class":"11b","topic":"","homework":"","done":false},
+        {"period":"P4b","kind":"lunch"},
+        {"period":"P5","kind":"lesson","class":"10b","topic":"","homework":"","done":false}
+      ]},
+      { "date":"2026-10-23","label":"Fri","dateLabel":"23 Oct","inset":false,"entries":[
+        {"period":"P1","kind":"lesson","class":"10b","topic":"","homework":"","done":false},
+        {"period":"P2","kind":"lesson","class":"11a","topic":"","homework":"","done":false},
+        {"period":"P3","kind":"lesson","class":"12d","topic":"","homework":"","done":false},
+        {"period":"P4a","kind":"oncall"},
+        {"period":"P4b","kind":"lunch"},
+        {"period":"P5","kind":"lesson","class":"11b","topic":"","homework":"","done":false}
+      ]}
+    ]}
+  ]
+}
+</script>
+
+<script>
+(function(){
+  "use strict";
+
+  var CLASSES = {
+    "11b": { label: "11b/Ma3", room: "307r" },
+    "10b": { label: "10b/Ma2", room: "307r" },
+    "11a": { label: "11a/Ma2", room: "307r" },
+    "12d": { label: "12d/Ma",  room: "3P5"  }
+  };
+  var CLASS_KEYS = ["11b","10b","11a","12d"];
+
+  var app = document.getElementById("app");
+  var state = JSON.parse(document.getElementById("state-json").textContent);
+  var artifactAPI = null;
+  var saveTimer = null;
+  var headScript = document.currentScript;
+  var staticAssetsHTML = Array.prototype.map.call(
+    document.body.querySelectorAll("title, link, style"),
+    function(el){ return el.outerHTML; }
+  ).join("\n");
+
+  function esc(s){
+    return String(s == null ? "" : s)
+      .replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
+  }
+
+  function renderStatsHTML(){
+    var lessons = [];
+    state.weeks.forEach(function(w){
+      w.days.forEach(function(d){
+        d.entries.forEach(function(e){ if (e.kind === "lesson") lessons.push(e); });
+      });
+    });
+    var total = lessons.length;
+    var done = lessons.filter(function(l){ return l.done; }).length;
+    var pct = total ? Math.round(done / total * 100) : 0;
+    var counts = {};
+    CLASS_KEYS.forEach(function(k){ counts[k] = 0; });
+    lessons.forEach(function(l){ if (counts[l.class] != null) counts[l.class]++; });
+
+    var legend = CLASS_KEYS.map(function(k){
+      return '<li class="chip" data-class="' + k + '"><span class="dot"></span>' + CLASSES[k].label +
+        ' <span class="mono">' + counts[k] + '</span></li>';
+    }).join("");
+
+    return '' +
+      '<div class="progress-block">' +
+        '<div class="progress-bar"><div class="progress-fill" style="width:' + pct + '%"></div></div>' +
+        '<p class="progress-label"><span class="mono">' + done + ' / ' + total + '</span> lessons taught</p>' +
+      '</div>' +
+      '<ul class="legend">' + legend + '</ul>';
+  }
+
+  function todayISO(){
+    var d = new Date();
+    var m = String(d.getMonth() + 1).padStart(2, "0");
+    var day = String(d.getDate()).padStart(2, "0");
+    return d.getFullYear() + "-" + m + "-" + day;
+  }
+
+  function computeCarryMap(){
+    var map = {};
+    var last = {};
+    var today = todayISO();
+    state.weeks.forEach(function(w, wi){
+      w.days.forEach(function(d, di){
+        if (d.inset) return;
+        d.entries.forEach(function(e, ei){
+          if (e.kind !== "lesson") return;
+          var prev = last[e.class];
+          if (prev && !prev.done && prev.date < today){
+            map[wi + "-" + di + "-" + ei] = { dayLabel: prev.dayLabel, dateLabel: prev.dateLabel };
+          }
+          last[e.class] = { done: e.done, dayLabel: d.label, dateLabel: d.dateLabel, date: d.date };
+        });
+      });
+    });
+    return map;
+  }
+
+  function renderEntryHTML(e, wi, di, ei, carryMap){
+    if (e.kind === "lunch"){
+      return '<li class="fixed-entry" data-kind="lunch" data-week="' + wi + '" data-day="' + di + '" data-entry="' + ei + '">' +
+        '<span class="period mono">' + e.period + '</span><span class="label">Lunch</span>' +
+        '<button class="del" type="button" data-action="delete-entry" aria-label="Remove">&#10005;</button></li>';
+    }
+    if (e.kind === "oncall"){
+      return '<li class="fixed-entry" data-kind="oncall" data-week="' + wi + '" data-day="' + di + '" data-entry="' + ei + '">' +
+        '<span class="period mono">' + e.period + '</span><span class="label">On Call</span>' +
+        '<button class="del" type="button" data-action="delete-entry" aria-label="Remove">&#10005;</button></li>';
+    }
+    if (e.kind === "linemgmt"){
+      return '<li class="fixed-entry" data-kind="linemgmt" data-week="' + wi + '" data-day="' + di + '" data-entry="' + ei + '">' +
+        '<span class="period mono">' + e.period + '</span><span class="label">' + esc(e.with) + ' &mdash; Line Mgmt</span>' +
+        '<button class="del" type="button" data-action="delete-entry" aria-label="Remove">&#10005;</button></li>';
+    }
+    if (e.kind === "free"){
+      return '<li class="free-entry" data-kind="free" data-week="' + wi + '" data-day="' + di + '" data-entry="' + ei + '">' +
+        '<span class="period mono">' + e.period + '</span>' +
+        '<input class="note" type="text" data-field="note" value="' + esc(e.note) + '" placeholder="PPA / planning notes">' +
+        '<button class="del" type="button" data-action="delete-entry" aria-label="Remove">&#10005;</button></li>';
+    }
+    var cls = CLASSES[e.class] || { label: e.class, room: "" };
+    var carry = carryMap ? carryMap[wi + "-" + di + "-" + ei] : null;
+    return '' +
+      '<li class="lesson' + (e.done ? " done" : "") + '" data-week="' + wi + '" data-day="' + di + '" data-entry="' + ei + '" data-class="' + e.class + '">' +
+        '<div class="lesson-top">' +
+          '<label class="check">' +
+            '<input type="checkbox" data-field="done"' + (e.done ? " checked" : "") + '>' +
+            '<span class="box" aria-hidden="true"></span>' +
+          '</label>' +
+          '<span class="class-tag"><span class="code">' + esc(cls.label) + '</span>' +
+            '<span class="meta"><span class="period">' + e.period + '</span> &middot; ' + esc(cls.room) + '</span></span>' +
+          '<button class="del" type="button" data-action="delete-entry" aria-label="Remove lesson">&#10005;</button>' +
+        '</div>' +
+        (carry ? '<p class="carry-flag">&#8635; Carried over &mdash; not taught ' + esc(carry.dayLabel) + ' ' + esc(carry.dateLabel) + '</p>' : '') +
+        '<input class="topic" type="text" data-field="topic" value="' + esc(e.topic) + '" placeholder="Lesson topic">' +
+        '<input class="homework" type="text" data-field="homework" value="' + esc(e.homework) + '" placeholder="Homework / notes">' +
+      '</li>';
+  }
+
+  function renderDayHTML(d, wi, di, carryMap){
+    if (d.inset){
+      return '' +
+        '<div class="day inset" data-week="' + wi + '" data-day="' + di + '">' +
+          '<div class="day-head"><span class="day-name">' + d.label + '</span><span class="day-date mono">' + d.dateLabel + '</span></div>' +
+          '<p class="inset-note">INSET Day &mdash; no lessons</p>' +
+        '</div>';
+    }
+    var entries = d.entries.map(function(e, ei){ return renderEntryHTML(e, wi, di, ei, carryMap); }).join("");
+    return '' +
+      '<div class="day" data-week="' + wi + '" data-day="' + di + '">' +
+        '<div class="day-head"><span class="day-name">' + d.label + '</span><span class="day-date mono">' + d.dateLabel + '</span></div>' +
+        '<ul class="entries">' + entries + '</ul>' +
+        '<div class="add-menu" data-week="' + wi + '" data-day="' + di + '">' +
+          CLASS_KEYS.map(function(k){ return '<button type="button" data-action="add-lesson" data-class="' + k + '">+ ' + CLASSES[k].label + '</button>'; }).join("") +
+          '<button type="button" data-action="add-free">+ Free / PPA</button>' +
+          '<button type="button" data-action="add-linemgmt">+ Line Mgmt</button>' +
+        '</div>' +
+      '</div>';
+  }
+
+  function renderWeekHTML(w, wi, carryMap){
+    var days = w.days.map(function(d, di){ return renderDayHTML(d, wi, di, carryMap); }).join("");
+    return '' +
+      '<section class="week" data-week="' + wi + '">' +
+        '<div class="week-head">' +
+          '<span class="week-no">Week ' + (wi + 1) + ' of 7</span>' +
+          '<span class="week-type">Timetable Week ' + w.weekType + '</span>' +
+          '<span class="week-range mono">' + w.range + '</span>' +
+        '</div>' +
+        '<div class="days-grid">' + days + '</div>' +
+      '</section>';
+  }
+
+  function renderAppHTML(){
+    var carryMap = computeCarryMap();
+    return '' +
+      '<header class="header">' +
+        '<p class="eyebrow">Bridge Academy &middot; Autumn 1 &middot; Maths</p>' +
+        '<input class="title-input" type="text" data-field="title" value="' + esc(state.title) + '" aria-label="Half term title" placeholder="Half term title">' +
+        '<input class="class-input" type="text" data-field="className" value="' + esc(state.className) + '" aria-label="Classes" placeholder="Classes taught">' +
+        '<div class="header-row" id="stats-block">' + renderStatsHTML() +
+          '<div class="header-actions">' +
+            '<span id="save-status" class="save-status" data-state="idle">Ready</span>' +
+            '<button class="print-btn" type="button" data-action="download-copy" id="download-btn" hidden>Download copy</button>' +
+            '<button class="print-btn" type="button" data-action="print">Print</button>' +
+          '</div>' +
+        '</div>' +
+        '<p class="hint">Built from your 2-week timetable (Week 1 began 7 Sep) and Bridge Academy’s Autumn 1 dates (7 Sep – 23 Oct 2026, half term from 26 Oct). Fri 2 Oct is marked as the additional INSET day. Free periods are shown as dashed slots — use them to note your PPA. An unmarked lesson flags itself on that class’s next occurrence, so nothing slips quietly. Click any topic, homework or PPA note to fill it in — changes save automatically. Opened as a plain file (e.g. from OneDrive) instead of the Claude link, edits autosave to that browser and a “Download copy” button appears so you can overwrite the file with your latest changes.</p>' +
+      '</header>' +
+      '<div class="weeks">' + state.weeks.map(function(w, wi){ return renderWeekHTML(w, wi, carryMap); }).join("") + '</div>';
+  }
+
+  function render(){ app.innerHTML = renderAppHTML(); }
+
+  function fullRerender(){
+    var scrollY = window.scrollY;
+    render();
+    window.scrollTo(0, scrollY);
+  }
+
+  function setStatus(kind){
+    var el = document.getElementById("save-status");
+    if (el){
+      var text = {
+        idle: "Ready",
+        saving: "Saving…",
+        saved: "Saved",
+        savedLocal: "Saved in this browser",
+        error: "Couldn’t save — retrying",
+        local: "Standalone file — autosaving to this browser only"
+      };
+      el.textContent = text[kind] || "Ready";
+      el.dataset.state = kind;
+    }
+    if (kind === "local" || kind === "savedLocal"){
+      var dlBtn = document.getElementById("download-btn");
+      if (dlBtn) dlBtn.hidden = false;
+    }
+  }
+
+  var LOCAL_KEY = "mathsPlannerState_v1";
+
+  function loadLocalState(){
+    try {
+      var raw = window.localStorage && localStorage.getItem(LOCAL_KEY);
+      return raw ? JSON.parse(raw) : null;
+    } catch (err){ return null; }
+  }
+
+  function saveLocalState(){
+    try { localStorage.setItem(LOCAL_KEY, JSON.stringify(state)); } catch (err){}
+  }
+
+  function buildDocument(){
+    var jsonSafe = JSON.stringify(state).replace(/</g, "\\u003c");
+    var headHTML = document.head.outerHTML;
+    var scriptOuter = headScript.outerHTML;
+    return "<!doctype html>\n<html lang=\"en\">\n" + headHTML + "\n<body>\n" +
+      staticAssetsHTML + '\n' +
+      '<div id="app" class="shell"></div>\n' +
+      '<script id="state-json" type="application/json">' + jsonSafe + "<\/script>\n" +
+      scriptOuter + "\n</body>\n</html>";
+  }
+
+  function scheduleSave(delay){
+    clearTimeout(saveTimer);
+    setStatus("saving");
+    saveTimer = setTimeout(save, delay == null ? 1200 : delay);
+  }
+
+  function save(){
+    if (artifactAPI){
+      artifactAPI.publish(buildDocument()).then(function(){
+        setStatus("saved");
+      }).catch(function(err){
+        if (err && err.code === "conflict") return;
+        setStatus("error");
+      });
+    } else {
+      saveLocalState();
+      setStatus("savedLocal");
+    }
+  }
+
+  function locate(el){
+    var container = el.closest(".lesson, .fixed-entry, .free-entry, .day");
+    if (!container) return null;
+    var wi = Number(container.dataset.week), di = Number(container.dataset.day);
+    var week = state.weeks[wi];
+    if (!week) return null;
+    var day = week.days[di];
+    if (!day) return null;
+    var result = { week: week, day: day, wi: wi, di: di };
+    if (container.dataset.entry !== undefined){
+      var ei = Number(container.dataset.entry);
+      result.entry = day.entries[ei];
+      result.ei = ei;
+      result.el = container;
+    }
+    return result;
+  }
+
+  app.addEventListener("input", function(e){
+    var t = e.target;
+    var field = t.dataset.field;
+    if (!field) return;
+
+    if (field === "title"){ state.title = t.value; scheduleSave(1400); return; }
+    if (field === "className"){ state.className = t.value; scheduleSave(1400); return; }
+
+    if (field === "topic" || field === "homework" || field === "note"){
+      var loc = locate(t);
+      if (loc && loc.entry){ loc.entry[field] = t.value; scheduleSave(1400); }
+    }
+  });
+
+  app.addEventListener("change", function(e){
+    var t = e.target;
+    if (t.dataset.field !== "done") return;
+    var loc = locate(t);
+    if (!loc || !loc.entry) return;
+    loc.entry.done = t.checked;
+    fullRerender();
+    scheduleSave(300);
+  });
+
+  app.addEventListener("click", function(e){
+    var addBtn = e.target.closest('[data-action="add-lesson"]');
+    if (addBtn){
+      var menu = addBtn.closest(".add-menu");
+      var wi = Number(menu.dataset.week), di = Number(menu.dataset.day);
+      var day = state.weeks[wi].days[di];
+      day.entries.push({ period: "", kind: "lesson", class: addBtn.dataset.class, topic: "", homework: "", done: false });
+      fullRerender();
+      scheduleSave(300);
+      return;
+    }
+
+    var addLineBtn = e.target.closest('[data-action="add-linemgmt"]');
+    if (addLineBtn){
+      var name = window.prompt("Colleague initials (e.g. PAH)?");
+      if (name){
+        var menu3 = addLineBtn.closest(".add-menu");
+        var wi3 = Number(menu3.dataset.week), di3 = Number(menu3.dataset.day);
+        var day3 = state.weeks[wi3].days[di3];
+        day3.entries.push({ period: "", kind: "linemgmt", with: name });
+        fullRerender();
+        scheduleSave(300);
+      }
+      return;
+    }
+
+    var addFreeBtn = e.target.closest('[data-action="add-free"]');
+    if (addFreeBtn){
+      var menu2 = addFreeBtn.closest(".add-menu");
+      var wi2 = Number(menu2.dataset.week), di2 = Number(menu2.dataset.day);
+      var day2 = state.weeks[wi2].days[di2];
+      day2.entries.push({ period: "", kind: "free", note: "" });
+      fullRerender();
+      scheduleSave(300);
+      return;
+    }
+
+    var delBtn = e.target.closest('[data-action="delete-entry"]');
+    if (delBtn){
+      var loc = locate(delBtn);
+      if (loc && loc.entry){
+        loc.day.entries.splice(loc.ei, 1);
+        fullRerender();
+        scheduleSave(300);
+      }
+      return;
+    }
+
+    if (e.target.closest('[data-action="print"]')){ window.print(); }
+
+    if (e.target.closest('[data-action="download-copy"]')){
+      var html = buildDocument();
+      if (window.claude && typeof window.claude.use === "function"){
+        window.claude.use("downloads").then(function(dl){
+          if (!dl) return;
+          dl.save({ filename: "maths-planner.html", data: new Blob([html], { type: "text/html" }) }).catch(function(){});
+        });
+      } else {
+        var blob = new Blob([html], { type: "text/html" });
+        var url = URL.createObjectURL(blob);
+        var a = document.createElement("a");
+        a.href = url;
+        a.download = "maths-planner.html";
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+      }
+    }
+  });
+
+  if (window.claude && typeof window.claude.use === "function"){
+    render();
+    window.claude.use("artifact").then(function(api){
+      artifactAPI = api;
+      setStatus(api ? "idle" : "local");
+    }).catch(function(){ setStatus("local"); });
+  } else {
+    var localState = loadLocalState();
+    if (localState) state = localState;
+    render();
+    setStatus(localState ? "savedLocal" : "local");
+  }
+})();
+</script>
