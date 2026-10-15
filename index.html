@@ -986,7 +986,10 @@
 
   function renderStatsHTML(){
     var lessons = [];
-    weeksForHT(activeHT).forEach(function(item){
+    var counted = weeksForHT(activeHT);
+    var includesNext = activeHT === 1 && weeksForHT(2).length > 0;
+    if (includesNext) counted = counted.concat(weeksForHT(2).slice(0, 1));
+    counted.forEach(function(item){
       item.w.days.forEach(function(d){
         d.entries.forEach(function(e){ if (e.kind === "lesson") lessons.push(e); });
       });
@@ -1006,7 +1009,7 @@
     return '' +
       '<div class="progress-block">' +
         '<div class="progress-bar"><div class="progress-fill" style="width:' + pct + '%"></div></div>' +
-        '<p class="progress-label"><span class="mono">' + done + ' / ' + total + '</span> lessons taught</p>' +
+        '<p class="progress-label"><span class="mono">' + done + ' / ' + total + '</span> lessons taught' + (includesNext ? ' (incl. week 1 of half-term 2)' : '') + '</p>' +
       '</div>' +
       '<ul class="legend">' + legend + '</ul>';
   }
