@@ -317,6 +317,8 @@
     border-radius:999px; padding:2px 8px; font-size:0.68rem; font-weight:700;
   }
   .obs-chip .cls{ color: var(--ink-soft); font-weight:500; }
+  .obs-chip .room{ font-family:"JetBrains Mono", monospace; font-size:0.62rem; font-weight:500; color: var(--ink-soft); }
+  .obs-chip[aria-pressed="true"] .cls, .obs-chip[aria-pressed="true"] .room{ color: var(--accent); }
   .obs-chip:hover{ border-color: var(--accent); }
   .obs-chip[aria-pressed="true"]{ background: var(--accent-soft); border-color: var(--accent); color: var(--accent); }
   .obs-chip[aria-pressed="true"]::before{ content:"\2713"; }
@@ -358,7 +360,7 @@
 
 <script id="state-json" type="application/json">
 {
-  "schema":2,
+  "schema":3,
   "title":"Autumn Term 2026",
   "className":"10b/Ma2 · 11a/Ma2 · 11b/Ma3 · 12d/Ma — 2-week timetable rotation",
   "weeks":[
@@ -369,30 +371,30 @@
         {"period":"P3","kind":"lesson","class":"11a","topic":"","homework":"","done":false},
         {"period":"P4a","kind":"lunch"},
         {"period":"P4b","kind":"lesson","class":"12d","topic":"","homework":"","done":false},
-        {"period":"P5","kind":"free","note":"","obs":[{"cls":"8a3","who":"AJB","seen":false},{"cls":"8a2","who":"AWA","seen":false},{"cls":"12b/Fm","who":"BSI","seen":false},{"cls":"7b3","who":"KCA","seen":false},{"cls":"7b2","who":"NGR","seen":false},{"cls":"8a1","who":"PAH","seen":false},{"cls":"7b4","who":"RAA","seen":false}]},
-        {"period":"P6","kind":"linemgmt","with":"PAH","role":"Mentor","obs":[{"cls":"104/Ma1","who":"BSI","seen":false},{"cls":"12r/Ma1","who":"KCA","seen":false},{"cls":"12e/Ma","who":"PBY","seen":false}]}
+        {"period":"P5","kind":"free","note":"","obs":[{"cls":"8a3","who":"AJB","seen":false,"room":"309R"},{"cls":"8a2","who":"AWA","seen":false,"room":"312P"},{"cls":"12b/Fm","who":"BSI","seen":false,"room":"301R"},{"cls":"7b3","who":"KCA","seen":false,"room":"306R"},{"cls":"7b2","who":"NGR","seen":false,"room":"105R"},{"cls":"8a1","who":"PAH","seen":false,"room":"311R"},{"cls":"7b4","who":"RAA","seen":false,"room":"314P"}]},
+        {"period":"P6","kind":"linemgmt","with":"PAH","role":"Mentor","obs":[{"cls":"104/Ma1","who":"BSI","seen":false,"room":"314P"},{"cls":"12r/Ma1","who":"KCA","seen":false,"room":"3P5"},{"cls":"12e/Ma","who":"PBY","seen":false,"room":"3P7"}]}
       ]},
       {"date":"2026-09-08","label":"Tue","dateLabel":"8 Sep","inset":false,"entries":[
-        {"period":"P1","kind":"linemgmt","with":"PBY","role":"Line Man","obs":[{"cls":"8a3","who":"AJB","seen":false},{"cls":"8a2","who":"AWA","seen":false},{"cls":"12b/Fm","who":"BSI","seen":false},{"cls":"7b1","who":"HCH","seen":false},{"cls":"7b3","who":"KCA","seen":false},{"cls":"8a1","who":"PAH","seen":false},{"cls":"7b4","who":"RAA","seen":false}]},
+        {"period":"P1","kind":"linemgmt","with":"PBY","role":"Line Man","obs":[{"cls":"8a3","who":"AJB","seen":false,"room":"309R"},{"cls":"8a2","who":"AWA","seen":false,"room":"312P"},{"cls":"12b/Fm","who":"BSI","seen":false,"room":"301R"},{"cls":"7b1","who":"HCH","seen":false,"room":"307R"},{"cls":"7b3","who":"KCA","seen":false,"room":"306R"},{"cls":"8a1","who":"PAH","seen":false,"room":"311R"},{"cls":"7b4","who":"RAA","seen":false,"room":"314P"}]},
         {"period":"P2","kind":"lesson","class":"11b","topic":"","homework":"","done":false},
-        {"period":"P3","kind":"free","note":"","obs":[{"cls":"9a3","who":"AJB","seen":false},{"cls":"13d/Ma","who":"BSI","seen":false},{"cls":"13x/Ma","who":"HCH","seen":false},{"cls":"9a1","who":"NGR","seen":false},{"cls":"9a2","who":"PAH","seen":false}]},
+        {"period":"P3","kind":"free","note":"","obs":[{"cls":"9a3","who":"AJB","seen":false,"room":"309R"},{"cls":"13d/Ma","who":"BSI","seen":false,"room":"3P5"},{"cls":"13x/Ma","who":"HCH","seen":false,"room":"0P3"},{"cls":"9a1","who":"NGR","seen":false,"room":"105R"},{"cls":"9a2","who":"PAH","seen":false,"room":"311R"}]},
         {"period":"P4a","kind":"lesson","class":"11a","topic":"","homework":"","done":false},
         {"period":"P4b","kind":"lunch"},
-        {"period":"P5","kind":"free","note":"","obs":[{"cls":"12d/Ma","who":"AJB","seen":false},{"cls":"10a3","who":"AWA","seen":false},{"cls":"13e/Fm","who":"BSI","seen":false},{"cls":"9b2","who":"CWI","seen":false},{"cls":"9b1","who":"NGR","seen":false},{"cls":"10a4","who":"PAH","seen":false},{"cls":"10a2","who":"PBY","seen":false},{"cls":"10a1","who":"RAA","seen":false}]},
+        {"period":"P5","kind":"free","note":"","obs":[{"cls":"12d/Ma","who":"AJB","seen":false,"room":"3P5"},{"cls":"10a3","who":"AWA","seen":false,"room":"312P"},{"cls":"13e/Fm","who":"BSI","seen":false,"room":"301R"},{"cls":"9b2","who":"CWI","seen":false,"room":"307R"},{"cls":"9b1","who":"NGR","seen":false,"room":"105R"},{"cls":"10a4","who":"PAH","seen":false,"room":"311R"},{"cls":"10a2","who":"PBY","seen":false,"room":"306R"},{"cls":"10a1","who":"RAA","seen":false,"room":"314P"}]},
         {"period":"P6","kind":"lesson","class":"11b","topic":"","homework":"","done":false}
       ]},
       {"date":"2026-09-09","label":"Wed","dateLabel":"9 Sep","inset":false,"entries":[
         {"period":"P1","kind":"lesson","class":"12d","topic":"","homework":"","done":false},
-        {"period":"P2","kind":"linemgmt","with":"CWI","role":"Line Man","obs":[{"cls":"8a3","who":"AJB","seen":false},{"cls":"8a2","who":"AWA","seen":false},{"cls":"12b/Fm","who":"BSI","seen":false},{"cls":"7b3","who":"KCA","seen":false},{"cls":"7b2","who":"NGR","seen":false},{"cls":"8a1","who":"PAH","seen":false},{"cls":"7b4","who":"RAA","seen":false}]},
-        {"period":"P3","kind":"linemgmt","with":"CB","role":"Line Man","obs":[{"cls":"9a1","who":"NGR","seen":false},{"cls":"9a2","who":"PAH","seen":false}]},
+        {"period":"P2","kind":"linemgmt","with":"CWI","role":"Line Man","obs":[{"cls":"8a3","who":"AJB","seen":false,"room":"309R"},{"cls":"8a2","who":"AWA","seen":false,"room":"312P"},{"cls":"12b/Fm","who":"BSI","seen":false,"room":"301R"},{"cls":"7b3","who":"KCA","seen":false,"room":"306R"},{"cls":"7b2","who":"NGR","seen":false,"room":"105R"},{"cls":"8a1","who":"PAH","seen":false,"room":"311R"},{"cls":"7b4","who":"RAA","seen":false,"room":"314P"}]},
+        {"period":"P3","kind":"linemgmt","with":"CB","role":"Line Man","obs":[{"cls":"9a1","who":"NGR","seen":false,"room":"105R"},{"cls":"9a2","who":"PAH","seen":false,"room":"311R"}]},
         {"period":"P4a","kind":"lunch"},
         {"period":"P4b","kind":"lesson","class":"10b","topic":"","homework":"","done":false},
         {"period":"P5","kind":"lesson","class":"11a","topic":"","homework":"","done":false}
       ]},
       {"date":"2026-09-10","label":"Thu","dateLabel":"10 Sep","inset":false,"entries":[
         {"period":"P1","kind":"lesson","class":"11a","topic":"","homework":"","done":false},
-        {"period":"P2","kind":"free","note":"","obs":[{"cls":"12d/Ma","who":"AJB","seen":false},{"cls":"10a3","who":"AWA","seen":false},{"cls":"13e/Fm","who":"BSI","seen":false},{"cls":"9b2","who":"CWI","seen":false},{"cls":"9b3","who":"HCH","seen":false},{"cls":"9b1","who":"NGR","seen":false},{"cls":"10a4","who":"PAH","seen":false},{"cls":"10a2","who":"PBY","seen":false},{"cls":"10a1","who":"RAA","seen":false}]},
-        {"period":"P3","kind":"free","note":"","obs":[{"cls":"8a3","who":"AJB","seen":false},{"cls":"8a2","who":"AWA","seen":false},{"cls":"12b/Fm","who":"BSI","seen":false},{"cls":"7b1","who":"HCH","seen":false},{"cls":"7b3","who":"KCA","seen":false},{"cls":"7b2","who":"NGR","seen":false},{"cls":"7b4","who":"RAA","seen":false}]},
+        {"period":"P2","kind":"free","note":"","obs":[{"cls":"12d/Ma","who":"AJB","seen":false,"room":"3P5"},{"cls":"10a3","who":"AWA","seen":false,"room":"312P"},{"cls":"13e/Fm","who":"BSI","seen":false,"room":"301R"},{"cls":"9b2","who":"CWI","seen":false,"room":"307R"},{"cls":"9b3","who":"HCH","seen":false,"room":"309R"},{"cls":"9b1","who":"NGR","seen":false,"room":"105R"},{"cls":"10a4","who":"PAH","seen":false,"room":"311R"},{"cls":"10a2","who":"PBY","seen":false,"room":"306R"},{"cls":"10a1","who":"RAA","seen":false,"room":"314P"}]},
+        {"period":"P3","kind":"free","note":"","obs":[{"cls":"8a3","who":"AJB","seen":false,"room":"309R"},{"cls":"8a2","who":"AWA","seen":false,"room":"312P"},{"cls":"12b/Fm","who":"BSI","seen":false,"room":"301R"},{"cls":"7b1","who":"HCH","seen":false,"room":"307R"},{"cls":"7b3","who":"KCA","seen":false,"room":"306R"},{"cls":"7b2","who":"NGR","seen":false,"room":"105R"},{"cls":"7b4","who":"RAA","seen":false,"room":"314P"}]},
         {"period":"P4a","kind":"lesson","class":"11b","topic":"","homework":"","done":false},
         {"period":"P4b","kind":"lunch"},
         {"period":"P5","kind":"lesson","class":"10b","topic":"","homework":"","done":false}
@@ -413,37 +415,37 @@
         {"period":"P3","kind":"lesson","class":"11a","topic":"","homework":"","done":false},
         {"period":"P4a","kind":"lunch"},
         {"period":"P4b","kind":"lesson","class":"12d","topic":"","homework":"","done":false},
-        {"period":"P5","kind":"free","note":"","obs":[{"cls":"8a3","who":"AJB","seen":false},{"cls":"8a2","who":"AWA","seen":false},{"cls":"7b1","who":"HCH","seen":false},{"cls":"7b3","who":"KCA","seen":false},{"cls":"8a1","who":"PAH","seen":false},{"cls":"12b/Fm","who":"PBY","seen":false},{"cls":"7b4","who":"RAA","seen":false}]},
-        {"period":"P6","kind":"free","note":"","obs":[{"cls":"12r/Ma1","who":"AJB","seen":false},{"cls":"8b3","who":"CWI","seen":false},{"cls":"8b1","who":"HCH","seen":false},{"cls":"8b2","who":"KCA","seen":false},{"cls":"12e/Ma","who":"PBY","seen":false}]}
+        {"period":"P5","kind":"free","note":"","obs":[{"cls":"8a3","who":"AJB","seen":false,"room":"309R"},{"cls":"8a2","who":"AWA","seen":false,"room":"312P"},{"cls":"7b1","who":"HCH","seen":false,"room":"307R"},{"cls":"7b3","who":"KCA","seen":false,"room":"306R"},{"cls":"8a1","who":"PAH","seen":false,"room":"311R"},{"cls":"12b/Fm","who":"PBY","seen":false,"room":"301R"},{"cls":"7b4","who":"RAA","seen":false,"room":"314P"}]},
+        {"period":"P6","kind":"free","note":"","obs":[{"cls":"12r/Ma1","who":"AJB","seen":false,"room":"3P5"},{"cls":"8b3","who":"CWI","seen":false,"room":"323P"},{"cls":"8b1","who":"HCH","seen":false,"room":"309R"},{"cls":"8b2","who":"KCA","seen":false,"room":"306R"},{"cls":"12e/Ma","who":"PBY","seen":false,"room":"3P7"}]}
       ]},
       {"date":"2026-09-15","label":"Tue","dateLabel":"15 Sep","inset":false,"entries":[
-        {"period":"P1","kind":"free","note":"","obs":[{"cls":"8a3","who":"AJB","seen":false},{"cls":"8a2","who":"AWA","seen":false},{"cls":"12b/Fm","who":"BSI","seen":false},{"cls":"7b1","who":"HCH","seen":false},{"cls":"7b3","who":"KCA","seen":false},{"cls":"7b2","who":"NGR","seen":false},{"cls":"8a1","who":"PAH","seen":false},{"cls":"7b4","who":"RAA","seen":false}]},
+        {"period":"P1","kind":"free","note":"","obs":[{"cls":"8a3","who":"AJB","seen":false,"room":"309R"},{"cls":"8a2","who":"AWA","seen":false,"room":"312P"},{"cls":"12b/Fm","who":"BSI","seen":false,"room":"301R"},{"cls":"7b1","who":"HCH","seen":false,"room":"307R"},{"cls":"7b3","who":"KCA","seen":false,"room":"306R"},{"cls":"7b2","who":"NGR","seen":false,"room":"105R"},{"cls":"8a1","who":"PAH","seen":false,"room":"311R"},{"cls":"7b4","who":"RAA","seen":false,"room":"314P"}]},
         {"period":"P2","kind":"lesson","class":"11b","topic":"","homework":"","done":false},
-        {"period":"P3","kind":"free","note":"","obs":[{"cls":"9a3","who":"AJB","seen":false},{"cls":"13d/Ma","who":"BSI","seen":false},{"cls":"8b3","who":"CWI","seen":false},{"cls":"8b1","who":"HCH","seen":false},{"cls":"9a1","who":"NGR","seen":false},{"cls":"9a2","who":"PAH","seen":false}]},
+        {"period":"P3","kind":"free","note":"","obs":[{"cls":"9a3","who":"AJB","seen":false,"room":"309R"},{"cls":"13d/Ma","who":"BSI","seen":false,"room":"3P5"},{"cls":"8b3","who":"CWI","seen":false,"room":"323P"},{"cls":"8b1","who":"HCH","seen":false,"room":"307R"},{"cls":"9a1","who":"NGR","seen":false,"room":"105R"},{"cls":"9a2","who":"PAH","seen":false,"room":"311R"}]},
         {"period":"P4a","kind":"lesson","class":"11a","topic":"","homework":"","done":false},
         {"period":"P4b","kind":"lunch"},
-        {"period":"P5","kind":"free","note":"","obs":[{"cls":"12d/Ma","who":"AJB","seen":false},{"cls":"10a3","who":"AWA","seen":false},{"cls":"13e/Fm","who":"BSI","seen":false},{"cls":"9b2","who":"CWI","seen":false},{"cls":"9b3","who":"HCH","seen":false},{"cls":"10a4","who":"PAH","seen":false},{"cls":"10a2","who":"PBY","seen":false},{"cls":"10a1","who":"RAA","seen":false}]},
-        {"period":"P6","kind":"linemgmt","with":"NMU","role":"Line Man","obs":[{"cls":"12r/Ma1","who":"AJB","seen":false},{"cls":"10a3","who":"AWA","seen":false},{"cls":"7b1","who":"HCH","seen":false},{"cls":"7b3","who":"KCA","seen":false},{"cls":"7b2","who":"NGR","seen":false},{"cls":"10a4","who":"PAH","seen":false},{"cls":"10a2","who":"PBY","seen":false},{"cls":"10a1","who":"RAA","seen":false}]}
+        {"period":"P5","kind":"free","note":"","obs":[{"cls":"12d/Ma","who":"AJB","seen":false,"room":"3P5"},{"cls":"10a3","who":"AWA","seen":false,"room":"312P"},{"cls":"13e/Fm","who":"BSI","seen":false,"room":"301R"},{"cls":"9b2","who":"CWI","seen":false,"room":"307R"},{"cls":"9b3","who":"HCH","seen":false,"room":"309R"},{"cls":"10a4","who":"PAH","seen":false,"room":"311R"},{"cls":"10a2","who":"PBY","seen":false,"room":"306R"},{"cls":"10a1","who":"RAA","seen":false,"room":"314P"}]},
+        {"period":"P6","kind":"linemgmt","with":"NMU","role":"Line Man","obs":[{"cls":"12r/Ma1","who":"AJB","seen":false,"room":"3P5"},{"cls":"10a3","who":"AWA","seen":false,"room":"312P"},{"cls":"7b1","who":"HCH","seen":false,"room":"307R"},{"cls":"7b3","who":"KCA","seen":false,"room":"306R"},{"cls":"7b2","who":"NGR","seen":false,"room":"105R"},{"cls":"10a4","who":"PAH","seen":false,"room":"311R"},{"cls":"10a2","who":"PBY","seen":false,"room":"309R"},{"cls":"10a1","who":"RAA","seen":false,"room":"314P"}]}
       ]},
       {"date":"2026-09-16","label":"Wed","dateLabel":"16 Sep","inset":false,"entries":[
         {"period":"P1","kind":"lesson","class":"12d","topic":"","homework":"","done":false},
-        {"period":"P2","kind":"free","note":"","obs":[{"cls":"8a3","who":"AJB","seen":false},{"cls":"8a2","who":"AWA","seen":false},{"cls":"12b/Fm","who":"BSI","seen":false},{"cls":"7b1","who":"HCH","seen":false},{"cls":"7b3","who":"KCA","seen":false},{"cls":"7b2","who":"NGR","seen":false},{"cls":"8a1","who":"PAH","seen":false},{"cls":"7b4","who":"RAA","seen":false}]},
-        {"period":"P3","kind":"linemgmt","with":"PAH","role":"Mentor","obs":[{"cls":"7a1","who":"BSI","seen":false},{"cls":"7a2","who":"NGR","seen":false}]},
+        {"period":"P2","kind":"free","note":"","obs":[{"cls":"8a3","who":"AJB","seen":false,"room":"309R"},{"cls":"8a2","who":"AWA","seen":false,"room":"312P"},{"cls":"12b/Fm","who":"BSI","seen":false,"room":"301R"},{"cls":"7b1","who":"HCH","seen":false,"room":"307R"},{"cls":"7b3","who":"KCA","seen":false,"room":"306R"},{"cls":"7b2","who":"NGR","seen":false,"room":"105R"},{"cls":"8a1","who":"PAH","seen":false,"room":"311R"},{"cls":"7b4","who":"RAA","seen":false,"room":"314P"}]},
+        {"period":"P3","kind":"linemgmt","with":"PAH","role":"Mentor","obs":[{"cls":"7a1","who":"BSI","seen":false,"room":"314P"},{"cls":"7a2","who":"NGR","seen":false,"room":"105R"}]},
         {"period":"P4a","kind":"lunch"},
         {"period":"P4b","kind":"lesson","class":"10b","topic":"","homework":"","done":false},
         {"period":"P5","kind":"lesson","class":"11a","topic":"","homework":"","done":false}
       ]},
       {"date":"2026-09-17","label":"Thu","dateLabel":"17 Sep","inset":false,"entries":[
         {"period":"P1","kind":"lesson","class":"11a","topic":"","homework":"","done":false},
-        {"period":"P2","kind":"free","note":"","obs":[{"cls":"12d/Ma","who":"AJB","seen":false},{"cls":"13e/Fm","who":"BSI","seen":false},{"cls":"9b2","who":"CWI","seen":false},{"cls":"9b3","who":"HCH","seen":false},{"cls":"104/Ma1","who":"KCA","seen":false},{"cls":"9b1","who":"NGR","seen":false}]},
-        {"period":"P3","kind":"free","note":"","obs":[{"cls":"12b/Fm","who":"BSI","seen":false},{"cls":"7b1","who":"HCH","seen":false},{"cls":"7b3","who":"KCA","seen":false},{"cls":"7b2","who":"NGR","seen":false},{"cls":"8a1","who":"PAH","seen":false},{"cls":"7b4","who":"RAA","seen":false}]},
+        {"period":"P2","kind":"free","note":"","obs":[{"cls":"12d/Ma","who":"AJB","seen":false,"room":"3P5"},{"cls":"13e/Fm","who":"BSI","seen":false,"room":"301R"},{"cls":"9b2","who":"CWI","seen":false,"room":"307R"},{"cls":"9b3","who":"HCH","seen":false,"room":"309R"},{"cls":"104/Ma1","who":"KCA","seen":false,"room":"314P"},{"cls":"9b1","who":"NGR","seen":false,"room":"105R"}]},
+        {"period":"P3","kind":"free","note":"","obs":[{"cls":"12b/Fm","who":"BSI","seen":false,"room":"301R"},{"cls":"7b1","who":"HCH","seen":false,"room":"307R"},{"cls":"7b3","who":"KCA","seen":false,"room":"306R"},{"cls":"7b2","who":"NGR","seen":false,"room":"105R"},{"cls":"8a1","who":"PAH","seen":false,"room":"311R"},{"cls":"7b4","who":"RAA","seen":false,"room":"314P"}]},
         {"period":"P4a","kind":"lesson","class":"11b","topic":"","homework":"","done":false},
         {"period":"P4b","kind":"lunch"},
         {"period":"P5","kind":"lesson","class":"10b","topic":"","homework":"","done":false}
       ]},
       {"date":"2026-09-18","label":"Fri","dateLabel":"18 Sep","inset":false,"entries":[
         {"period":"P1","kind":"lesson","class":"10b","topic":"","homework":"","done":false},
-        {"period":"P2","kind":"linemgmt","with":"AWA","role":"Line Man","obs":[{"cls":"12e/Ma","who":"BSI","seen":false},{"cls":"8b3","who":"CWI","seen":false},{"cls":"8b1","who":"HCH","seen":false},{"cls":"8b2","who":"KCA","seen":false},{"cls":"13c/Ma","who":"PBY","seen":false}]},
+        {"period":"P2","kind":"linemgmt","with":"AWA","role":"Line Man","obs":[{"cls":"12e/Ma","who":"BSI","seen":false,"room":"3P7"},{"cls":"8b3","who":"CWI","seen":false,"room":"323P"},{"cls":"8b1","who":"HCH","seen":false,"room":"309R"},{"cls":"8b2","who":"KCA","seen":false,"room":"306R"},{"cls":"13c/Ma","who":"PBY","seen":false,"room":"3P5"}]},
         {"period":"P3","kind":"lesson","class":"12d","topic":"","homework":"","done":false},
         {"period":"P4a","kind":"lunch"},
         {"period":"P4b","kind":"oncall"},
@@ -457,30 +459,30 @@
         {"period":"P3","kind":"lesson","class":"11a","topic":"","homework":"","done":false},
         {"period":"P4a","kind":"lunch"},
         {"period":"P4b","kind":"lesson","class":"12d","topic":"","homework":"","done":false},
-        {"period":"P5","kind":"free","note":"","obs":[{"cls":"8a3","who":"AJB","seen":false},{"cls":"8a2","who":"AWA","seen":false},{"cls":"12b/Fm","who":"BSI","seen":false},{"cls":"7b3","who":"KCA","seen":false},{"cls":"7b2","who":"NGR","seen":false},{"cls":"8a1","who":"PAH","seen":false},{"cls":"7b4","who":"RAA","seen":false}]},
-        {"period":"P6","kind":"linemgmt","with":"PAH","role":"Mentor","obs":[{"cls":"104/Ma1","who":"BSI","seen":false},{"cls":"12r/Ma1","who":"KCA","seen":false},{"cls":"12e/Ma","who":"PBY","seen":false}]}
+        {"period":"P5","kind":"free","note":"","obs":[{"cls":"8a3","who":"AJB","seen":false,"room":"309R"},{"cls":"8a2","who":"AWA","seen":false,"room":"312P"},{"cls":"12b/Fm","who":"BSI","seen":false,"room":"301R"},{"cls":"7b3","who":"KCA","seen":false,"room":"306R"},{"cls":"7b2","who":"NGR","seen":false,"room":"105R"},{"cls":"8a1","who":"PAH","seen":false,"room":"311R"},{"cls":"7b4","who":"RAA","seen":false,"room":"314P"}]},
+        {"period":"P6","kind":"linemgmt","with":"PAH","role":"Mentor","obs":[{"cls":"104/Ma1","who":"BSI","seen":false,"room":"314P"},{"cls":"12r/Ma1","who":"KCA","seen":false,"room":"3P5"},{"cls":"12e/Ma","who":"PBY","seen":false,"room":"3P7"}]}
       ]},
       {"date":"2026-09-22","label":"Tue","dateLabel":"22 Sep","inset":false,"entries":[
-        {"period":"P1","kind":"linemgmt","with":"PBY","role":"Line Man","obs":[{"cls":"8a3","who":"AJB","seen":false},{"cls":"8a2","who":"AWA","seen":false},{"cls":"12b/Fm","who":"BSI","seen":false},{"cls":"7b1","who":"HCH","seen":false},{"cls":"7b3","who":"KCA","seen":false},{"cls":"8a1","who":"PAH","seen":false},{"cls":"7b4","who":"RAA","seen":false}]},
+        {"period":"P1","kind":"linemgmt","with":"PBY","role":"Line Man","obs":[{"cls":"8a3","who":"AJB","seen":false,"room":"309R"},{"cls":"8a2","who":"AWA","seen":false,"room":"312P"},{"cls":"12b/Fm","who":"BSI","seen":false,"room":"301R"},{"cls":"7b1","who":"HCH","seen":false,"room":"307R"},{"cls":"7b3","who":"KCA","seen":false,"room":"306R"},{"cls":"8a1","who":"PAH","seen":false,"room":"311R"},{"cls":"7b4","who":"RAA","seen":false,"room":"314P"}]},
         {"period":"P2","kind":"lesson","class":"11b","topic":"","homework":"","done":false},
-        {"period":"P3","kind":"free","note":"","obs":[{"cls":"9a3","who":"AJB","seen":false},{"cls":"13d/Ma","who":"BSI","seen":false},{"cls":"13x/Ma","who":"HCH","seen":false},{"cls":"9a1","who":"NGR","seen":false},{"cls":"9a2","who":"PAH","seen":false}]},
+        {"period":"P3","kind":"free","note":"","obs":[{"cls":"9a3","who":"AJB","seen":false,"room":"309R"},{"cls":"13d/Ma","who":"BSI","seen":false,"room":"3P5"},{"cls":"13x/Ma","who":"HCH","seen":false,"room":"0P3"},{"cls":"9a1","who":"NGR","seen":false,"room":"105R"},{"cls":"9a2","who":"PAH","seen":false,"room":"311R"}]},
         {"period":"P4a","kind":"lesson","class":"11a","topic":"","homework":"","done":false},
         {"period":"P4b","kind":"lunch"},
-        {"period":"P5","kind":"free","note":"","obs":[{"cls":"12d/Ma","who":"AJB","seen":false},{"cls":"10a3","who":"AWA","seen":false},{"cls":"13e/Fm","who":"BSI","seen":false},{"cls":"9b2","who":"CWI","seen":false},{"cls":"9b1","who":"NGR","seen":false},{"cls":"10a4","who":"PAH","seen":false},{"cls":"10a2","who":"PBY","seen":false},{"cls":"10a1","who":"RAA","seen":false}]},
+        {"period":"P5","kind":"free","note":"","obs":[{"cls":"12d/Ma","who":"AJB","seen":false,"room":"3P5"},{"cls":"10a3","who":"AWA","seen":false,"room":"312P"},{"cls":"13e/Fm","who":"BSI","seen":false,"room":"301R"},{"cls":"9b2","who":"CWI","seen":false,"room":"307R"},{"cls":"9b1","who":"NGR","seen":false,"room":"105R"},{"cls":"10a4","who":"PAH","seen":false,"room":"311R"},{"cls":"10a2","who":"PBY","seen":false,"room":"306R"},{"cls":"10a1","who":"RAA","seen":false,"room":"314P"}]},
         {"period":"P6","kind":"lesson","class":"11b","topic":"","homework":"","done":false}
       ]},
       {"date":"2026-09-23","label":"Wed","dateLabel":"23 Sep","inset":false,"entries":[
         {"period":"P1","kind":"lesson","class":"12d","topic":"","homework":"","done":false},
-        {"period":"P2","kind":"linemgmt","with":"CWI","role":"Line Man","obs":[{"cls":"8a3","who":"AJB","seen":false},{"cls":"8a2","who":"AWA","seen":false},{"cls":"12b/Fm","who":"BSI","seen":false},{"cls":"7b3","who":"KCA","seen":false},{"cls":"7b2","who":"NGR","seen":false},{"cls":"8a1","who":"PAH","seen":false},{"cls":"7b4","who":"RAA","seen":false}]},
-        {"period":"P3","kind":"linemgmt","with":"CB","role":"Line Man","obs":[{"cls":"9a1","who":"NGR","seen":false},{"cls":"9a2","who":"PAH","seen":false}]},
+        {"period":"P2","kind":"linemgmt","with":"CWI","role":"Line Man","obs":[{"cls":"8a3","who":"AJB","seen":false,"room":"309R"},{"cls":"8a2","who":"AWA","seen":false,"room":"312P"},{"cls":"12b/Fm","who":"BSI","seen":false,"room":"301R"},{"cls":"7b3","who":"KCA","seen":false,"room":"306R"},{"cls":"7b2","who":"NGR","seen":false,"room":"105R"},{"cls":"8a1","who":"PAH","seen":false,"room":"311R"},{"cls":"7b4","who":"RAA","seen":false,"room":"314P"}]},
+        {"period":"P3","kind":"linemgmt","with":"CB","role":"Line Man","obs":[{"cls":"9a1","who":"NGR","seen":false,"room":"105R"},{"cls":"9a2","who":"PAH","seen":false,"room":"311R"}]},
         {"period":"P4a","kind":"lunch"},
         {"period":"P4b","kind":"lesson","class":"10b","topic":"","homework":"","done":false},
         {"period":"P5","kind":"lesson","class":"11a","topic":"","homework":"","done":false}
       ]},
       {"date":"2026-09-24","label":"Thu","dateLabel":"24 Sep","inset":false,"entries":[
         {"period":"P1","kind":"lesson","class":"11a","topic":"","homework":"","done":false},
-        {"period":"P2","kind":"free","note":"","obs":[{"cls":"12d/Ma","who":"AJB","seen":false},{"cls":"10a3","who":"AWA","seen":false},{"cls":"13e/Fm","who":"BSI","seen":false},{"cls":"9b2","who":"CWI","seen":false},{"cls":"9b3","who":"HCH","seen":false},{"cls":"9b1","who":"NGR","seen":false},{"cls":"10a4","who":"PAH","seen":false},{"cls":"10a2","who":"PBY","seen":false},{"cls":"10a1","who":"RAA","seen":false}]},
-        {"period":"P3","kind":"free","note":"","obs":[{"cls":"8a3","who":"AJB","seen":false},{"cls":"8a2","who":"AWA","seen":false},{"cls":"12b/Fm","who":"BSI","seen":false},{"cls":"7b1","who":"HCH","seen":false},{"cls":"7b3","who":"KCA","seen":false},{"cls":"7b2","who":"NGR","seen":false},{"cls":"7b4","who":"RAA","seen":false}]},
+        {"period":"P2","kind":"free","note":"","obs":[{"cls":"12d/Ma","who":"AJB","seen":false,"room":"3P5"},{"cls":"10a3","who":"AWA","seen":false,"room":"312P"},{"cls":"13e/Fm","who":"BSI","seen":false,"room":"301R"},{"cls":"9b2","who":"CWI","seen":false,"room":"307R"},{"cls":"9b3","who":"HCH","seen":false,"room":"309R"},{"cls":"9b1","who":"NGR","seen":false,"room":"105R"},{"cls":"10a4","who":"PAH","seen":false,"room":"311R"},{"cls":"10a2","who":"PBY","seen":false,"room":"306R"},{"cls":"10a1","who":"RAA","seen":false,"room":"314P"}]},
+        {"period":"P3","kind":"free","note":"","obs":[{"cls":"8a3","who":"AJB","seen":false,"room":"309R"},{"cls":"8a2","who":"AWA","seen":false,"room":"312P"},{"cls":"12b/Fm","who":"BSI","seen":false,"room":"301R"},{"cls":"7b1","who":"HCH","seen":false,"room":"307R"},{"cls":"7b3","who":"KCA","seen":false,"room":"306R"},{"cls":"7b2","who":"NGR","seen":false,"room":"105R"},{"cls":"7b4","who":"RAA","seen":false,"room":"314P"}]},
         {"period":"P4a","kind":"lesson","class":"11b","topic":"","homework":"","done":false},
         {"period":"P4b","kind":"lunch"},
         {"period":"P5","kind":"lesson","class":"10b","topic":"","homework":"","done":false}
@@ -501,30 +503,30 @@
         {"period":"P3","kind":"lesson","class":"11a","topic":"","homework":"","done":false},
         {"period":"P4a","kind":"lunch"},
         {"period":"P4b","kind":"lesson","class":"12d","topic":"","homework":"","done":false},
-        {"period":"P5","kind":"free","note":"","obs":[{"cls":"8a3","who":"AJB","seen":false},{"cls":"8a2","who":"AWA","seen":false},{"cls":"7b1","who":"HCH","seen":false},{"cls":"7b3","who":"KCA","seen":false},{"cls":"8a1","who":"PAH","seen":false},{"cls":"12b/Fm","who":"PBY","seen":false},{"cls":"7b4","who":"RAA","seen":false}]},
-        {"period":"P6","kind":"free","note":"","obs":[{"cls":"12r/Ma1","who":"AJB","seen":false},{"cls":"8b3","who":"CWI","seen":false},{"cls":"8b1","who":"HCH","seen":false},{"cls":"8b2","who":"KCA","seen":false},{"cls":"12e/Ma","who":"PBY","seen":false}]}
+        {"period":"P5","kind":"free","note":"","obs":[{"cls":"8a3","who":"AJB","seen":false,"room":"309R"},{"cls":"8a2","who":"AWA","seen":false,"room":"312P"},{"cls":"7b1","who":"HCH","seen":false,"room":"307R"},{"cls":"7b3","who":"KCA","seen":false,"room":"306R"},{"cls":"8a1","who":"PAH","seen":false,"room":"311R"},{"cls":"12b/Fm","who":"PBY","seen":false,"room":"301R"},{"cls":"7b4","who":"RAA","seen":false,"room":"314P"}]},
+        {"period":"P6","kind":"free","note":"","obs":[{"cls":"12r/Ma1","who":"AJB","seen":false,"room":"3P5"},{"cls":"8b3","who":"CWI","seen":false,"room":"323P"},{"cls":"8b1","who":"HCH","seen":false,"room":"309R"},{"cls":"8b2","who":"KCA","seen":false,"room":"306R"},{"cls":"12e/Ma","who":"PBY","seen":false,"room":"3P7"}]}
       ]},
       {"date":"2026-09-29","label":"Tue","dateLabel":"29 Sep","inset":false,"entries":[
-        {"period":"P1","kind":"free","note":"","obs":[{"cls":"8a3","who":"AJB","seen":false},{"cls":"8a2","who":"AWA","seen":false},{"cls":"12b/Fm","who":"BSI","seen":false},{"cls":"7b1","who":"HCH","seen":false},{"cls":"7b3","who":"KCA","seen":false},{"cls":"7b2","who":"NGR","seen":false},{"cls":"8a1","who":"PAH","seen":false},{"cls":"7b4","who":"RAA","seen":false}]},
+        {"period":"P1","kind":"free","note":"","obs":[{"cls":"8a3","who":"AJB","seen":false,"room":"309R"},{"cls":"8a2","who":"AWA","seen":false,"room":"312P"},{"cls":"12b/Fm","who":"BSI","seen":false,"room":"301R"},{"cls":"7b1","who":"HCH","seen":false,"room":"307R"},{"cls":"7b3","who":"KCA","seen":false,"room":"306R"},{"cls":"7b2","who":"NGR","seen":false,"room":"105R"},{"cls":"8a1","who":"PAH","seen":false,"room":"311R"},{"cls":"7b4","who":"RAA","seen":false,"room":"314P"}]},
         {"period":"P2","kind":"lesson","class":"11b","topic":"","homework":"","done":false},
-        {"period":"P3","kind":"free","note":"","obs":[{"cls":"9a3","who":"AJB","seen":false},{"cls":"13d/Ma","who":"BSI","seen":false},{"cls":"8b3","who":"CWI","seen":false},{"cls":"8b1","who":"HCH","seen":false},{"cls":"9a1","who":"NGR","seen":false},{"cls":"9a2","who":"PAH","seen":false}]},
+        {"period":"P3","kind":"free","note":"","obs":[{"cls":"9a3","who":"AJB","seen":false,"room":"309R"},{"cls":"13d/Ma","who":"BSI","seen":false,"room":"3P5"},{"cls":"8b3","who":"CWI","seen":false,"room":"323P"},{"cls":"8b1","who":"HCH","seen":false,"room":"307R"},{"cls":"9a1","who":"NGR","seen":false,"room":"105R"},{"cls":"9a2","who":"PAH","seen":false,"room":"311R"}]},
         {"period":"P4a","kind":"lesson","class":"11a","topic":"","homework":"","done":false},
         {"period":"P4b","kind":"lunch"},
-        {"period":"P5","kind":"free","note":"","obs":[{"cls":"12d/Ma","who":"AJB","seen":false},{"cls":"10a3","who":"AWA","seen":false},{"cls":"13e/Fm","who":"BSI","seen":false},{"cls":"9b2","who":"CWI","seen":false},{"cls":"9b3","who":"HCH","seen":false},{"cls":"10a4","who":"PAH","seen":false},{"cls":"10a2","who":"PBY","seen":false},{"cls":"10a1","who":"RAA","seen":false}]},
-        {"period":"P6","kind":"linemgmt","with":"NMU","role":"Line Man","obs":[{"cls":"12r/Ma1","who":"AJB","seen":false},{"cls":"10a3","who":"AWA","seen":false},{"cls":"7b1","who":"HCH","seen":false},{"cls":"7b3","who":"KCA","seen":false},{"cls":"7b2","who":"NGR","seen":false},{"cls":"10a4","who":"PAH","seen":false},{"cls":"10a2","who":"PBY","seen":false},{"cls":"10a1","who":"RAA","seen":false}]}
+        {"period":"P5","kind":"free","note":"","obs":[{"cls":"12d/Ma","who":"AJB","seen":false,"room":"3P5"},{"cls":"10a3","who":"AWA","seen":false,"room":"312P"},{"cls":"13e/Fm","who":"BSI","seen":false,"room":"301R"},{"cls":"9b2","who":"CWI","seen":false,"room":"307R"},{"cls":"9b3","who":"HCH","seen":false,"room":"309R"},{"cls":"10a4","who":"PAH","seen":false,"room":"311R"},{"cls":"10a2","who":"PBY","seen":false,"room":"306R"},{"cls":"10a1","who":"RAA","seen":false,"room":"314P"}]},
+        {"period":"P6","kind":"linemgmt","with":"NMU","role":"Line Man","obs":[{"cls":"12r/Ma1","who":"AJB","seen":false,"room":"3P5"},{"cls":"10a3","who":"AWA","seen":false,"room":"312P"},{"cls":"7b1","who":"HCH","seen":false,"room":"307R"},{"cls":"7b3","who":"KCA","seen":false,"room":"306R"},{"cls":"7b2","who":"NGR","seen":false,"room":"105R"},{"cls":"10a4","who":"PAH","seen":false,"room":"311R"},{"cls":"10a2","who":"PBY","seen":false,"room":"309R"},{"cls":"10a1","who":"RAA","seen":false,"room":"314P"}]}
       ]},
       {"date":"2026-09-30","label":"Wed","dateLabel":"30 Sep","inset":false,"entries":[
         {"period":"P1","kind":"lesson","class":"12d","topic":"","homework":"","done":false},
-        {"period":"P2","kind":"free","note":"","obs":[{"cls":"8a3","who":"AJB","seen":false},{"cls":"8a2","who":"AWA","seen":false},{"cls":"12b/Fm","who":"BSI","seen":false},{"cls":"7b1","who":"HCH","seen":false},{"cls":"7b3","who":"KCA","seen":false},{"cls":"7b2","who":"NGR","seen":false},{"cls":"8a1","who":"PAH","seen":false},{"cls":"7b4","who":"RAA","seen":false}]},
-        {"period":"P3","kind":"linemgmt","with":"PAH","role":"Mentor","obs":[{"cls":"7a1","who":"BSI","seen":false},{"cls":"7a2","who":"NGR","seen":false}]},
+        {"period":"P2","kind":"free","note":"","obs":[{"cls":"8a3","who":"AJB","seen":false,"room":"309R"},{"cls":"8a2","who":"AWA","seen":false,"room":"312P"},{"cls":"12b/Fm","who":"BSI","seen":false,"room":"301R"},{"cls":"7b1","who":"HCH","seen":false,"room":"307R"},{"cls":"7b3","who":"KCA","seen":false,"room":"306R"},{"cls":"7b2","who":"NGR","seen":false,"room":"105R"},{"cls":"8a1","who":"PAH","seen":false,"room":"311R"},{"cls":"7b4","who":"RAA","seen":false,"room":"314P"}]},
+        {"period":"P3","kind":"linemgmt","with":"PAH","role":"Mentor","obs":[{"cls":"7a1","who":"BSI","seen":false,"room":"314P"},{"cls":"7a2","who":"NGR","seen":false,"room":"105R"}]},
         {"period":"P4a","kind":"lunch"},
         {"period":"P4b","kind":"lesson","class":"10b","topic":"","homework":"","done":false},
         {"period":"P5","kind":"lesson","class":"11a","topic":"","homework":"","done":false}
       ]},
       {"date":"2026-10-01","label":"Thu","dateLabel":"1 Oct","inset":false,"entries":[
         {"period":"P1","kind":"lesson","class":"11a","topic":"","homework":"","done":false},
-        {"period":"P2","kind":"free","note":"","obs":[{"cls":"12d/Ma","who":"AJB","seen":false},{"cls":"13e/Fm","who":"BSI","seen":false},{"cls":"9b2","who":"CWI","seen":false},{"cls":"9b3","who":"HCH","seen":false},{"cls":"104/Ma1","who":"KCA","seen":false},{"cls":"9b1","who":"NGR","seen":false}]},
-        {"period":"P3","kind":"free","note":"","obs":[{"cls":"12b/Fm","who":"BSI","seen":false},{"cls":"7b1","who":"HCH","seen":false},{"cls":"7b3","who":"KCA","seen":false},{"cls":"7b2","who":"NGR","seen":false},{"cls":"8a1","who":"PAH","seen":false},{"cls":"7b4","who":"RAA","seen":false}]},
+        {"period":"P2","kind":"free","note":"","obs":[{"cls":"12d/Ma","who":"AJB","seen":false,"room":"3P5"},{"cls":"13e/Fm","who":"BSI","seen":false,"room":"301R"},{"cls":"9b2","who":"CWI","seen":false,"room":"307R"},{"cls":"9b3","who":"HCH","seen":false,"room":"309R"},{"cls":"104/Ma1","who":"KCA","seen":false,"room":"314P"},{"cls":"9b1","who":"NGR","seen":false,"room":"105R"}]},
+        {"period":"P3","kind":"free","note":"","obs":[{"cls":"12b/Fm","who":"BSI","seen":false,"room":"301R"},{"cls":"7b1","who":"HCH","seen":false,"room":"307R"},{"cls":"7b3","who":"KCA","seen":false,"room":"306R"},{"cls":"7b2","who":"NGR","seen":false,"room":"105R"},{"cls":"8a1","who":"PAH","seen":false,"room":"311R"},{"cls":"7b4","who":"RAA","seen":false,"room":"314P"}]},
         {"period":"P4a","kind":"lesson","class":"11b","topic":"","homework":"","done":false},
         {"period":"P4b","kind":"lunch"},
         {"period":"P5","kind":"lesson","class":"10b","topic":"","homework":"","done":false}
@@ -540,30 +542,30 @@
         {"period":"P3","kind":"lesson","class":"11a","topic":"","homework":"","done":false},
         {"period":"P4a","kind":"lunch"},
         {"period":"P4b","kind":"lesson","class":"12d","topic":"","homework":"","done":false},
-        {"period":"P5","kind":"free","note":"","obs":[{"cls":"8a3","who":"AJB","seen":false},{"cls":"8a2","who":"AWA","seen":false},{"cls":"12b/Fm","who":"BSI","seen":false},{"cls":"7b3","who":"KCA","seen":false},{"cls":"7b2","who":"NGR","seen":false},{"cls":"8a1","who":"PAH","seen":false},{"cls":"7b4","who":"RAA","seen":false}]},
-        {"period":"P6","kind":"linemgmt","with":"PAH","role":"Mentor","obs":[{"cls":"104/Ma1","who":"BSI","seen":false},{"cls":"12r/Ma1","who":"KCA","seen":false},{"cls":"12e/Ma","who":"PBY","seen":false}]}
+        {"period":"P5","kind":"free","note":"","obs":[{"cls":"8a3","who":"AJB","seen":false,"room":"309R"},{"cls":"8a2","who":"AWA","seen":false,"room":"312P"},{"cls":"12b/Fm","who":"BSI","seen":false,"room":"301R"},{"cls":"7b3","who":"KCA","seen":false,"room":"306R"},{"cls":"7b2","who":"NGR","seen":false,"room":"105R"},{"cls":"8a1","who":"PAH","seen":false,"room":"311R"},{"cls":"7b4","who":"RAA","seen":false,"room":"314P"}]},
+        {"period":"P6","kind":"linemgmt","with":"PAH","role":"Mentor","obs":[{"cls":"104/Ma1","who":"BSI","seen":false,"room":"314P"},{"cls":"12r/Ma1","who":"KCA","seen":false,"room":"3P5"},{"cls":"12e/Ma","who":"PBY","seen":false,"room":"3P7"}]}
       ]},
       {"date":"2026-10-06","label":"Tue","dateLabel":"6 Oct","inset":false,"entries":[
-        {"period":"P1","kind":"linemgmt","with":"PBY","role":"Line Man","obs":[{"cls":"8a3","who":"AJB","seen":false},{"cls":"8a2","who":"AWA","seen":false},{"cls":"12b/Fm","who":"BSI","seen":false},{"cls":"7b1","who":"HCH","seen":false},{"cls":"7b3","who":"KCA","seen":false},{"cls":"8a1","who":"PAH","seen":false},{"cls":"7b4","who":"RAA","seen":false}]},
+        {"period":"P1","kind":"linemgmt","with":"PBY","role":"Line Man","obs":[{"cls":"8a3","who":"AJB","seen":false,"room":"309R"},{"cls":"8a2","who":"AWA","seen":false,"room":"312P"},{"cls":"12b/Fm","who":"BSI","seen":false,"room":"301R"},{"cls":"7b1","who":"HCH","seen":false,"room":"307R"},{"cls":"7b3","who":"KCA","seen":false,"room":"306R"},{"cls":"8a1","who":"PAH","seen":false,"room":"311R"},{"cls":"7b4","who":"RAA","seen":false,"room":"314P"}]},
         {"period":"P2","kind":"lesson","class":"11b","topic":"","homework":"","done":false},
-        {"period":"P3","kind":"free","note":"","obs":[{"cls":"9a3","who":"AJB","seen":false},{"cls":"13d/Ma","who":"BSI","seen":false},{"cls":"13x/Ma","who":"HCH","seen":false},{"cls":"9a1","who":"NGR","seen":false},{"cls":"9a2","who":"PAH","seen":false}]},
+        {"period":"P3","kind":"free","note":"","obs":[{"cls":"9a3","who":"AJB","seen":false,"room":"309R"},{"cls":"13d/Ma","who":"BSI","seen":false,"room":"3P5"},{"cls":"13x/Ma","who":"HCH","seen":false,"room":"0P3"},{"cls":"9a1","who":"NGR","seen":false,"room":"105R"},{"cls":"9a2","who":"PAH","seen":false,"room":"311R"}]},
         {"period":"P4a","kind":"lesson","class":"11a","topic":"","homework":"","done":false},
         {"period":"P4b","kind":"lunch"},
-        {"period":"P5","kind":"free","note":"","obs":[{"cls":"12d/Ma","who":"AJB","seen":false},{"cls":"10a3","who":"AWA","seen":false},{"cls":"13e/Fm","who":"BSI","seen":false},{"cls":"9b2","who":"CWI","seen":false},{"cls":"9b1","who":"NGR","seen":false},{"cls":"10a4","who":"PAH","seen":false},{"cls":"10a2","who":"PBY","seen":false},{"cls":"10a1","who":"RAA","seen":false}]},
+        {"period":"P5","kind":"free","note":"","obs":[{"cls":"12d/Ma","who":"AJB","seen":false,"room":"3P5"},{"cls":"10a3","who":"AWA","seen":false,"room":"312P"},{"cls":"13e/Fm","who":"BSI","seen":false,"room":"301R"},{"cls":"9b2","who":"CWI","seen":false,"room":"307R"},{"cls":"9b1","who":"NGR","seen":false,"room":"105R"},{"cls":"10a4","who":"PAH","seen":false,"room":"311R"},{"cls":"10a2","who":"PBY","seen":false,"room":"306R"},{"cls":"10a1","who":"RAA","seen":false,"room":"314P"}]},
         {"period":"P6","kind":"lesson","class":"11b","topic":"","homework":"","done":false}
       ]},
       {"date":"2026-10-07","label":"Wed","dateLabel":"7 Oct","inset":false,"entries":[
         {"period":"P1","kind":"lesson","class":"12d","topic":"","homework":"","done":false},
-        {"period":"P2","kind":"linemgmt","with":"CWI","role":"Line Man","obs":[{"cls":"8a3","who":"AJB","seen":false},{"cls":"8a2","who":"AWA","seen":false},{"cls":"12b/Fm","who":"BSI","seen":false},{"cls":"7b3","who":"KCA","seen":false},{"cls":"7b2","who":"NGR","seen":false},{"cls":"8a1","who":"PAH","seen":false},{"cls":"7b4","who":"RAA","seen":false}]},
-        {"period":"P3","kind":"linemgmt","with":"CB","role":"Line Man","obs":[{"cls":"9a1","who":"NGR","seen":false},{"cls":"9a2","who":"PAH","seen":false}]},
+        {"period":"P2","kind":"linemgmt","with":"CWI","role":"Line Man","obs":[{"cls":"8a3","who":"AJB","seen":false,"room":"309R"},{"cls":"8a2","who":"AWA","seen":false,"room":"312P"},{"cls":"12b/Fm","who":"BSI","seen":false,"room":"301R"},{"cls":"7b3","who":"KCA","seen":false,"room":"306R"},{"cls":"7b2","who":"NGR","seen":false,"room":"105R"},{"cls":"8a1","who":"PAH","seen":false,"room":"311R"},{"cls":"7b4","who":"RAA","seen":false,"room":"314P"}]},
+        {"period":"P3","kind":"linemgmt","with":"CB","role":"Line Man","obs":[{"cls":"9a1","who":"NGR","seen":false,"room":"105R"},{"cls":"9a2","who":"PAH","seen":false,"room":"311R"}]},
         {"period":"P4a","kind":"lunch"},
         {"period":"P4b","kind":"lesson","class":"10b","topic":"","homework":"","done":false},
         {"period":"P5","kind":"lesson","class":"11a","topic":"","homework":"","done":false}
       ]},
       {"date":"2026-10-08","label":"Thu","dateLabel":"8 Oct","inset":false,"entries":[
         {"period":"P1","kind":"lesson","class":"11a","topic":"","homework":"","done":false},
-        {"period":"P2","kind":"free","note":"","obs":[{"cls":"12d/Ma","who":"AJB","seen":false},{"cls":"10a3","who":"AWA","seen":false},{"cls":"13e/Fm","who":"BSI","seen":false},{"cls":"9b2","who":"CWI","seen":false},{"cls":"9b3","who":"HCH","seen":false},{"cls":"9b1","who":"NGR","seen":false},{"cls":"10a4","who":"PAH","seen":false},{"cls":"10a2","who":"PBY","seen":false},{"cls":"10a1","who":"RAA","seen":false}]},
-        {"period":"P3","kind":"free","note":"","obs":[{"cls":"8a3","who":"AJB","seen":false},{"cls":"8a2","who":"AWA","seen":false},{"cls":"12b/Fm","who":"BSI","seen":false},{"cls":"7b1","who":"HCH","seen":false},{"cls":"7b3","who":"KCA","seen":false},{"cls":"7b2","who":"NGR","seen":false},{"cls":"7b4","who":"RAA","seen":false}]},
+        {"period":"P2","kind":"free","note":"","obs":[{"cls":"12d/Ma","who":"AJB","seen":false,"room":"3P5"},{"cls":"10a3","who":"AWA","seen":false,"room":"312P"},{"cls":"13e/Fm","who":"BSI","seen":false,"room":"301R"},{"cls":"9b2","who":"CWI","seen":false,"room":"307R"},{"cls":"9b3","who":"HCH","seen":false,"room":"309R"},{"cls":"9b1","who":"NGR","seen":false,"room":"105R"},{"cls":"10a4","who":"PAH","seen":false,"room":"311R"},{"cls":"10a2","who":"PBY","seen":false,"room":"306R"},{"cls":"10a1","who":"RAA","seen":false,"room":"314P"}]},
+        {"period":"P3","kind":"free","note":"","obs":[{"cls":"8a3","who":"AJB","seen":false,"room":"309R"},{"cls":"8a2","who":"AWA","seen":false,"room":"312P"},{"cls":"12b/Fm","who":"BSI","seen":false,"room":"301R"},{"cls":"7b1","who":"HCH","seen":false,"room":"307R"},{"cls":"7b3","who":"KCA","seen":false,"room":"306R"},{"cls":"7b2","who":"NGR","seen":false,"room":"105R"},{"cls":"7b4","who":"RAA","seen":false,"room":"314P"}]},
         {"period":"P4a","kind":"lesson","class":"11b","topic":"","homework":"","done":false},
         {"period":"P4b","kind":"lunch"},
         {"period":"P5","kind":"lesson","class":"10b","topic":"","homework":"","done":false}
@@ -584,37 +586,37 @@
         {"period":"P3","kind":"lesson","class":"11a","topic":"","homework":"","done":false},
         {"period":"P4a","kind":"lunch"},
         {"period":"P4b","kind":"lesson","class":"12d","topic":"","homework":"","done":false},
-        {"period":"P5","kind":"free","note":"","obs":[{"cls":"8a3","who":"AJB","seen":false},{"cls":"8a2","who":"AWA","seen":false},{"cls":"7b1","who":"HCH","seen":false},{"cls":"7b3","who":"KCA","seen":false},{"cls":"8a1","who":"PAH","seen":false},{"cls":"12b/Fm","who":"PBY","seen":false},{"cls":"7b4","who":"RAA","seen":false}]},
-        {"period":"P6","kind":"free","note":"","obs":[{"cls":"12r/Ma1","who":"AJB","seen":false},{"cls":"8b3","who":"CWI","seen":false},{"cls":"8b1","who":"HCH","seen":false},{"cls":"8b2","who":"KCA","seen":false},{"cls":"12e/Ma","who":"PBY","seen":false}]}
+        {"period":"P5","kind":"free","note":"","obs":[{"cls":"8a3","who":"AJB","seen":false,"room":"309R"},{"cls":"8a2","who":"AWA","seen":false,"room":"312P"},{"cls":"7b1","who":"HCH","seen":false,"room":"307R"},{"cls":"7b3","who":"KCA","seen":false,"room":"306R"},{"cls":"8a1","who":"PAH","seen":false,"room":"311R"},{"cls":"12b/Fm","who":"PBY","seen":false,"room":"301R"},{"cls":"7b4","who":"RAA","seen":false,"room":"314P"}]},
+        {"period":"P6","kind":"free","note":"","obs":[{"cls":"12r/Ma1","who":"AJB","seen":false,"room":"3P5"},{"cls":"8b3","who":"CWI","seen":false,"room":"323P"},{"cls":"8b1","who":"HCH","seen":false,"room":"309R"},{"cls":"8b2","who":"KCA","seen":false,"room":"306R"},{"cls":"12e/Ma","who":"PBY","seen":false,"room":"3P7"}]}
       ]},
       {"date":"2026-10-13","label":"Tue","dateLabel":"13 Oct","inset":false,"entries":[
-        {"period":"P1","kind":"free","note":"","obs":[{"cls":"8a3","who":"AJB","seen":false},{"cls":"8a2","who":"AWA","seen":false},{"cls":"12b/Fm","who":"BSI","seen":false},{"cls":"7b1","who":"HCH","seen":false},{"cls":"7b3","who":"KCA","seen":false},{"cls":"7b2","who":"NGR","seen":false},{"cls":"8a1","who":"PAH","seen":false},{"cls":"7b4","who":"RAA","seen":false}]},
+        {"period":"P1","kind":"free","note":"","obs":[{"cls":"8a3","who":"AJB","seen":false,"room":"309R"},{"cls":"8a2","who":"AWA","seen":false,"room":"312P"},{"cls":"12b/Fm","who":"BSI","seen":false,"room":"301R"},{"cls":"7b1","who":"HCH","seen":false,"room":"307R"},{"cls":"7b3","who":"KCA","seen":false,"room":"306R"},{"cls":"7b2","who":"NGR","seen":false,"room":"105R"},{"cls":"8a1","who":"PAH","seen":false,"room":"311R"},{"cls":"7b4","who":"RAA","seen":false,"room":"314P"}]},
         {"period":"P2","kind":"lesson","class":"11b","topic":"","homework":"","done":false},
-        {"period":"P3","kind":"free","note":"","obs":[{"cls":"9a3","who":"AJB","seen":false},{"cls":"13d/Ma","who":"BSI","seen":false},{"cls":"8b3","who":"CWI","seen":false},{"cls":"8b1","who":"HCH","seen":false},{"cls":"9a1","who":"NGR","seen":false},{"cls":"9a2","who":"PAH","seen":false}]},
+        {"period":"P3","kind":"free","note":"","obs":[{"cls":"9a3","who":"AJB","seen":false,"room":"309R"},{"cls":"13d/Ma","who":"BSI","seen":false,"room":"3P5"},{"cls":"8b3","who":"CWI","seen":false,"room":"323P"},{"cls":"8b1","who":"HCH","seen":false,"room":"307R"},{"cls":"9a1","who":"NGR","seen":false,"room":"105R"},{"cls":"9a2","who":"PAH","seen":false,"room":"311R"}]},
         {"period":"P4a","kind":"lesson","class":"11a","topic":"","homework":"","done":false},
         {"period":"P4b","kind":"lunch"},
-        {"period":"P5","kind":"free","note":"","obs":[{"cls":"12d/Ma","who":"AJB","seen":false},{"cls":"10a3","who":"AWA","seen":false},{"cls":"13e/Fm","who":"BSI","seen":false},{"cls":"9b2","who":"CWI","seen":false},{"cls":"9b3","who":"HCH","seen":false},{"cls":"10a4","who":"PAH","seen":false},{"cls":"10a2","who":"PBY","seen":false},{"cls":"10a1","who":"RAA","seen":false}]},
-        {"period":"P6","kind":"linemgmt","with":"NMU","role":"Line Man","obs":[{"cls":"12r/Ma1","who":"AJB","seen":false},{"cls":"10a3","who":"AWA","seen":false},{"cls":"7b1","who":"HCH","seen":false},{"cls":"7b3","who":"KCA","seen":false},{"cls":"7b2","who":"NGR","seen":false},{"cls":"10a4","who":"PAH","seen":false},{"cls":"10a2","who":"PBY","seen":false},{"cls":"10a1","who":"RAA","seen":false}]}
+        {"period":"P5","kind":"free","note":"","obs":[{"cls":"12d/Ma","who":"AJB","seen":false,"room":"3P5"},{"cls":"10a3","who":"AWA","seen":false,"room":"312P"},{"cls":"13e/Fm","who":"BSI","seen":false,"room":"301R"},{"cls":"9b2","who":"CWI","seen":false,"room":"307R"},{"cls":"9b3","who":"HCH","seen":false,"room":"309R"},{"cls":"10a4","who":"PAH","seen":false,"room":"311R"},{"cls":"10a2","who":"PBY","seen":false,"room":"306R"},{"cls":"10a1","who":"RAA","seen":false,"room":"314P"}]},
+        {"period":"P6","kind":"linemgmt","with":"NMU","role":"Line Man","obs":[{"cls":"12r/Ma1","who":"AJB","seen":false,"room":"3P5"},{"cls":"10a3","who":"AWA","seen":false,"room":"312P"},{"cls":"7b1","who":"HCH","seen":false,"room":"307R"},{"cls":"7b3","who":"KCA","seen":false,"room":"306R"},{"cls":"7b2","who":"NGR","seen":false,"room":"105R"},{"cls":"10a4","who":"PAH","seen":false,"room":"311R"},{"cls":"10a2","who":"PBY","seen":false,"room":"309R"},{"cls":"10a1","who":"RAA","seen":false,"room":"314P"}]}
       ]},
       {"date":"2026-10-14","label":"Wed","dateLabel":"14 Oct","inset":false,"entries":[
         {"period":"P1","kind":"lesson","class":"12d","topic":"","homework":"","done":false},
-        {"period":"P2","kind":"free","note":"","obs":[{"cls":"8a3","who":"AJB","seen":false},{"cls":"8a2","who":"AWA","seen":false},{"cls":"12b/Fm","who":"BSI","seen":false},{"cls":"7b1","who":"HCH","seen":false},{"cls":"7b3","who":"KCA","seen":false},{"cls":"7b2","who":"NGR","seen":false},{"cls":"8a1","who":"PAH","seen":false},{"cls":"7b4","who":"RAA","seen":false}]},
-        {"period":"P3","kind":"linemgmt","with":"PAH","role":"Mentor","obs":[{"cls":"7a1","who":"BSI","seen":false},{"cls":"7a2","who":"NGR","seen":false}]},
+        {"period":"P2","kind":"free","note":"","obs":[{"cls":"8a3","who":"AJB","seen":false,"room":"309R"},{"cls":"8a2","who":"AWA","seen":false,"room":"312P"},{"cls":"12b/Fm","who":"BSI","seen":false,"room":"301R"},{"cls":"7b1","who":"HCH","seen":false,"room":"307R"},{"cls":"7b3","who":"KCA","seen":false,"room":"306R"},{"cls":"7b2","who":"NGR","seen":false,"room":"105R"},{"cls":"8a1","who":"PAH","seen":false,"room":"311R"},{"cls":"7b4","who":"RAA","seen":false,"room":"314P"}]},
+        {"period":"P3","kind":"linemgmt","with":"PAH","role":"Mentor","obs":[{"cls":"7a1","who":"BSI","seen":false,"room":"314P"},{"cls":"7a2","who":"NGR","seen":false,"room":"105R"}]},
         {"period":"P4a","kind":"lunch"},
         {"period":"P4b","kind":"lesson","class":"10b","topic":"","homework":"","done":false},
         {"period":"P5","kind":"lesson","class":"11a","topic":"","homework":"","done":false}
       ]},
       {"date":"2026-10-15","label":"Thu","dateLabel":"15 Oct","inset":false,"entries":[
         {"period":"P1","kind":"lesson","class":"11a","topic":"","homework":"","done":false},
-        {"period":"P2","kind":"free","note":"","obs":[{"cls":"12d/Ma","who":"AJB","seen":false},{"cls":"13e/Fm","who":"BSI","seen":false},{"cls":"9b2","who":"CWI","seen":false},{"cls":"9b3","who":"HCH","seen":false},{"cls":"104/Ma1","who":"KCA","seen":false},{"cls":"9b1","who":"NGR","seen":false}]},
-        {"period":"P3","kind":"free","note":"","obs":[{"cls":"12b/Fm","who":"BSI","seen":false},{"cls":"7b1","who":"HCH","seen":false},{"cls":"7b3","who":"KCA","seen":false},{"cls":"7b2","who":"NGR","seen":false},{"cls":"8a1","who":"PAH","seen":false},{"cls":"7b4","who":"RAA","seen":false}]},
+        {"period":"P2","kind":"free","note":"","obs":[{"cls":"12d/Ma","who":"AJB","seen":false,"room":"3P5"},{"cls":"13e/Fm","who":"BSI","seen":false,"room":"301R"},{"cls":"9b2","who":"CWI","seen":false,"room":"307R"},{"cls":"9b3","who":"HCH","seen":false,"room":"309R"},{"cls":"104/Ma1","who":"KCA","seen":false,"room":"314P"},{"cls":"9b1","who":"NGR","seen":false,"room":"105R"}]},
+        {"period":"P3","kind":"free","note":"","obs":[{"cls":"12b/Fm","who":"BSI","seen":false,"room":"301R"},{"cls":"7b1","who":"HCH","seen":false,"room":"307R"},{"cls":"7b3","who":"KCA","seen":false,"room":"306R"},{"cls":"7b2","who":"NGR","seen":false,"room":"105R"},{"cls":"8a1","who":"PAH","seen":false,"room":"311R"},{"cls":"7b4","who":"RAA","seen":false,"room":"314P"}]},
         {"period":"P4a","kind":"lesson","class":"11b","topic":"","homework":"","done":false},
         {"period":"P4b","kind":"lunch"},
         {"period":"P5","kind":"lesson","class":"10b","topic":"","homework":"","done":false}
       ]},
       {"date":"2026-10-16","label":"Fri","dateLabel":"16 Oct","inset":false,"entries":[
         {"period":"P1","kind":"lesson","class":"10b","topic":"","homework":"","done":false},
-        {"period":"P2","kind":"linemgmt","with":"AWA","role":"Line Man","obs":[{"cls":"12e/Ma","who":"BSI","seen":false},{"cls":"8b3","who":"CWI","seen":false},{"cls":"8b1","who":"HCH","seen":false},{"cls":"8b2","who":"KCA","seen":false},{"cls":"13c/Ma","who":"PBY","seen":false}]},
+        {"period":"P2","kind":"linemgmt","with":"AWA","role":"Line Man","obs":[{"cls":"12e/Ma","who":"BSI","seen":false,"room":"3P7"},{"cls":"8b3","who":"CWI","seen":false,"room":"323P"},{"cls":"8b1","who":"HCH","seen":false,"room":"309R"},{"cls":"8b2","who":"KCA","seen":false,"room":"306R"},{"cls":"13c/Ma","who":"PBY","seen":false,"room":"3P5"}]},
         {"period":"P3","kind":"lesson","class":"12d","topic":"","homework":"","done":false},
         {"period":"P4a","kind":"lunch"},
         {"period":"P4b","kind":"oncall"},
@@ -628,16 +630,16 @@
         {"period":"P3","kind":"lesson","class":"11a","topic":"","homework":"","done":false},
         {"period":"P4a","kind":"lunch"},
         {"period":"P4b","kind":"lesson","class":"12d","topic":"","homework":"","done":false},
-        {"period":"P5","kind":"free","note":"","obs":[{"cls":"8a3","who":"AJB","seen":false},{"cls":"8a2","who":"AWA","seen":false},{"cls":"12b/Fm","who":"BSI","seen":false},{"cls":"7b3","who":"KCA","seen":false},{"cls":"7b2","who":"NGR","seen":false},{"cls":"8a1","who":"PAH","seen":false},{"cls":"7b4","who":"RAA","seen":false}]},
-        {"period":"P6","kind":"linemgmt","with":"PAH","role":"Mentor","obs":[{"cls":"104/Ma1","who":"BSI","seen":false},{"cls":"12r/Ma1","who":"KCA","seen":false},{"cls":"12e/Ma","who":"PBY","seen":false}]}
+        {"period":"P5","kind":"free","note":"","obs":[{"cls":"8a3","who":"AJB","seen":false,"room":"309R"},{"cls":"8a2","who":"AWA","seen":false,"room":"312P"},{"cls":"12b/Fm","who":"BSI","seen":false,"room":"301R"},{"cls":"7b3","who":"KCA","seen":false,"room":"306R"},{"cls":"7b2","who":"NGR","seen":false,"room":"105R"},{"cls":"8a1","who":"PAH","seen":false,"room":"311R"},{"cls":"7b4","who":"RAA","seen":false,"room":"314P"}]},
+        {"period":"P6","kind":"linemgmt","with":"PAH","role":"Mentor","obs":[{"cls":"104/Ma1","who":"BSI","seen":false,"room":"314P"},{"cls":"12r/Ma1","who":"KCA","seen":false,"room":"3P5"},{"cls":"12e/Ma","who":"PBY","seen":false,"room":"3P7"}]}
       ]},
       {"date":"2026-10-20","label":"Tue","dateLabel":"20 Oct","inset":false,"entries":[
-        {"period":"P1","kind":"linemgmt","with":"PBY","role":"Line Man","obs":[{"cls":"8a3","who":"AJB","seen":false},{"cls":"8a2","who":"AWA","seen":false},{"cls":"12b/Fm","who":"BSI","seen":false},{"cls":"7b1","who":"HCH","seen":false},{"cls":"7b3","who":"KCA","seen":false},{"cls":"8a1","who":"PAH","seen":false},{"cls":"7b4","who":"RAA","seen":false}]},
+        {"period":"P1","kind":"linemgmt","with":"PBY","role":"Line Man","obs":[{"cls":"8a3","who":"AJB","seen":false,"room":"309R"},{"cls":"8a2","who":"AWA","seen":false,"room":"312P"},{"cls":"12b/Fm","who":"BSI","seen":false,"room":"301R"},{"cls":"7b1","who":"HCH","seen":false,"room":"307R"},{"cls":"7b3","who":"KCA","seen":false,"room":"306R"},{"cls":"8a1","who":"PAH","seen":false,"room":"311R"},{"cls":"7b4","who":"RAA","seen":false,"room":"314P"}]},
         {"period":"P2","kind":"lesson","class":"11b","topic":"","homework":"","done":false},
-        {"period":"P3","kind":"free","note":"","obs":[{"cls":"9a3","who":"AJB","seen":false},{"cls":"13d/Ma","who":"BSI","seen":false},{"cls":"13x/Ma","who":"HCH","seen":false},{"cls":"9a1","who":"NGR","seen":false},{"cls":"9a2","who":"PAH","seen":false}]},
+        {"period":"P3","kind":"free","note":"","obs":[{"cls":"9a3","who":"AJB","seen":false,"room":"309R"},{"cls":"13d/Ma","who":"BSI","seen":false,"room":"3P5"},{"cls":"13x/Ma","who":"HCH","seen":false,"room":"0P3"},{"cls":"9a1","who":"NGR","seen":false,"room":"105R"},{"cls":"9a2","who":"PAH","seen":false,"room":"311R"}]},
         {"period":"P4a","kind":"lesson","class":"11a","topic":"","homework":"","done":false},
         {"period":"P4b","kind":"lunch"},
-        {"period":"P5","kind":"free","note":"","obs":[{"cls":"12d/Ma","who":"AJB","seen":false},{"cls":"10a3","who":"AWA","seen":false},{"cls":"13e/Fm","who":"BSI","seen":false},{"cls":"9b2","who":"CWI","seen":false},{"cls":"9b1","who":"NGR","seen":false},{"cls":"10a4","who":"PAH","seen":false},{"cls":"10a2","who":"PBY","seen":false},{"cls":"10a1","who":"RAA","seen":false}]},
+        {"period":"P5","kind":"free","note":"","obs":[{"cls":"12d/Ma","who":"AJB","seen":false,"room":"3P5"},{"cls":"10a3","who":"AWA","seen":false,"room":"312P"},{"cls":"13e/Fm","who":"BSI","seen":false,"room":"301R"},{"cls":"9b2","who":"CWI","seen":false,"room":"307R"},{"cls":"9b1","who":"NGR","seen":false,"room":"105R"},{"cls":"10a4","who":"PAH","seen":false,"room":"311R"},{"cls":"10a2","who":"PBY","seen":false,"room":"306R"},{"cls":"10a1","who":"RAA","seen":false,"room":"314P"}]},
         {"period":"P6","kind":"lesson","class":"11b","topic":"","homework":"","done":false}
       ]},
       {"date":"2026-10-21","label":"Wed","dateLabel":"21 Oct","inset":true,"insetLabel":"Cultural Capital Day","entries":[
@@ -645,8 +647,8 @@
       ]},
       {"date":"2026-10-22","label":"Thu","dateLabel":"22 Oct","inset":false,"entries":[
         {"period":"P1","kind":"lesson","class":"11a","topic":"","homework":"","done":false},
-        {"period":"P2","kind":"free","note":"","obs":[{"cls":"12d/Ma","who":"AJB","seen":false},{"cls":"10a3","who":"AWA","seen":false},{"cls":"13e/Fm","who":"BSI","seen":false},{"cls":"9b2","who":"CWI","seen":false},{"cls":"9b3","who":"HCH","seen":false},{"cls":"9b1","who":"NGR","seen":false},{"cls":"10a4","who":"PAH","seen":false},{"cls":"10a2","who":"PBY","seen":false},{"cls":"10a1","who":"RAA","seen":false}]},
-        {"period":"P3","kind":"free","note":"","obs":[{"cls":"8a3","who":"AJB","seen":false},{"cls":"8a2","who":"AWA","seen":false},{"cls":"12b/Fm","who":"BSI","seen":false},{"cls":"7b1","who":"HCH","seen":false},{"cls":"7b3","who":"KCA","seen":false},{"cls":"7b2","who":"NGR","seen":false},{"cls":"7b4","who":"RAA","seen":false}]},
+        {"period":"P2","kind":"free","note":"","obs":[{"cls":"12d/Ma","who":"AJB","seen":false,"room":"3P5"},{"cls":"10a3","who":"AWA","seen":false,"room":"312P"},{"cls":"13e/Fm","who":"BSI","seen":false,"room":"301R"},{"cls":"9b2","who":"CWI","seen":false,"room":"307R"},{"cls":"9b3","who":"HCH","seen":false,"room":"309R"},{"cls":"9b1","who":"NGR","seen":false,"room":"105R"},{"cls":"10a4","who":"PAH","seen":false,"room":"311R"},{"cls":"10a2","who":"PBY","seen":false,"room":"306R"},{"cls":"10a1","who":"RAA","seen":false,"room":"314P"}]},
+        {"period":"P3","kind":"free","note":"","obs":[{"cls":"8a3","who":"AJB","seen":false,"room":"309R"},{"cls":"8a2","who":"AWA","seen":false,"room":"312P"},{"cls":"12b/Fm","who":"BSI","seen":false,"room":"301R"},{"cls":"7b1","who":"HCH","seen":false,"room":"307R"},{"cls":"7b3","who":"KCA","seen":false,"room":"306R"},{"cls":"7b2","who":"NGR","seen":false,"room":"105R"},{"cls":"7b4","who":"RAA","seen":false,"room":"314P"}]},
         {"period":"P4a","kind":"lesson","class":"11b","topic":"","homework":"","done":false},
         {"period":"P4b","kind":"lunch"},
         {"period":"P5","kind":"lesson","class":"10b","topic":"","homework":"","done":false}
@@ -667,37 +669,37 @@
         {"period":"P3","kind":"lesson","class":"11a","topic":"","homework":"","done":false},
         {"period":"P4a","kind":"lunch"},
         {"period":"P4b","kind":"lesson","class":"12d","topic":"","homework":"","done":false},
-        {"period":"P5","kind":"free","note":"","obs":[{"cls":"8a3","who":"AJB","seen":false},{"cls":"8a2","who":"AWA","seen":false},{"cls":"7b1","who":"HCH","seen":false},{"cls":"7b3","who":"KCA","seen":false},{"cls":"8a1","who":"PAH","seen":false},{"cls":"12b/Fm","who":"PBY","seen":false},{"cls":"7b4","who":"RAA","seen":false}]},
-        {"period":"P6","kind":"free","note":"","obs":[{"cls":"12r/Ma1","who":"AJB","seen":false},{"cls":"8b3","who":"CWI","seen":false},{"cls":"8b1","who":"HCH","seen":false},{"cls":"8b2","who":"KCA","seen":false},{"cls":"12e/Ma","who":"PBY","seen":false}]}
+        {"period":"P5","kind":"free","note":"","obs":[{"cls":"8a3","who":"AJB","seen":false,"room":"309R"},{"cls":"8a2","who":"AWA","seen":false,"room":"312P"},{"cls":"7b1","who":"HCH","seen":false,"room":"307R"},{"cls":"7b3","who":"KCA","seen":false,"room":"306R"},{"cls":"8a1","who":"PAH","seen":false,"room":"311R"},{"cls":"12b/Fm","who":"PBY","seen":false,"room":"301R"},{"cls":"7b4","who":"RAA","seen":false,"room":"314P"}]},
+        {"period":"P6","kind":"free","note":"","obs":[{"cls":"12r/Ma1","who":"AJB","seen":false,"room":"3P5"},{"cls":"8b3","who":"CWI","seen":false,"room":"323P"},{"cls":"8b1","who":"HCH","seen":false,"room":"309R"},{"cls":"8b2","who":"KCA","seen":false,"room":"306R"},{"cls":"12e/Ma","who":"PBY","seen":false,"room":"3P7"}]}
       ]},
       {"date":"2026-11-10","label":"Tue","dateLabel":"10 Nov","inset":false,"entries":[
-        {"period":"P1","kind":"free","note":"","obs":[{"cls":"8a3","who":"AJB","seen":false},{"cls":"8a2","who":"AWA","seen":false},{"cls":"12b/Fm","who":"BSI","seen":false},{"cls":"7b1","who":"HCH","seen":false},{"cls":"7b3","who":"KCA","seen":false},{"cls":"7b2","who":"NGR","seen":false},{"cls":"8a1","who":"PAH","seen":false},{"cls":"7b4","who":"RAA","seen":false}]},
+        {"period":"P1","kind":"free","note":"","obs":[{"cls":"8a3","who":"AJB","seen":false,"room":"309R"},{"cls":"8a2","who":"AWA","seen":false,"room":"312P"},{"cls":"12b/Fm","who":"BSI","seen":false,"room":"301R"},{"cls":"7b1","who":"HCH","seen":false,"room":"307R"},{"cls":"7b3","who":"KCA","seen":false,"room":"306R"},{"cls":"7b2","who":"NGR","seen":false,"room":"105R"},{"cls":"8a1","who":"PAH","seen":false,"room":"311R"},{"cls":"7b4","who":"RAA","seen":false,"room":"314P"}]},
         {"period":"P2","kind":"lesson","class":"11b","topic":"","homework":"","done":false},
-        {"period":"P3","kind":"free","note":"","obs":[{"cls":"9a3","who":"AJB","seen":false},{"cls":"13d/Ma","who":"BSI","seen":false},{"cls":"8b3","who":"CWI","seen":false},{"cls":"8b1","who":"HCH","seen":false},{"cls":"9a1","who":"NGR","seen":false},{"cls":"9a2","who":"PAH","seen":false}]},
+        {"period":"P3","kind":"free","note":"","obs":[{"cls":"9a3","who":"AJB","seen":false,"room":"309R"},{"cls":"13d/Ma","who":"BSI","seen":false,"room":"3P5"},{"cls":"8b3","who":"CWI","seen":false,"room":"323P"},{"cls":"8b1","who":"HCH","seen":false,"room":"307R"},{"cls":"9a1","who":"NGR","seen":false,"room":"105R"},{"cls":"9a2","who":"PAH","seen":false,"room":"311R"}]},
         {"period":"P4a","kind":"lesson","class":"11a","topic":"","homework":"","done":false},
         {"period":"P4b","kind":"lunch"},
-        {"period":"P5","kind":"free","note":"","obs":[{"cls":"12d/Ma","who":"AJB","seen":false},{"cls":"10a3","who":"AWA","seen":false},{"cls":"13e/Fm","who":"BSI","seen":false},{"cls":"9b2","who":"CWI","seen":false},{"cls":"9b3","who":"HCH","seen":false},{"cls":"10a4","who":"PAH","seen":false},{"cls":"10a2","who":"PBY","seen":false},{"cls":"10a1","who":"RAA","seen":false}]},
-        {"period":"P6","kind":"linemgmt","with":"NMU","role":"Line Man","obs":[{"cls":"12r/Ma1","who":"AJB","seen":false},{"cls":"10a3","who":"AWA","seen":false},{"cls":"7b1","who":"HCH","seen":false},{"cls":"7b3","who":"KCA","seen":false},{"cls":"7b2","who":"NGR","seen":false},{"cls":"10a4","who":"PAH","seen":false},{"cls":"10a2","who":"PBY","seen":false},{"cls":"10a1","who":"RAA","seen":false}]}
+        {"period":"P5","kind":"free","note":"","obs":[{"cls":"12d/Ma","who":"AJB","seen":false,"room":"3P5"},{"cls":"10a3","who":"AWA","seen":false,"room":"312P"},{"cls":"13e/Fm","who":"BSI","seen":false,"room":"301R"},{"cls":"9b2","who":"CWI","seen":false,"room":"307R"},{"cls":"9b3","who":"HCH","seen":false,"room":"309R"},{"cls":"10a4","who":"PAH","seen":false,"room":"311R"},{"cls":"10a2","who":"PBY","seen":false,"room":"306R"},{"cls":"10a1","who":"RAA","seen":false,"room":"314P"}]},
+        {"period":"P6","kind":"linemgmt","with":"NMU","role":"Line Man","obs":[{"cls":"12r/Ma1","who":"AJB","seen":false,"room":"3P5"},{"cls":"10a3","who":"AWA","seen":false,"room":"312P"},{"cls":"7b1","who":"HCH","seen":false,"room":"307R"},{"cls":"7b3","who":"KCA","seen":false,"room":"306R"},{"cls":"7b2","who":"NGR","seen":false,"room":"105R"},{"cls":"10a4","who":"PAH","seen":false,"room":"311R"},{"cls":"10a2","who":"PBY","seen":false,"room":"309R"},{"cls":"10a1","who":"RAA","seen":false,"room":"314P"}]}
       ]},
       {"date":"2026-11-11","label":"Wed","dateLabel":"11 Nov","inset":false,"entries":[
         {"period":"P1","kind":"lesson","class":"12d","topic":"","homework":"","done":false},
-        {"period":"P2","kind":"free","note":"","obs":[{"cls":"8a3","who":"AJB","seen":false},{"cls":"8a2","who":"AWA","seen":false},{"cls":"12b/Fm","who":"BSI","seen":false},{"cls":"7b1","who":"HCH","seen":false},{"cls":"7b3","who":"KCA","seen":false},{"cls":"7b2","who":"NGR","seen":false},{"cls":"8a1","who":"PAH","seen":false},{"cls":"7b4","who":"RAA","seen":false}]},
-        {"period":"P3","kind":"linemgmt","with":"PAH","role":"Mentor","obs":[{"cls":"7a1","who":"BSI","seen":false},{"cls":"7a2","who":"NGR","seen":false}]},
+        {"period":"P2","kind":"free","note":"","obs":[{"cls":"8a3","who":"AJB","seen":false,"room":"309R"},{"cls":"8a2","who":"AWA","seen":false,"room":"312P"},{"cls":"12b/Fm","who":"BSI","seen":false,"room":"301R"},{"cls":"7b1","who":"HCH","seen":false,"room":"307R"},{"cls":"7b3","who":"KCA","seen":false,"room":"306R"},{"cls":"7b2","who":"NGR","seen":false,"room":"105R"},{"cls":"8a1","who":"PAH","seen":false,"room":"311R"},{"cls":"7b4","who":"RAA","seen":false,"room":"314P"}]},
+        {"period":"P3","kind":"linemgmt","with":"PAH","role":"Mentor","obs":[{"cls":"7a1","who":"BSI","seen":false,"room":"314P"},{"cls":"7a2","who":"NGR","seen":false,"room":"105R"}]},
         {"period":"P4a","kind":"lunch"},
         {"period":"P4b","kind":"lesson","class":"10b","topic":"","homework":"","done":false},
         {"period":"P5","kind":"lesson","class":"11a","topic":"","homework":"","done":false}
       ]},
       {"date":"2026-11-12","label":"Thu","dateLabel":"12 Nov","inset":false,"entries":[
         {"period":"P1","kind":"lesson","class":"11a","topic":"","homework":"","done":false},
-        {"period":"P2","kind":"free","note":"","obs":[{"cls":"12d/Ma","who":"AJB","seen":false},{"cls":"13e/Fm","who":"BSI","seen":false},{"cls":"9b2","who":"CWI","seen":false},{"cls":"9b3","who":"HCH","seen":false},{"cls":"104/Ma1","who":"KCA","seen":false},{"cls":"9b1","who":"NGR","seen":false}]},
-        {"period":"P3","kind":"free","note":"","obs":[{"cls":"12b/Fm","who":"BSI","seen":false},{"cls":"7b1","who":"HCH","seen":false},{"cls":"7b3","who":"KCA","seen":false},{"cls":"7b2","who":"NGR","seen":false},{"cls":"8a1","who":"PAH","seen":false},{"cls":"7b4","who":"RAA","seen":false}]},
+        {"period":"P2","kind":"free","note":"","obs":[{"cls":"12d/Ma","who":"AJB","seen":false,"room":"3P5"},{"cls":"13e/Fm","who":"BSI","seen":false,"room":"301R"},{"cls":"9b2","who":"CWI","seen":false,"room":"307R"},{"cls":"9b3","who":"HCH","seen":false,"room":"309R"},{"cls":"104/Ma1","who":"KCA","seen":false,"room":"314P"},{"cls":"9b1","who":"NGR","seen":false,"room":"105R"}]},
+        {"period":"P3","kind":"free","note":"","obs":[{"cls":"12b/Fm","who":"BSI","seen":false,"room":"301R"},{"cls":"7b1","who":"HCH","seen":false,"room":"307R"},{"cls":"7b3","who":"KCA","seen":false,"room":"306R"},{"cls":"7b2","who":"NGR","seen":false,"room":"105R"},{"cls":"8a1","who":"PAH","seen":false,"room":"311R"},{"cls":"7b4","who":"RAA","seen":false,"room":"314P"}]},
         {"period":"P4a","kind":"lesson","class":"11b","topic":"","homework":"","done":false},
         {"period":"P4b","kind":"lunch"},
         {"period":"P5","kind":"lesson","class":"10b","topic":"","homework":"","done":false}
       ]},
       {"date":"2026-11-13","label":"Fri","dateLabel":"13 Nov","inset":false,"entries":[
         {"period":"P1","kind":"lesson","class":"10b","topic":"","homework":"","done":false},
-        {"period":"P2","kind":"linemgmt","with":"AWA","role":"Line Man","obs":[{"cls":"12e/Ma","who":"BSI","seen":false},{"cls":"8b3","who":"CWI","seen":false},{"cls":"8b1","who":"HCH","seen":false},{"cls":"8b2","who":"KCA","seen":false},{"cls":"13c/Ma","who":"PBY","seen":false}]},
+        {"period":"P2","kind":"linemgmt","with":"AWA","role":"Line Man","obs":[{"cls":"12e/Ma","who":"BSI","seen":false,"room":"3P7"},{"cls":"8b3","who":"CWI","seen":false,"room":"323P"},{"cls":"8b1","who":"HCH","seen":false,"room":"309R"},{"cls":"8b2","who":"KCA","seen":false,"room":"306R"},{"cls":"13c/Ma","who":"PBY","seen":false,"room":"3P5"}]},
         {"period":"P3","kind":"lesson","class":"12d","topic":"","homework":"","done":false},
         {"period":"P4a","kind":"lunch"},
         {"period":"P4b","kind":"oncall"},
@@ -711,30 +713,30 @@
         {"period":"P3","kind":"lesson","class":"11a","topic":"","homework":"","done":false},
         {"period":"P4a","kind":"lunch"},
         {"period":"P4b","kind":"lesson","class":"12d","topic":"","homework":"","done":false},
-        {"period":"P5","kind":"free","note":"","obs":[{"cls":"8a3","who":"AJB","seen":false},{"cls":"8a2","who":"AWA","seen":false},{"cls":"12b/Fm","who":"BSI","seen":false},{"cls":"7b3","who":"KCA","seen":false},{"cls":"7b2","who":"NGR","seen":false},{"cls":"8a1","who":"PAH","seen":false},{"cls":"7b4","who":"RAA","seen":false}]},
-        {"period":"P6","kind":"linemgmt","with":"PAH","role":"Mentor","obs":[{"cls":"104/Ma1","who":"BSI","seen":false},{"cls":"12r/Ma1","who":"KCA","seen":false},{"cls":"12e/Ma","who":"PBY","seen":false}]}
+        {"period":"P5","kind":"free","note":"","obs":[{"cls":"8a3","who":"AJB","seen":false,"room":"309R"},{"cls":"8a2","who":"AWA","seen":false,"room":"312P"},{"cls":"12b/Fm","who":"BSI","seen":false,"room":"301R"},{"cls":"7b3","who":"KCA","seen":false,"room":"306R"},{"cls":"7b2","who":"NGR","seen":false,"room":"105R"},{"cls":"8a1","who":"PAH","seen":false,"room":"311R"},{"cls":"7b4","who":"RAA","seen":false,"room":"314P"}]},
+        {"period":"P6","kind":"linemgmt","with":"PAH","role":"Mentor","obs":[{"cls":"104/Ma1","who":"BSI","seen":false,"room":"314P"},{"cls":"12r/Ma1","who":"KCA","seen":false,"room":"3P5"},{"cls":"12e/Ma","who":"PBY","seen":false,"room":"3P7"}]}
       ]},
       {"date":"2026-11-17","label":"Tue","dateLabel":"17 Nov","inset":false,"entries":[
-        {"period":"P1","kind":"linemgmt","with":"PBY","role":"Line Man","obs":[{"cls":"8a3","who":"AJB","seen":false},{"cls":"8a2","who":"AWA","seen":false},{"cls":"12b/Fm","who":"BSI","seen":false},{"cls":"7b1","who":"HCH","seen":false},{"cls":"7b3","who":"KCA","seen":false},{"cls":"8a1","who":"PAH","seen":false},{"cls":"7b4","who":"RAA","seen":false}]},
+        {"period":"P1","kind":"linemgmt","with":"PBY","role":"Line Man","obs":[{"cls":"8a3","who":"AJB","seen":false,"room":"309R"},{"cls":"8a2","who":"AWA","seen":false,"room":"312P"},{"cls":"12b/Fm","who":"BSI","seen":false,"room":"301R"},{"cls":"7b1","who":"HCH","seen":false,"room":"307R"},{"cls":"7b3","who":"KCA","seen":false,"room":"306R"},{"cls":"8a1","who":"PAH","seen":false,"room":"311R"},{"cls":"7b4","who":"RAA","seen":false,"room":"314P"}]},
         {"period":"P2","kind":"lesson","class":"11b","topic":"","homework":"","done":false},
-        {"period":"P3","kind":"free","note":"","obs":[{"cls":"9a3","who":"AJB","seen":false},{"cls":"13d/Ma","who":"BSI","seen":false},{"cls":"13x/Ma","who":"HCH","seen":false},{"cls":"9a1","who":"NGR","seen":false},{"cls":"9a2","who":"PAH","seen":false}]},
+        {"period":"P3","kind":"free","note":"","obs":[{"cls":"9a3","who":"AJB","seen":false,"room":"309R"},{"cls":"13d/Ma","who":"BSI","seen":false,"room":"3P5"},{"cls":"13x/Ma","who":"HCH","seen":false,"room":"0P3"},{"cls":"9a1","who":"NGR","seen":false,"room":"105R"},{"cls":"9a2","who":"PAH","seen":false,"room":"311R"}]},
         {"period":"P4a","kind":"lesson","class":"11a","topic":"","homework":"","done":false},
         {"period":"P4b","kind":"lunch"},
-        {"period":"P5","kind":"free","note":"","obs":[{"cls":"12d/Ma","who":"AJB","seen":false},{"cls":"10a3","who":"AWA","seen":false},{"cls":"13e/Fm","who":"BSI","seen":false},{"cls":"9b2","who":"CWI","seen":false},{"cls":"9b1","who":"NGR","seen":false},{"cls":"10a4","who":"PAH","seen":false},{"cls":"10a2","who":"PBY","seen":false},{"cls":"10a1","who":"RAA","seen":false}]},
+        {"period":"P5","kind":"free","note":"","obs":[{"cls":"12d/Ma","who":"AJB","seen":false,"room":"3P5"},{"cls":"10a3","who":"AWA","seen":false,"room":"312P"},{"cls":"13e/Fm","who":"BSI","seen":false,"room":"301R"},{"cls":"9b2","who":"CWI","seen":false,"room":"307R"},{"cls":"9b1","who":"NGR","seen":false,"room":"105R"},{"cls":"10a4","who":"PAH","seen":false,"room":"311R"},{"cls":"10a2","who":"PBY","seen":false,"room":"306R"},{"cls":"10a1","who":"RAA","seen":false,"room":"314P"}]},
         {"period":"P6","kind":"lesson","class":"11b","topic":"","homework":"","done":false}
       ]},
       {"date":"2026-11-18","label":"Wed","dateLabel":"18 Nov","inset":false,"entries":[
         {"period":"P1","kind":"lesson","class":"12d","topic":"","homework":"","done":false},
-        {"period":"P2","kind":"linemgmt","with":"CWI","role":"Line Man","obs":[{"cls":"8a3","who":"AJB","seen":false},{"cls":"8a2","who":"AWA","seen":false},{"cls":"12b/Fm","who":"BSI","seen":false},{"cls":"7b3","who":"KCA","seen":false},{"cls":"7b2","who":"NGR","seen":false},{"cls":"8a1","who":"PAH","seen":false},{"cls":"7b4","who":"RAA","seen":false}]},
-        {"period":"P3","kind":"linemgmt","with":"CB","role":"Line Man","obs":[{"cls":"9a1","who":"NGR","seen":false},{"cls":"9a2","who":"PAH","seen":false}]},
+        {"period":"P2","kind":"linemgmt","with":"CWI","role":"Line Man","obs":[{"cls":"8a3","who":"AJB","seen":false,"room":"309R"},{"cls":"8a2","who":"AWA","seen":false,"room":"312P"},{"cls":"12b/Fm","who":"BSI","seen":false,"room":"301R"},{"cls":"7b3","who":"KCA","seen":false,"room":"306R"},{"cls":"7b2","who":"NGR","seen":false,"room":"105R"},{"cls":"8a1","who":"PAH","seen":false,"room":"311R"},{"cls":"7b4","who":"RAA","seen":false,"room":"314P"}]},
+        {"period":"P3","kind":"linemgmt","with":"CB","role":"Line Man","obs":[{"cls":"9a1","who":"NGR","seen":false,"room":"105R"},{"cls":"9a2","who":"PAH","seen":false,"room":"311R"}]},
         {"period":"P4a","kind":"lunch"},
         {"period":"P4b","kind":"lesson","class":"10b","topic":"","homework":"","done":false},
         {"period":"P5","kind":"lesson","class":"11a","topic":"","homework":"","done":false}
       ]},
       {"date":"2026-11-19","label":"Thu","dateLabel":"19 Nov","inset":false,"entries":[
         {"period":"P1","kind":"lesson","class":"11a","topic":"","homework":"","done":false},
-        {"period":"P2","kind":"free","note":"","obs":[{"cls":"12d/Ma","who":"AJB","seen":false},{"cls":"10a3","who":"AWA","seen":false},{"cls":"13e/Fm","who":"BSI","seen":false},{"cls":"9b2","who":"CWI","seen":false},{"cls":"9b3","who":"HCH","seen":false},{"cls":"9b1","who":"NGR","seen":false},{"cls":"10a4","who":"PAH","seen":false},{"cls":"10a2","who":"PBY","seen":false},{"cls":"10a1","who":"RAA","seen":false}]},
-        {"period":"P3","kind":"free","note":"","obs":[{"cls":"8a3","who":"AJB","seen":false},{"cls":"8a2","who":"AWA","seen":false},{"cls":"12b/Fm","who":"BSI","seen":false},{"cls":"7b1","who":"HCH","seen":false},{"cls":"7b3","who":"KCA","seen":false},{"cls":"7b2","who":"NGR","seen":false},{"cls":"7b4","who":"RAA","seen":false}]},
+        {"period":"P2","kind":"free","note":"","obs":[{"cls":"12d/Ma","who":"AJB","seen":false,"room":"3P5"},{"cls":"10a3","who":"AWA","seen":false,"room":"312P"},{"cls":"13e/Fm","who":"BSI","seen":false,"room":"301R"},{"cls":"9b2","who":"CWI","seen":false,"room":"307R"},{"cls":"9b3","who":"HCH","seen":false,"room":"309R"},{"cls":"9b1","who":"NGR","seen":false,"room":"105R"},{"cls":"10a4","who":"PAH","seen":false,"room":"311R"},{"cls":"10a2","who":"PBY","seen":false,"room":"306R"},{"cls":"10a1","who":"RAA","seen":false,"room":"314P"}]},
+        {"period":"P3","kind":"free","note":"","obs":[{"cls":"8a3","who":"AJB","seen":false,"room":"309R"},{"cls":"8a2","who":"AWA","seen":false,"room":"312P"},{"cls":"12b/Fm","who":"BSI","seen":false,"room":"301R"},{"cls":"7b1","who":"HCH","seen":false,"room":"307R"},{"cls":"7b3","who":"KCA","seen":false,"room":"306R"},{"cls":"7b2","who":"NGR","seen":false,"room":"105R"},{"cls":"7b4","who":"RAA","seen":false,"room":"314P"}]},
         {"period":"P4a","kind":"lesson","class":"11b","topic":"","homework":"","done":false},
         {"period":"P4b","kind":"lunch"},
         {"period":"P5","kind":"lesson","class":"10b","topic":"","homework":"","done":false}
@@ -755,30 +757,30 @@
         {"period":"P3","kind":"lesson","class":"11a","topic":"","homework":"","done":false},
         {"period":"P4a","kind":"lunch"},
         {"period":"P4b","kind":"lesson","class":"12d","topic":"","homework":"","done":false},
-        {"period":"P5","kind":"free","note":"","obs":[{"cls":"8a3","who":"AJB","seen":false},{"cls":"8a2","who":"AWA","seen":false},{"cls":"7b1","who":"HCH","seen":false},{"cls":"7b3","who":"KCA","seen":false},{"cls":"8a1","who":"PAH","seen":false},{"cls":"12b/Fm","who":"PBY","seen":false},{"cls":"7b4","who":"RAA","seen":false}]},
-        {"period":"P6","kind":"free","note":"","obs":[{"cls":"12r/Ma1","who":"AJB","seen":false},{"cls":"8b3","who":"CWI","seen":false},{"cls":"8b1","who":"HCH","seen":false},{"cls":"8b2","who":"KCA","seen":false},{"cls":"12e/Ma","who":"PBY","seen":false}]}
+        {"period":"P5","kind":"free","note":"","obs":[{"cls":"8a3","who":"AJB","seen":false,"room":"309R"},{"cls":"8a2","who":"AWA","seen":false,"room":"312P"},{"cls":"7b1","who":"HCH","seen":false,"room":"307R"},{"cls":"7b3","who":"KCA","seen":false,"room":"306R"},{"cls":"8a1","who":"PAH","seen":false,"room":"311R"},{"cls":"12b/Fm","who":"PBY","seen":false,"room":"301R"},{"cls":"7b4","who":"RAA","seen":false,"room":"314P"}]},
+        {"period":"P6","kind":"free","note":"","obs":[{"cls":"12r/Ma1","who":"AJB","seen":false,"room":"3P5"},{"cls":"8b3","who":"CWI","seen":false,"room":"323P"},{"cls":"8b1","who":"HCH","seen":false,"room":"309R"},{"cls":"8b2","who":"KCA","seen":false,"room":"306R"},{"cls":"12e/Ma","who":"PBY","seen":false,"room":"3P7"}]}
       ]},
       {"date":"2026-11-24","label":"Tue","dateLabel":"24 Nov","inset":false,"entries":[
-        {"period":"P1","kind":"free","note":"","obs":[{"cls":"8a3","who":"AJB","seen":false},{"cls":"8a2","who":"AWA","seen":false},{"cls":"12b/Fm","who":"BSI","seen":false},{"cls":"7b1","who":"HCH","seen":false},{"cls":"7b3","who":"KCA","seen":false},{"cls":"7b2","who":"NGR","seen":false},{"cls":"8a1","who":"PAH","seen":false},{"cls":"7b4","who":"RAA","seen":false}]},
+        {"period":"P1","kind":"free","note":"","obs":[{"cls":"8a3","who":"AJB","seen":false,"room":"309R"},{"cls":"8a2","who":"AWA","seen":false,"room":"312P"},{"cls":"12b/Fm","who":"BSI","seen":false,"room":"301R"},{"cls":"7b1","who":"HCH","seen":false,"room":"307R"},{"cls":"7b3","who":"KCA","seen":false,"room":"306R"},{"cls":"7b2","who":"NGR","seen":false,"room":"105R"},{"cls":"8a1","who":"PAH","seen":false,"room":"311R"},{"cls":"7b4","who":"RAA","seen":false,"room":"314P"}]},
         {"period":"P2","kind":"lesson","class":"11b","topic":"","homework":"","done":false},
-        {"period":"P3","kind":"free","note":"","obs":[{"cls":"9a3","who":"AJB","seen":false},{"cls":"13d/Ma","who":"BSI","seen":false},{"cls":"8b3","who":"CWI","seen":false},{"cls":"8b1","who":"HCH","seen":false},{"cls":"9a1","who":"NGR","seen":false},{"cls":"9a2","who":"PAH","seen":false}]},
+        {"period":"P3","kind":"free","note":"","obs":[{"cls":"9a3","who":"AJB","seen":false,"room":"309R"},{"cls":"13d/Ma","who":"BSI","seen":false,"room":"3P5"},{"cls":"8b3","who":"CWI","seen":false,"room":"323P"},{"cls":"8b1","who":"HCH","seen":false,"room":"307R"},{"cls":"9a1","who":"NGR","seen":false,"room":"105R"},{"cls":"9a2","who":"PAH","seen":false,"room":"311R"}]},
         {"period":"P4a","kind":"lesson","class":"11a","topic":"","homework":"","done":false},
         {"period":"P4b","kind":"lunch"},
-        {"period":"P5","kind":"free","note":"","obs":[{"cls":"12d/Ma","who":"AJB","seen":false},{"cls":"10a3","who":"AWA","seen":false},{"cls":"13e/Fm","who":"BSI","seen":false},{"cls":"9b2","who":"CWI","seen":false},{"cls":"9b3","who":"HCH","seen":false},{"cls":"10a4","who":"PAH","seen":false},{"cls":"10a2","who":"PBY","seen":false},{"cls":"10a1","who":"RAA","seen":false}]},
-        {"period":"P6","kind":"linemgmt","with":"NMU","role":"Line Man","obs":[{"cls":"12r/Ma1","who":"AJB","seen":false},{"cls":"10a3","who":"AWA","seen":false},{"cls":"7b1","who":"HCH","seen":false},{"cls":"7b3","who":"KCA","seen":false},{"cls":"7b2","who":"NGR","seen":false},{"cls":"10a4","who":"PAH","seen":false},{"cls":"10a2","who":"PBY","seen":false},{"cls":"10a1","who":"RAA","seen":false}]}
+        {"period":"P5","kind":"free","note":"","obs":[{"cls":"12d/Ma","who":"AJB","seen":false,"room":"3P5"},{"cls":"10a3","who":"AWA","seen":false,"room":"312P"},{"cls":"13e/Fm","who":"BSI","seen":false,"room":"301R"},{"cls":"9b2","who":"CWI","seen":false,"room":"307R"},{"cls":"9b3","who":"HCH","seen":false,"room":"309R"},{"cls":"10a4","who":"PAH","seen":false,"room":"311R"},{"cls":"10a2","who":"PBY","seen":false,"room":"306R"},{"cls":"10a1","who":"RAA","seen":false,"room":"314P"}]},
+        {"period":"P6","kind":"linemgmt","with":"NMU","role":"Line Man","obs":[{"cls":"12r/Ma1","who":"AJB","seen":false,"room":"3P5"},{"cls":"10a3","who":"AWA","seen":false,"room":"312P"},{"cls":"7b1","who":"HCH","seen":false,"room":"307R"},{"cls":"7b3","who":"KCA","seen":false,"room":"306R"},{"cls":"7b2","who":"NGR","seen":false,"room":"105R"},{"cls":"10a4","who":"PAH","seen":false,"room":"311R"},{"cls":"10a2","who":"PBY","seen":false,"room":"309R"},{"cls":"10a1","who":"RAA","seen":false,"room":"314P"}]}
       ]},
       {"date":"2026-11-25","label":"Wed","dateLabel":"25 Nov","inset":false,"entries":[
         {"period":"P1","kind":"lesson","class":"12d","topic":"","homework":"","done":false},
-        {"period":"P2","kind":"free","note":"","obs":[{"cls":"8a3","who":"AJB","seen":false},{"cls":"8a2","who":"AWA","seen":false},{"cls":"12b/Fm","who":"BSI","seen":false},{"cls":"7b1","who":"HCH","seen":false},{"cls":"7b3","who":"KCA","seen":false},{"cls":"7b2","who":"NGR","seen":false},{"cls":"8a1","who":"PAH","seen":false},{"cls":"7b4","who":"RAA","seen":false}]},
-        {"period":"P3","kind":"linemgmt","with":"PAH","role":"Mentor","obs":[{"cls":"7a1","who":"BSI","seen":false},{"cls":"7a2","who":"NGR","seen":false}]},
+        {"period":"P2","kind":"free","note":"","obs":[{"cls":"8a3","who":"AJB","seen":false,"room":"309R"},{"cls":"8a2","who":"AWA","seen":false,"room":"312P"},{"cls":"12b/Fm","who":"BSI","seen":false,"room":"301R"},{"cls":"7b1","who":"HCH","seen":false,"room":"307R"},{"cls":"7b3","who":"KCA","seen":false,"room":"306R"},{"cls":"7b2","who":"NGR","seen":false,"room":"105R"},{"cls":"8a1","who":"PAH","seen":false,"room":"311R"},{"cls":"7b4","who":"RAA","seen":false,"room":"314P"}]},
+        {"period":"P3","kind":"linemgmt","with":"PAH","role":"Mentor","obs":[{"cls":"7a1","who":"BSI","seen":false,"room":"314P"},{"cls":"7a2","who":"NGR","seen":false,"room":"105R"}]},
         {"period":"P4a","kind":"lunch"},
         {"period":"P4b","kind":"lesson","class":"10b","topic":"","homework":"","done":false},
         {"period":"P5","kind":"lesson","class":"11a","topic":"","homework":"","done":false}
       ]},
       {"date":"2026-11-26","label":"Thu","dateLabel":"26 Nov","inset":false,"entries":[
         {"period":"P1","kind":"lesson","class":"11a","topic":"","homework":"","done":false},
-        {"period":"P2","kind":"free","note":"","obs":[{"cls":"12d/Ma","who":"AJB","seen":false},{"cls":"13e/Fm","who":"BSI","seen":false},{"cls":"9b2","who":"CWI","seen":false},{"cls":"9b3","who":"HCH","seen":false},{"cls":"104/Ma1","who":"KCA","seen":false},{"cls":"9b1","who":"NGR","seen":false}]},
-        {"period":"P3","kind":"free","note":"","obs":[{"cls":"12b/Fm","who":"BSI","seen":false},{"cls":"7b1","who":"HCH","seen":false},{"cls":"7b3","who":"KCA","seen":false},{"cls":"7b2","who":"NGR","seen":false},{"cls":"8a1","who":"PAH","seen":false},{"cls":"7b4","who":"RAA","seen":false}]},
+        {"period":"P2","kind":"free","note":"","obs":[{"cls":"12d/Ma","who":"AJB","seen":false,"room":"3P5"},{"cls":"13e/Fm","who":"BSI","seen":false,"room":"301R"},{"cls":"9b2","who":"CWI","seen":false,"room":"307R"},{"cls":"9b3","who":"HCH","seen":false,"room":"309R"},{"cls":"104/Ma1","who":"KCA","seen":false,"room":"314P"},{"cls":"9b1","who":"NGR","seen":false,"room":"105R"}]},
+        {"period":"P3","kind":"free","note":"","obs":[{"cls":"12b/Fm","who":"BSI","seen":false,"room":"301R"},{"cls":"7b1","who":"HCH","seen":false,"room":"307R"},{"cls":"7b3","who":"KCA","seen":false,"room":"306R"},{"cls":"7b2","who":"NGR","seen":false,"room":"105R"},{"cls":"8a1","who":"PAH","seen":false,"room":"311R"},{"cls":"7b4","who":"RAA","seen":false,"room":"314P"}]},
         {"period":"P4a","kind":"lesson","class":"11b","topic":"","homework":"","done":false},
         {"period":"P4b","kind":"lunch"},
         {"period":"P5","kind":"lesson","class":"10b","topic":"","homework":"","done":false}
@@ -794,30 +796,30 @@
         {"period":"P3","kind":"lesson","class":"11a","topic":"","homework":"","done":false},
         {"period":"P4a","kind":"lunch"},
         {"period":"P4b","kind":"lesson","class":"12d","topic":"","homework":"","done":false},
-        {"period":"P5","kind":"free","note":"","obs":[{"cls":"8a3","who":"AJB","seen":false},{"cls":"8a2","who":"AWA","seen":false},{"cls":"12b/Fm","who":"BSI","seen":false},{"cls":"7b3","who":"KCA","seen":false},{"cls":"7b2","who":"NGR","seen":false},{"cls":"8a1","who":"PAH","seen":false},{"cls":"7b4","who":"RAA","seen":false}]},
-        {"period":"P6","kind":"linemgmt","with":"PAH","role":"Mentor","obs":[{"cls":"104/Ma1","who":"BSI","seen":false},{"cls":"12r/Ma1","who":"KCA","seen":false},{"cls":"12e/Ma","who":"PBY","seen":false}]}
+        {"period":"P5","kind":"free","note":"","obs":[{"cls":"8a3","who":"AJB","seen":false,"room":"309R"},{"cls":"8a2","who":"AWA","seen":false,"room":"312P"},{"cls":"12b/Fm","who":"BSI","seen":false,"room":"301R"},{"cls":"7b3","who":"KCA","seen":false,"room":"306R"},{"cls":"7b2","who":"NGR","seen":false,"room":"105R"},{"cls":"8a1","who":"PAH","seen":false,"room":"311R"},{"cls":"7b4","who":"RAA","seen":false,"room":"314P"}]},
+        {"period":"P6","kind":"linemgmt","with":"PAH","role":"Mentor","obs":[{"cls":"104/Ma1","who":"BSI","seen":false,"room":"314P"},{"cls":"12r/Ma1","who":"KCA","seen":false,"room":"3P5"},{"cls":"12e/Ma","who":"PBY","seen":false,"room":"3P7"}]}
       ]},
       {"date":"2026-12-01","label":"Tue","dateLabel":"1 Dec","inset":false,"entries":[
-        {"period":"P1","kind":"linemgmt","with":"PBY","role":"Line Man","obs":[{"cls":"8a3","who":"AJB","seen":false},{"cls":"8a2","who":"AWA","seen":false},{"cls":"12b/Fm","who":"BSI","seen":false},{"cls":"7b1","who":"HCH","seen":false},{"cls":"7b3","who":"KCA","seen":false},{"cls":"8a1","who":"PAH","seen":false},{"cls":"7b4","who":"RAA","seen":false}]},
+        {"period":"P1","kind":"linemgmt","with":"PBY","role":"Line Man","obs":[{"cls":"8a3","who":"AJB","seen":false,"room":"309R"},{"cls":"8a2","who":"AWA","seen":false,"room":"312P"},{"cls":"12b/Fm","who":"BSI","seen":false,"room":"301R"},{"cls":"7b1","who":"HCH","seen":false,"room":"307R"},{"cls":"7b3","who":"KCA","seen":false,"room":"306R"},{"cls":"8a1","who":"PAH","seen":false,"room":"311R"},{"cls":"7b4","who":"RAA","seen":false,"room":"314P"}]},
         {"period":"P2","kind":"lesson","class":"11b","topic":"","homework":"","done":false},
-        {"period":"P3","kind":"free","note":"","obs":[{"cls":"9a3","who":"AJB","seen":false},{"cls":"13d/Ma","who":"BSI","seen":false},{"cls":"13x/Ma","who":"HCH","seen":false},{"cls":"9a1","who":"NGR","seen":false},{"cls":"9a2","who":"PAH","seen":false}]},
+        {"period":"P3","kind":"free","note":"","obs":[{"cls":"9a3","who":"AJB","seen":false,"room":"309R"},{"cls":"13d/Ma","who":"BSI","seen":false,"room":"3P5"},{"cls":"13x/Ma","who":"HCH","seen":false,"room":"0P3"},{"cls":"9a1","who":"NGR","seen":false,"room":"105R"},{"cls":"9a2","who":"PAH","seen":false,"room":"311R"}]},
         {"period":"P4a","kind":"lesson","class":"11a","topic":"","homework":"","done":false},
         {"period":"P4b","kind":"lunch"},
-        {"period":"P5","kind":"free","note":"","obs":[{"cls":"12d/Ma","who":"AJB","seen":false},{"cls":"10a3","who":"AWA","seen":false},{"cls":"13e/Fm","who":"BSI","seen":false},{"cls":"9b2","who":"CWI","seen":false},{"cls":"9b1","who":"NGR","seen":false},{"cls":"10a4","who":"PAH","seen":false},{"cls":"10a2","who":"PBY","seen":false},{"cls":"10a1","who":"RAA","seen":false}]},
+        {"period":"P5","kind":"free","note":"","obs":[{"cls":"12d/Ma","who":"AJB","seen":false,"room":"3P5"},{"cls":"10a3","who":"AWA","seen":false,"room":"312P"},{"cls":"13e/Fm","who":"BSI","seen":false,"room":"301R"},{"cls":"9b2","who":"CWI","seen":false,"room":"307R"},{"cls":"9b1","who":"NGR","seen":false,"room":"105R"},{"cls":"10a4","who":"PAH","seen":false,"room":"311R"},{"cls":"10a2","who":"PBY","seen":false,"room":"306R"},{"cls":"10a1","who":"RAA","seen":false,"room":"314P"}]},
         {"period":"P6","kind":"lesson","class":"11b","topic":"","homework":"","done":false}
       ]},
       {"date":"2026-12-02","label":"Wed","dateLabel":"2 Dec","inset":false,"entries":[
         {"period":"P1","kind":"lesson","class":"12d","topic":"","homework":"","done":false},
-        {"period":"P2","kind":"linemgmt","with":"CWI","role":"Line Man","obs":[{"cls":"8a3","who":"AJB","seen":false},{"cls":"8a2","who":"AWA","seen":false},{"cls":"12b/Fm","who":"BSI","seen":false},{"cls":"7b3","who":"KCA","seen":false},{"cls":"7b2","who":"NGR","seen":false},{"cls":"8a1","who":"PAH","seen":false},{"cls":"7b4","who":"RAA","seen":false}]},
-        {"period":"P3","kind":"linemgmt","with":"CB","role":"Line Man","obs":[{"cls":"9a1","who":"NGR","seen":false},{"cls":"9a2","who":"PAH","seen":false}]},
+        {"period":"P2","kind":"linemgmt","with":"CWI","role":"Line Man","obs":[{"cls":"8a3","who":"AJB","seen":false,"room":"309R"},{"cls":"8a2","who":"AWA","seen":false,"room":"312P"},{"cls":"12b/Fm","who":"BSI","seen":false,"room":"301R"},{"cls":"7b3","who":"KCA","seen":false,"room":"306R"},{"cls":"7b2","who":"NGR","seen":false,"room":"105R"},{"cls":"8a1","who":"PAH","seen":false,"room":"311R"},{"cls":"7b4","who":"RAA","seen":false,"room":"314P"}]},
+        {"period":"P3","kind":"linemgmt","with":"CB","role":"Line Man","obs":[{"cls":"9a1","who":"NGR","seen":false,"room":"105R"},{"cls":"9a2","who":"PAH","seen":false,"room":"311R"}]},
         {"period":"P4a","kind":"lunch"},
         {"period":"P4b","kind":"lesson","class":"10b","topic":"","homework":"","done":false},
         {"period":"P5","kind":"lesson","class":"11a","topic":"","homework":"","done":false}
       ]},
       {"date":"2026-12-03","label":"Thu","dateLabel":"3 Dec","inset":false,"entries":[
         {"period":"P1","kind":"lesson","class":"11a","topic":"","homework":"","done":false},
-        {"period":"P2","kind":"free","note":"","obs":[{"cls":"12d/Ma","who":"AJB","seen":false},{"cls":"10a3","who":"AWA","seen":false},{"cls":"13e/Fm","who":"BSI","seen":false},{"cls":"9b2","who":"CWI","seen":false},{"cls":"9b3","who":"HCH","seen":false},{"cls":"9b1","who":"NGR","seen":false},{"cls":"10a4","who":"PAH","seen":false},{"cls":"10a2","who":"PBY","seen":false},{"cls":"10a1","who":"RAA","seen":false}]},
-        {"period":"P3","kind":"free","note":"","obs":[{"cls":"8a3","who":"AJB","seen":false},{"cls":"8a2","who":"AWA","seen":false},{"cls":"12b/Fm","who":"BSI","seen":false},{"cls":"7b1","who":"HCH","seen":false},{"cls":"7b3","who":"KCA","seen":false},{"cls":"7b2","who":"NGR","seen":false},{"cls":"7b4","who":"RAA","seen":false}]},
+        {"period":"P2","kind":"free","note":"","obs":[{"cls":"12d/Ma","who":"AJB","seen":false,"room":"3P5"},{"cls":"10a3","who":"AWA","seen":false,"room":"312P"},{"cls":"13e/Fm","who":"BSI","seen":false,"room":"301R"},{"cls":"9b2","who":"CWI","seen":false,"room":"307R"},{"cls":"9b3","who":"HCH","seen":false,"room":"309R"},{"cls":"9b1","who":"NGR","seen":false,"room":"105R"},{"cls":"10a4","who":"PAH","seen":false,"room":"311R"},{"cls":"10a2","who":"PBY","seen":false,"room":"306R"},{"cls":"10a1","who":"RAA","seen":false,"room":"314P"}]},
+        {"period":"P3","kind":"free","note":"","obs":[{"cls":"8a3","who":"AJB","seen":false,"room":"309R"},{"cls":"8a2","who":"AWA","seen":false,"room":"312P"},{"cls":"12b/Fm","who":"BSI","seen":false,"room":"301R"},{"cls":"7b1","who":"HCH","seen":false,"room":"307R"},{"cls":"7b3","who":"KCA","seen":false,"room":"306R"},{"cls":"7b2","who":"NGR","seen":false,"room":"105R"},{"cls":"7b4","who":"RAA","seen":false,"room":"314P"}]},
         {"period":"P4a","kind":"lesson","class":"11b","topic":"","homework":"","done":false},
         {"period":"P4b","kind":"lunch"},
         {"period":"P5","kind":"lesson","class":"10b","topic":"","homework":"","done":false}
@@ -838,37 +840,37 @@
         {"period":"P3","kind":"lesson","class":"11a","topic":"","homework":"","done":false},
         {"period":"P4a","kind":"lunch"},
         {"period":"P4b","kind":"lesson","class":"12d","topic":"","homework":"","done":false},
-        {"period":"P5","kind":"free","note":"","obs":[{"cls":"8a3","who":"AJB","seen":false},{"cls":"8a2","who":"AWA","seen":false},{"cls":"7b1","who":"HCH","seen":false},{"cls":"7b3","who":"KCA","seen":false},{"cls":"8a1","who":"PAH","seen":false},{"cls":"12b/Fm","who":"PBY","seen":false},{"cls":"7b4","who":"RAA","seen":false}]},
-        {"period":"P6","kind":"free","note":"","obs":[{"cls":"12r/Ma1","who":"AJB","seen":false},{"cls":"8b3","who":"CWI","seen":false},{"cls":"8b1","who":"HCH","seen":false},{"cls":"8b2","who":"KCA","seen":false},{"cls":"12e/Ma","who":"PBY","seen":false}]}
+        {"period":"P5","kind":"free","note":"","obs":[{"cls":"8a3","who":"AJB","seen":false,"room":"309R"},{"cls":"8a2","who":"AWA","seen":false,"room":"312P"},{"cls":"7b1","who":"HCH","seen":false,"room":"307R"},{"cls":"7b3","who":"KCA","seen":false,"room":"306R"},{"cls":"8a1","who":"PAH","seen":false,"room":"311R"},{"cls":"12b/Fm","who":"PBY","seen":false,"room":"301R"},{"cls":"7b4","who":"RAA","seen":false,"room":"314P"}]},
+        {"period":"P6","kind":"free","note":"","obs":[{"cls":"12r/Ma1","who":"AJB","seen":false,"room":"3P5"},{"cls":"8b3","who":"CWI","seen":false,"room":"323P"},{"cls":"8b1","who":"HCH","seen":false,"room":"309R"},{"cls":"8b2","who":"KCA","seen":false,"room":"306R"},{"cls":"12e/Ma","who":"PBY","seen":false,"room":"3P7"}]}
       ]},
       {"date":"2026-12-08","label":"Tue","dateLabel":"8 Dec","inset":false,"entries":[
-        {"period":"P1","kind":"free","note":"","obs":[{"cls":"8a3","who":"AJB","seen":false},{"cls":"8a2","who":"AWA","seen":false},{"cls":"12b/Fm","who":"BSI","seen":false},{"cls":"7b1","who":"HCH","seen":false},{"cls":"7b3","who":"KCA","seen":false},{"cls":"7b2","who":"NGR","seen":false},{"cls":"8a1","who":"PAH","seen":false},{"cls":"7b4","who":"RAA","seen":false}]},
+        {"period":"P1","kind":"free","note":"","obs":[{"cls":"8a3","who":"AJB","seen":false,"room":"309R"},{"cls":"8a2","who":"AWA","seen":false,"room":"312P"},{"cls":"12b/Fm","who":"BSI","seen":false,"room":"301R"},{"cls":"7b1","who":"HCH","seen":false,"room":"307R"},{"cls":"7b3","who":"KCA","seen":false,"room":"306R"},{"cls":"7b2","who":"NGR","seen":false,"room":"105R"},{"cls":"8a1","who":"PAH","seen":false,"room":"311R"},{"cls":"7b4","who":"RAA","seen":false,"room":"314P"}]},
         {"period":"P2","kind":"lesson","class":"11b","topic":"","homework":"","done":false},
-        {"period":"P3","kind":"free","note":"","obs":[{"cls":"9a3","who":"AJB","seen":false},{"cls":"13d/Ma","who":"BSI","seen":false},{"cls":"8b3","who":"CWI","seen":false},{"cls":"8b1","who":"HCH","seen":false},{"cls":"9a1","who":"NGR","seen":false},{"cls":"9a2","who":"PAH","seen":false}]},
+        {"period":"P3","kind":"free","note":"","obs":[{"cls":"9a3","who":"AJB","seen":false,"room":"309R"},{"cls":"13d/Ma","who":"BSI","seen":false,"room":"3P5"},{"cls":"8b3","who":"CWI","seen":false,"room":"323P"},{"cls":"8b1","who":"HCH","seen":false,"room":"307R"},{"cls":"9a1","who":"NGR","seen":false,"room":"105R"},{"cls":"9a2","who":"PAH","seen":false,"room":"311R"}]},
         {"period":"P4a","kind":"lesson","class":"11a","topic":"","homework":"","done":false},
         {"period":"P4b","kind":"lunch"},
-        {"period":"P5","kind":"free","note":"","obs":[{"cls":"12d/Ma","who":"AJB","seen":false},{"cls":"10a3","who":"AWA","seen":false},{"cls":"13e/Fm","who":"BSI","seen":false},{"cls":"9b2","who":"CWI","seen":false},{"cls":"9b3","who":"HCH","seen":false},{"cls":"10a4","who":"PAH","seen":false},{"cls":"10a2","who":"PBY","seen":false},{"cls":"10a1","who":"RAA","seen":false}]},
-        {"period":"P6","kind":"linemgmt","with":"NMU","role":"Line Man","obs":[{"cls":"12r/Ma1","who":"AJB","seen":false},{"cls":"10a3","who":"AWA","seen":false},{"cls":"7b1","who":"HCH","seen":false},{"cls":"7b3","who":"KCA","seen":false},{"cls":"7b2","who":"NGR","seen":false},{"cls":"10a4","who":"PAH","seen":false},{"cls":"10a2","who":"PBY","seen":false},{"cls":"10a1","who":"RAA","seen":false}]}
+        {"period":"P5","kind":"free","note":"","obs":[{"cls":"12d/Ma","who":"AJB","seen":false,"room":"3P5"},{"cls":"10a3","who":"AWA","seen":false,"room":"312P"},{"cls":"13e/Fm","who":"BSI","seen":false,"room":"301R"},{"cls":"9b2","who":"CWI","seen":false,"room":"307R"},{"cls":"9b3","who":"HCH","seen":false,"room":"309R"},{"cls":"10a4","who":"PAH","seen":false,"room":"311R"},{"cls":"10a2","who":"PBY","seen":false,"room":"306R"},{"cls":"10a1","who":"RAA","seen":false,"room":"314P"}]},
+        {"period":"P6","kind":"linemgmt","with":"NMU","role":"Line Man","obs":[{"cls":"12r/Ma1","who":"AJB","seen":false,"room":"3P5"},{"cls":"10a3","who":"AWA","seen":false,"room":"312P"},{"cls":"7b1","who":"HCH","seen":false,"room":"307R"},{"cls":"7b3","who":"KCA","seen":false,"room":"306R"},{"cls":"7b2","who":"NGR","seen":false,"room":"105R"},{"cls":"10a4","who":"PAH","seen":false,"room":"311R"},{"cls":"10a2","who":"PBY","seen":false,"room":"309R"},{"cls":"10a1","who":"RAA","seen":false,"room":"314P"}]}
       ]},
       {"date":"2026-12-09","label":"Wed","dateLabel":"9 Dec","inset":false,"entries":[
         {"period":"P1","kind":"lesson","class":"12d","topic":"","homework":"","done":false},
-        {"period":"P2","kind":"free","note":"","obs":[{"cls":"8a3","who":"AJB","seen":false},{"cls":"8a2","who":"AWA","seen":false},{"cls":"12b/Fm","who":"BSI","seen":false},{"cls":"7b1","who":"HCH","seen":false},{"cls":"7b3","who":"KCA","seen":false},{"cls":"7b2","who":"NGR","seen":false},{"cls":"8a1","who":"PAH","seen":false},{"cls":"7b4","who":"RAA","seen":false}]},
-        {"period":"P3","kind":"linemgmt","with":"PAH","role":"Mentor","obs":[{"cls":"7a1","who":"BSI","seen":false},{"cls":"7a2","who":"NGR","seen":false}]},
+        {"period":"P2","kind":"free","note":"","obs":[{"cls":"8a3","who":"AJB","seen":false,"room":"309R"},{"cls":"8a2","who":"AWA","seen":false,"room":"312P"},{"cls":"12b/Fm","who":"BSI","seen":false,"room":"301R"},{"cls":"7b1","who":"HCH","seen":false,"room":"307R"},{"cls":"7b3","who":"KCA","seen":false,"room":"306R"},{"cls":"7b2","who":"NGR","seen":false,"room":"105R"},{"cls":"8a1","who":"PAH","seen":false,"room":"311R"},{"cls":"7b4","who":"RAA","seen":false,"room":"314P"}]},
+        {"period":"P3","kind":"linemgmt","with":"PAH","role":"Mentor","obs":[{"cls":"7a1","who":"BSI","seen":false,"room":"314P"},{"cls":"7a2","who":"NGR","seen":false,"room":"105R"}]},
         {"period":"P4a","kind":"lunch"},
         {"period":"P4b","kind":"lesson","class":"10b","topic":"","homework":"","done":false},
         {"period":"P5","kind":"lesson","class":"11a","topic":"","homework":"","done":false}
       ]},
       {"date":"2026-12-10","label":"Thu","dateLabel":"10 Dec","inset":false,"entries":[
         {"period":"P1","kind":"lesson","class":"11a","topic":"","homework":"","done":false},
-        {"period":"P2","kind":"free","note":"","obs":[{"cls":"12d/Ma","who":"AJB","seen":false},{"cls":"13e/Fm","who":"BSI","seen":false},{"cls":"9b2","who":"CWI","seen":false},{"cls":"9b3","who":"HCH","seen":false},{"cls":"104/Ma1","who":"KCA","seen":false},{"cls":"9b1","who":"NGR","seen":false}]},
-        {"period":"P3","kind":"free","note":"","obs":[{"cls":"12b/Fm","who":"BSI","seen":false},{"cls":"7b1","who":"HCH","seen":false},{"cls":"7b3","who":"KCA","seen":false},{"cls":"7b2","who":"NGR","seen":false},{"cls":"8a1","who":"PAH","seen":false},{"cls":"7b4","who":"RAA","seen":false}]},
+        {"period":"P2","kind":"free","note":"","obs":[{"cls":"12d/Ma","who":"AJB","seen":false,"room":"3P5"},{"cls":"13e/Fm","who":"BSI","seen":false,"room":"301R"},{"cls":"9b2","who":"CWI","seen":false,"room":"307R"},{"cls":"9b3","who":"HCH","seen":false,"room":"309R"},{"cls":"104/Ma1","who":"KCA","seen":false,"room":"314P"},{"cls":"9b1","who":"NGR","seen":false,"room":"105R"}]},
+        {"period":"P3","kind":"free","note":"","obs":[{"cls":"12b/Fm","who":"BSI","seen":false,"room":"301R"},{"cls":"7b1","who":"HCH","seen":false,"room":"307R"},{"cls":"7b3","who":"KCA","seen":false,"room":"306R"},{"cls":"7b2","who":"NGR","seen":false,"room":"105R"},{"cls":"8a1","who":"PAH","seen":false,"room":"311R"},{"cls":"7b4","who":"RAA","seen":false,"room":"314P"}]},
         {"period":"P4a","kind":"lesson","class":"11b","topic":"","homework":"","done":false},
         {"period":"P4b","kind":"lunch"},
         {"period":"P5","kind":"lesson","class":"10b","topic":"","homework":"","done":false}
       ]},
       {"date":"2026-12-11","label":"Fri","dateLabel":"11 Dec","inset":false,"entries":[
         {"period":"P1","kind":"lesson","class":"10b","topic":"","homework":"","done":false},
-        {"period":"P2","kind":"linemgmt","with":"AWA","role":"Line Man","obs":[{"cls":"12e/Ma","who":"BSI","seen":false},{"cls":"8b3","who":"CWI","seen":false},{"cls":"8b1","who":"HCH","seen":false},{"cls":"8b2","who":"KCA","seen":false},{"cls":"13c/Ma","who":"PBY","seen":false}]},
+        {"period":"P2","kind":"linemgmt","with":"AWA","role":"Line Man","obs":[{"cls":"12e/Ma","who":"BSI","seen":false,"room":"3P7"},{"cls":"8b3","who":"CWI","seen":false,"room":"323P"},{"cls":"8b1","who":"HCH","seen":false,"room":"309R"},{"cls":"8b2","who":"KCA","seen":false,"room":"306R"},{"cls":"13c/Ma","who":"PBY","seen":false,"room":"3P5"}]},
         {"period":"P3","kind":"lesson","class":"12d","topic":"","homework":"","done":false},
         {"period":"P4a","kind":"lunch"},
         {"period":"P4b","kind":"oncall"},
@@ -882,30 +884,30 @@
         {"period":"P3","kind":"lesson","class":"11a","topic":"","homework":"","done":false},
         {"period":"P4a","kind":"lunch"},
         {"period":"P4b","kind":"lesson","class":"12d","topic":"","homework":"","done":false},
-        {"period":"P5","kind":"free","note":"","obs":[{"cls":"8a3","who":"AJB","seen":false},{"cls":"8a2","who":"AWA","seen":false},{"cls":"12b/Fm","who":"BSI","seen":false},{"cls":"7b3","who":"KCA","seen":false},{"cls":"7b2","who":"NGR","seen":false},{"cls":"8a1","who":"PAH","seen":false},{"cls":"7b4","who":"RAA","seen":false}]},
-        {"period":"P6","kind":"linemgmt","with":"PAH","role":"Mentor","obs":[{"cls":"104/Ma1","who":"BSI","seen":false},{"cls":"12r/Ma1","who":"KCA","seen":false},{"cls":"12e/Ma","who":"PBY","seen":false}]}
+        {"period":"P5","kind":"free","note":"","obs":[{"cls":"8a3","who":"AJB","seen":false,"room":"309R"},{"cls":"8a2","who":"AWA","seen":false,"room":"312P"},{"cls":"12b/Fm","who":"BSI","seen":false,"room":"301R"},{"cls":"7b3","who":"KCA","seen":false,"room":"306R"},{"cls":"7b2","who":"NGR","seen":false,"room":"105R"},{"cls":"8a1","who":"PAH","seen":false,"room":"311R"},{"cls":"7b4","who":"RAA","seen":false,"room":"314P"}]},
+        {"period":"P6","kind":"linemgmt","with":"PAH","role":"Mentor","obs":[{"cls":"104/Ma1","who":"BSI","seen":false,"room":"314P"},{"cls":"12r/Ma1","who":"KCA","seen":false,"room":"3P5"},{"cls":"12e/Ma","who":"PBY","seen":false,"room":"3P7"}]}
       ]},
       {"date":"2026-12-15","label":"Tue","dateLabel":"15 Dec","inset":false,"entries":[
-        {"period":"P1","kind":"linemgmt","with":"PBY","role":"Line Man","obs":[{"cls":"8a3","who":"AJB","seen":false},{"cls":"8a2","who":"AWA","seen":false},{"cls":"12b/Fm","who":"BSI","seen":false},{"cls":"7b1","who":"HCH","seen":false},{"cls":"7b3","who":"KCA","seen":false},{"cls":"8a1","who":"PAH","seen":false},{"cls":"7b4","who":"RAA","seen":false}]},
+        {"period":"P1","kind":"linemgmt","with":"PBY","role":"Line Man","obs":[{"cls":"8a3","who":"AJB","seen":false,"room":"309R"},{"cls":"8a2","who":"AWA","seen":false,"room":"312P"},{"cls":"12b/Fm","who":"BSI","seen":false,"room":"301R"},{"cls":"7b1","who":"HCH","seen":false,"room":"307R"},{"cls":"7b3","who":"KCA","seen":false,"room":"306R"},{"cls":"8a1","who":"PAH","seen":false,"room":"311R"},{"cls":"7b4","who":"RAA","seen":false,"room":"314P"}]},
         {"period":"P2","kind":"lesson","class":"11b","topic":"","homework":"","done":false},
-        {"period":"P3","kind":"free","note":"","obs":[{"cls":"9a3","who":"AJB","seen":false},{"cls":"13d/Ma","who":"BSI","seen":false},{"cls":"13x/Ma","who":"HCH","seen":false},{"cls":"9a1","who":"NGR","seen":false},{"cls":"9a2","who":"PAH","seen":false}]},
+        {"period":"P3","kind":"free","note":"","obs":[{"cls":"9a3","who":"AJB","seen":false,"room":"309R"},{"cls":"13d/Ma","who":"BSI","seen":false,"room":"3P5"},{"cls":"13x/Ma","who":"HCH","seen":false,"room":"0P3"},{"cls":"9a1","who":"NGR","seen":false,"room":"105R"},{"cls":"9a2","who":"PAH","seen":false,"room":"311R"}]},
         {"period":"P4a","kind":"lesson","class":"11a","topic":"","homework":"","done":false},
         {"period":"P4b","kind":"lunch"},
-        {"period":"P5","kind":"free","note":"","obs":[{"cls":"12d/Ma","who":"AJB","seen":false},{"cls":"10a3","who":"AWA","seen":false},{"cls":"13e/Fm","who":"BSI","seen":false},{"cls":"9b2","who":"CWI","seen":false},{"cls":"9b1","who":"NGR","seen":false},{"cls":"10a4","who":"PAH","seen":false},{"cls":"10a2","who":"PBY","seen":false},{"cls":"10a1","who":"RAA","seen":false}]},
+        {"period":"P5","kind":"free","note":"","obs":[{"cls":"12d/Ma","who":"AJB","seen":false,"room":"3P5"},{"cls":"10a3","who":"AWA","seen":false,"room":"312P"},{"cls":"13e/Fm","who":"BSI","seen":false,"room":"301R"},{"cls":"9b2","who":"CWI","seen":false,"room":"307R"},{"cls":"9b1","who":"NGR","seen":false,"room":"105R"},{"cls":"10a4","who":"PAH","seen":false,"room":"311R"},{"cls":"10a2","who":"PBY","seen":false,"room":"306R"},{"cls":"10a1","who":"RAA","seen":false,"room":"314P"}]},
         {"period":"P6","kind":"lesson","class":"11b","topic":"","homework":"","done":false}
       ]},
       {"date":"2026-12-16","label":"Wed","dateLabel":"16 Dec","inset":false,"entries":[
         {"period":"P1","kind":"lesson","class":"12d","topic":"","homework":"","done":false},
-        {"period":"P2","kind":"linemgmt","with":"CWI","role":"Line Man","obs":[{"cls":"8a3","who":"AJB","seen":false},{"cls":"8a2","who":"AWA","seen":false},{"cls":"12b/Fm","who":"BSI","seen":false},{"cls":"7b3","who":"KCA","seen":false},{"cls":"7b2","who":"NGR","seen":false},{"cls":"8a1","who":"PAH","seen":false},{"cls":"7b4","who":"RAA","seen":false}]},
-        {"period":"P3","kind":"linemgmt","with":"CB","role":"Line Man","obs":[{"cls":"9a1","who":"NGR","seen":false},{"cls":"9a2","who":"PAH","seen":false}]},
+        {"period":"P2","kind":"linemgmt","with":"CWI","role":"Line Man","obs":[{"cls":"8a3","who":"AJB","seen":false,"room":"309R"},{"cls":"8a2","who":"AWA","seen":false,"room":"312P"},{"cls":"12b/Fm","who":"BSI","seen":false,"room":"301R"},{"cls":"7b3","who":"KCA","seen":false,"room":"306R"},{"cls":"7b2","who":"NGR","seen":false,"room":"105R"},{"cls":"8a1","who":"PAH","seen":false,"room":"311R"},{"cls":"7b4","who":"RAA","seen":false,"room":"314P"}]},
+        {"period":"P3","kind":"linemgmt","with":"CB","role":"Line Man","obs":[{"cls":"9a1","who":"NGR","seen":false,"room":"105R"},{"cls":"9a2","who":"PAH","seen":false,"room":"311R"}]},
         {"period":"P4a","kind":"lunch"},
         {"period":"P4b","kind":"lesson","class":"10b","topic":"","homework":"","done":false},
         {"period":"P5","kind":"lesson","class":"11a","topic":"","homework":"","done":false}
       ]},
       {"date":"2026-12-17","label":"Thu","dateLabel":"17 Dec","inset":false,"entries":[
         {"period":"P1","kind":"lesson","class":"11a","topic":"","homework":"","done":false},
-        {"period":"P2","kind":"free","note":"","obs":[{"cls":"12d/Ma","who":"AJB","seen":false},{"cls":"10a3","who":"AWA","seen":false},{"cls":"13e/Fm","who":"BSI","seen":false},{"cls":"9b2","who":"CWI","seen":false},{"cls":"9b3","who":"HCH","seen":false},{"cls":"9b1","who":"NGR","seen":false},{"cls":"10a4","who":"PAH","seen":false},{"cls":"10a2","who":"PBY","seen":false},{"cls":"10a1","who":"RAA","seen":false}]},
-        {"period":"P3","kind":"free","note":"","obs":[{"cls":"8a3","who":"AJB","seen":false},{"cls":"8a2","who":"AWA","seen":false},{"cls":"12b/Fm","who":"BSI","seen":false},{"cls":"7b1","who":"HCH","seen":false},{"cls":"7b3","who":"KCA","seen":false},{"cls":"7b2","who":"NGR","seen":false},{"cls":"7b4","who":"RAA","seen":false}]},
+        {"period":"P2","kind":"free","note":"","obs":[{"cls":"12d/Ma","who":"AJB","seen":false,"room":"3P5"},{"cls":"10a3","who":"AWA","seen":false,"room":"312P"},{"cls":"13e/Fm","who":"BSI","seen":false,"room":"301R"},{"cls":"9b2","who":"CWI","seen":false,"room":"307R"},{"cls":"9b3","who":"HCH","seen":false,"room":"309R"},{"cls":"9b1","who":"NGR","seen":false,"room":"105R"},{"cls":"10a4","who":"PAH","seen":false,"room":"311R"},{"cls":"10a2","who":"PBY","seen":false,"room":"306R"},{"cls":"10a1","who":"RAA","seen":false,"room":"314P"}]},
+        {"period":"P3","kind":"free","note":"","obs":[{"cls":"8a3","who":"AJB","seen":false,"room":"309R"},{"cls":"8a2","who":"AWA","seen":false,"room":"312P"},{"cls":"12b/Fm","who":"BSI","seen":false,"room":"301R"},{"cls":"7b1","who":"HCH","seen":false,"room":"307R"},{"cls":"7b3","who":"KCA","seen":false,"room":"306R"},{"cls":"7b2","who":"NGR","seen":false,"room":"105R"},{"cls":"7b4","who":"RAA","seen":false,"room":"314P"}]},
         {"period":"P4a","kind":"lesson","class":"11b","topic":"","homework":"","done":false},
         {"period":"P4b","kind":"lunch"},
         {"period":"P5","kind":"lesson","class":"10b","topic":"","homework":"","done":false}
@@ -933,7 +935,7 @@
     1: { label: "Half-term 1", span: "7 Sep – 23 Oct" },
     2: { label: "Half-term 2", span: "9 Nov – 18 Dec" }
   };
-  var SCHEMA = 2;
+  var SCHEMA = 3;
   var activeHT = null;
   var openObs = {};
 
@@ -1046,7 +1048,8 @@
     var key = wi + "-" + di + "-" + ei;
     var chips = e.obs.map(function(o, oi){
       return '<button type="button" class="obs-chip" data-action="toggle-obs" data-obs="' + oi + '" aria-pressed="' + (o.seen ? "true" : "false") +
-        '" title="Tap to mark ' + esc(o.who) + ' as observed"><span class="who">' + esc(o.who) + '</span><span class="cls">' + esc(o.cls) + '</span></button>';
+        '" title="Tap to mark ' + esc(o.who) + ' as observed' + (o.room ? ' (room ' + esc(o.room) + ')' : '') + '"><span class="who">' + esc(o.who) + '</span><span class="cls">' + esc(o.cls) + '</span>' +
+        (o.room ? '<span class="room">' + esc(o.room) + '</span>' : '') + '</button>';
     }).join("");
     return '<details class="obs"' + (openObs[key] ? " open" : "") + '><summary class="obs-sum">' + esc(obsSummary(e)) + '</summary>' +
       '<div class="obs-list">' + chips + '</div></details>';
@@ -1220,6 +1223,10 @@
           var m = (sd.entries || []).filter(function(s){ return s.period === e.period && s.kind === e.kind && s["class"] === e["class"]; })[0];
           if (!m) return;
           ["done", "topic", "homework", "note"].forEach(function(k){ if (m[k] !== undefined) e[k] = m[k]; });
+          (e.obs || []).forEach(function(o){
+            var so = (m.obs || []).filter(function(x){ return x.who === o.who && x.cls === o.cls; })[0];
+            if (so && so.seen) o.seen = true;
+          });
         });
       });
     });
