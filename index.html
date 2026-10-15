@@ -1,3 +1,8 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Maths Half-Term Planner</title>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Atkinson+Hyperlegible:wght@400;700&family=JetBrains+Mono:wght@400;500;600&display=swap">
@@ -162,6 +167,17 @@
 
   .hint{ margin: 16px 0 0; font-size: 0.8rem; color: var(--ink-soft); line-height:1.5; }
 
+  .tabs{ display:flex; flex-wrap:wrap; gap:8px; margin: 0 0 18px; }
+  .tab{
+    border:1px solid var(--line-strong); background: var(--surface); color: var(--ink-soft);
+    font-size:0.85rem; font-weight:700; padding:8px 16px; border-radius:9px; cursor:pointer; text-align:left;
+    line-height:1.25;
+  }
+  .tab .tab-span{ display:block; font-family:"JetBrains Mono", monospace; font-size:0.68rem; font-weight:500; opacity:0.85; }
+  .tab:hover{ border-color: var(--accent); color: var(--accent); }
+  .tab[aria-selected="true"]{ background: var(--accent); border-color: var(--accent); color: var(--surface); }
+  .tab:focus-visible{ outline:2px solid var(--focus); outline-offset:2px; }
+
   /* ---------- weeks ---------- */
   .weeks{ display:flex; flex-direction:column; gap: 22px; margin-top: 26px; }
   .week{
@@ -186,10 +202,16 @@
   @media (max-width: 480px){ .days-grid{ grid-template-columns: 1fr; } }
 
   .day{ display:flex; flex-direction:column; gap:8px; min-width:0; }
-  .day-head{ display:flex; align-items:baseline; justify-content:space-between; gap:6px; }
+  .day-head{ display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:4px 8px; }
+  .day-title{ display:flex; align-items:baseline; gap:6px; }
   .day-name{ font-size:0.78rem; font-weight:700; color: var(--ink); }
   .day-date{ font-size:0.72rem; color: var(--ink-soft); }
+  .day.complete .day-name{ color: var(--accent); }
   .day.inset .day-head{ opacity:0.7; }
+  .day-note{
+    margin:0; padding:4px 8px; border-radius:6px; font-size:0.7rem; font-weight:600;
+    background: var(--oncall-bg); color: var(--oncall);
+  }
   .inset-note{
     margin:0; padding:10px 8px; text-align:center; border-radius:8px;
     background: var(--inset-bg); color: var(--ink-soft); font-size:0.76rem; font-style:italic;
@@ -222,6 +244,10 @@
     transform: rotate(45deg) translate(-1px,-1px);
   }
   .check input:focus-visible + .box{ outline:2px solid var(--focus); outline-offset:2px; }
+  .check input:indeterminate + .box{ background: var(--accent-soft); border-color: var(--accent); }
+  .check input:indeterminate + .box::after{ content:""; width:7px; height:2px; background: var(--accent); border-radius:1px; }
+  .day-done{ gap:5px; align-items:center; font-size:0.68rem; font-weight:700; color: var(--ink-soft); }
+  .day.complete .day-done{ color: var(--accent); }
 
   .class-tag{ flex:1; min-width:0; display:flex; flex-direction:column; line-height:1.2; }
   .class-tag .code{ font-size: 0.76rem; font-weight:700; }
@@ -257,8 +283,10 @@
 
   .fixed-entry{
     border:1px solid var(--line-strong); border-radius: 9px; padding: 6px 9px;
-    display:flex; align-items:center; gap:7px; font-size:0.76rem;
+    font-size:0.76rem;
   }
+  .fixed-row, .free-row{ display:flex; align-items:center; gap:7px; }
+  .free-row{ align-items:flex-start; }
   .fixed-entry .period{ font-family:"JetBrains Mono", monospace; font-size:0.68rem; color: var(--ink-soft); flex:none; }
   .fixed-entry .label{ flex:1; font-weight:600; }
   .fixed-entry[data-kind="lunch"]{ background: var(--lunch-bg); color: var(--lunch); }
@@ -267,9 +295,30 @@
 
   .free-entry{
     border:1px dashed var(--line-strong); border-radius: 9px; padding: 6px 9px;
-    display:flex; align-items:flex-start; gap:7px; background:transparent;
+    background:transparent;
   }
   .free-entry .period{ font-family:"JetBrains Mono", monospace; font-size:0.68rem; color: var(--ink-soft); flex:none; padding-top:2px; }
+
+  .obs{ margin-top:4px; font-size:0.7rem; }
+  .obs > summary{
+    cursor:pointer; list-style:none; display:flex; align-items:center; gap:5px;
+    color: var(--accent); font-weight:700; padding:2px 0;
+  }
+  .obs > summary::-webkit-details-marker{ display:none; }
+  .obs > summary::before{ content:"\25B8"; font-size:0.65rem; }
+  .obs[open] > summary::before{ content:"\25BE"; }
+  .obs > summary:focus-visible{ outline:2px solid var(--focus); outline-offset:2px; border-radius:4px; }
+  .obs-list{ display:flex; flex-wrap:wrap; gap:4px; padding-top:5px; }
+  .obs-chip{
+    display:inline-flex; align-items:center; gap:4px; cursor:pointer;
+    border:1px solid var(--line-strong); background: var(--surface); color: var(--ink);
+    border-radius:999px; padding:2px 8px; font-size:0.68rem; font-weight:700;
+  }
+  .obs-chip .cls{ color: var(--ink-soft); font-weight:500; }
+  .obs-chip:hover{ border-color: var(--accent); }
+  .obs-chip[aria-pressed="true"]{ background: var(--accent-soft); border-color: var(--accent); color: var(--accent); }
+  .obs-chip[aria-pressed="true"]::before{ content:"\2713"; }
+  .obs-chip:focus-visible{ outline:2px solid var(--focus); outline-offset:2px; }
   .free-entry .note{
     flex:1; min-width:0; border:none; background:transparent; color: var(--ink-soft); font-size:0.74rem;
     display:block; font-family:inherit; line-height:1.35; resize:none; overflow:hidden; padding:2px 0;
@@ -295,55 +344,58 @@
 
   @media print{
     body{ background: #fff; }
-    .header-actions, .add-row, .add-menu, .del, .hint{ display:none !important; }
+    .header-actions, .add-row, .add-menu, .del, .hint, .tabs, .day-done{ display:none !important; }
     .week{ break-inside: avoid; box-shadow:none; }
     .header{ box-shadow:none; }
     .days-grid{ grid-template-columns: repeat(5,1fr) !important; }
   }
 </style>
+</head>
+<body>
 <div id="app" class="shell"></div>
 
 <script id="state-json" type="application/json">
 {
-  "title": "Autumn 1 Half Term",
-  "className": "10b/Ma2 · 11a/Ma2 · 11b/Ma3 · 12d/Ma — 2-week timetable rotation",
-  "weeks": [
-    { "weekType":"1", "range":"7–11 Sep 2026", "days":[
-      { "date":"2026-09-07","label":"Mon","dateLabel":"7 Sep","inset":false,"entries":[
+  "schema":2,
+  "title":"Autumn Term 2026",
+  "className":"10b/Ma2 · 11a/Ma2 · 11b/Ma3 · 12d/Ma — 2-week timetable rotation",
+  "weeks":[
+    {"weekType":"1","range":"7–11 Sep 2026","ht":1,"days":[
+      {"date":"2026-09-07","label":"Mon","dateLabel":"7 Sep","inset":false,"entries":[
         {"period":"P1","kind":"lesson","class":"11b","topic":"","homework":"","done":false},
         {"period":"P2","kind":"lesson","class":"10b","topic":"","homework":"","done":false},
         {"period":"P3","kind":"lesson","class":"11a","topic":"","homework":"","done":false},
         {"period":"P4a","kind":"lunch"},
         {"period":"P4b","kind":"lesson","class":"12d","topic":"","homework":"","done":false},
-        {"period":"P5","kind":"free","note":""},
-        {"period":"P6","kind":"linemgmt","with":"PAH"}
+        {"period":"P5","kind":"free","note":"","obs":[{"cls":"8a3","who":"AJB","seen":false},{"cls":"8a2","who":"AWA","seen":false},{"cls":"12b/Fm","who":"BSI","seen":false},{"cls":"7b3","who":"KCA","seen":false},{"cls":"7b2","who":"NGR","seen":false},{"cls":"8a1","who":"PAH","seen":false},{"cls":"7b4","who":"RAA","seen":false}]},
+        {"period":"P6","kind":"linemgmt","with":"PAH","role":"Mentor"}
       ]},
-      { "date":"2026-09-08","label":"Tue","dateLabel":"8 Sep","inset":false,"entries":[
-        {"period":"P1","kind":"linemgmt","with":"PBY"},
+      {"date":"2026-09-08","label":"Tue","dateLabel":"8 Sep","inset":false,"entries":[
+        {"period":"P1","kind":"linemgmt","with":"PBY","role":"Line Man"},
         {"period":"P2","kind":"lesson","class":"11b","topic":"","homework":"","done":false},
-        {"period":"P3","kind":"free","note":""},
+        {"period":"P3","kind":"free","note":"","obs":[{"cls":"9a3","who":"AJB","seen":false},{"cls":"13d/Ma","who":"BSI","seen":false},{"cls":"13x/Ma","who":"HCH","seen":false},{"cls":"9a1","who":"NGR","seen":false},{"cls":"9a2","who":"PAH","seen":false}]},
         {"period":"P4a","kind":"lesson","class":"11a","topic":"","homework":"","done":false},
         {"period":"P4b","kind":"lunch"},
-        {"period":"P5","kind":"free","note":""},
+        {"period":"P5","kind":"free","note":"","obs":[{"cls":"12d/Ma","who":"AJB","seen":false},{"cls":"10a3","who":"AWA","seen":false},{"cls":"13e/Fm","who":"BSI","seen":false},{"cls":"9b2","who":"CWI","seen":false},{"cls":"9b1","who":"NGR","seen":false},{"cls":"10a4","who":"PAH","seen":false},{"cls":"10a2","who":"PBY","seen":false},{"cls":"10a1","who":"RAA","seen":false}]},
         {"period":"P6","kind":"lesson","class":"11b","topic":"","homework":"","done":false}
       ]},
-      { "date":"2026-09-09","label":"Wed","dateLabel":"9 Sep","inset":false,"entries":[
+      {"date":"2026-09-09","label":"Wed","dateLabel":"9 Sep","inset":false,"entries":[
         {"period":"P1","kind":"lesson","class":"12d","topic":"","homework":"","done":false},
-        {"period":"P2","kind":"linemgmt","with":"CWI"},
-        {"period":"P3","kind":"linemgmt","with":"CB"},
+        {"period":"P2","kind":"linemgmt","with":"CWI","role":"Line Man"},
+        {"period":"P3","kind":"linemgmt","with":"CB","role":"Line Man"},
         {"period":"P4a","kind":"lunch"},
         {"period":"P4b","kind":"lesson","class":"10b","topic":"","homework":"","done":false},
         {"period":"P5","kind":"lesson","class":"11a","topic":"","homework":"","done":false}
       ]},
-      { "date":"2026-09-10","label":"Thu","dateLabel":"10 Sep","inset":false,"entries":[
+      {"date":"2026-09-10","label":"Thu","dateLabel":"10 Sep","inset":false,"entries":[
         {"period":"P1","kind":"lesson","class":"11a","topic":"","homework":"","done":false},
-        {"period":"P2","kind":"free","note":""},
-        {"period":"P3","kind":"free","note":""},
+        {"period":"P2","kind":"free","note":"","obs":[{"cls":"12d/Ma","who":"AJB","seen":false},{"cls":"10a3","who":"AWA","seen":false},{"cls":"13e/Fm","who":"BSI","seen":false},{"cls":"9b2","who":"CWI","seen":false},{"cls":"9b3","who":"HCH","seen":false},{"cls":"9b1","who":"NGR","seen":false},{"cls":"10a4","who":"PAH","seen":false},{"cls":"10a2","who":"PBY","seen":false},{"cls":"10a1","who":"RAA","seen":false}]},
+        {"period":"P3","kind":"free","note":"","obs":[{"cls":"8a3","who":"AJB","seen":false},{"cls":"8a2","who":"AWA","seen":false},{"cls":"12b/Fm","who":"BSI","seen":false},{"cls":"7b1","who":"HCH","seen":false},{"cls":"7b3","who":"KCA","seen":false},{"cls":"7b2","who":"NGR","seen":false},{"cls":"7b4","who":"RAA","seen":false}]},
         {"period":"P4a","kind":"lesson","class":"11b","topic":"","homework":"","done":false},
         {"period":"P4b","kind":"lunch"},
         {"period":"P5","kind":"lesson","class":"10b","topic":"","homework":"","done":false}
       ]},
-      { "date":"2026-09-11","label":"Fri","dateLabel":"11 Sep","inset":false,"entries":[
+      {"date":"2026-09-11","label":"Fri","dateLabel":"11 Sep","inset":false,"entries":[
         {"period":"P1","kind":"lesson","class":"10b","topic":"","homework":"","done":false},
         {"period":"P2","kind":"lesson","class":"11a","topic":"","homework":"","done":false},
         {"period":"P3","kind":"lesson","class":"12d","topic":"","homework":"","done":false},
@@ -352,86 +404,86 @@
         {"period":"P5","kind":"lesson","class":"11b","topic":"","homework":"","done":false}
       ]}
     ]},
-    { "weekType":"2", "range":"14–18 Sep 2026", "days":[
-      { "date":"2026-09-14","label":"Mon","dateLabel":"14 Sep","inset":false,"entries":[
+    {"weekType":"2","range":"14–18 Sep 2026","ht":1,"days":[
+      {"date":"2026-09-14","label":"Mon","dateLabel":"14 Sep","inset":false,"entries":[
         {"period":"P1","kind":"lesson","class":"11b","topic":"","homework":"","done":true},
         {"period":"P2","kind":"lesson","class":"10b","topic":"","homework":"","done":false},
         {"period":"P3","kind":"lesson","class":"11a","topic":"","homework":"","done":false},
         {"period":"P4a","kind":"lunch"},
         {"period":"P4b","kind":"lesson","class":"12d","topic":"","homework":"","done":false},
-        {"period":"P5","kind":"free","note":""},
-        {"period":"P6","kind":"free","note":""}
+        {"period":"P5","kind":"free","note":"","obs":[{"cls":"8a3","who":"AJB","seen":false},{"cls":"8a2","who":"AWA","seen":false},{"cls":"7b1","who":"HCH","seen":false},{"cls":"7b3","who":"KCA","seen":false},{"cls":"8a1","who":"PAH","seen":false},{"cls":"12b/Fm","who":"PBY","seen":false},{"cls":"7b4","who":"RAA","seen":false}]},
+        {"period":"P6","kind":"free","note":"","obs":[{"cls":"12r/Ma1","who":"AJB","seen":false},{"cls":"8b3","who":"CWI","seen":false},{"cls":"8b1","who":"HCH","seen":false},{"cls":"8b2","who":"KCA","seen":false},{"cls":"12e/Ma","who":"PBY","seen":false}]}
       ]},
-      { "date":"2026-09-15","label":"Tue","dateLabel":"15 Sep","inset":false,"entries":[
-        {"period":"P1","kind":"free","note":""},
+      {"date":"2026-09-15","label":"Tue","dateLabel":"15 Sep","inset":false,"entries":[
+        {"period":"P1","kind":"free","note":"","obs":[{"cls":"8a3","who":"AJB","seen":false},{"cls":"8a2","who":"AWA","seen":false},{"cls":"12b/Fm","who":"BSI","seen":false},{"cls":"7b1","who":"HCH","seen":false},{"cls":"7b3","who":"KCA","seen":false},{"cls":"7b2","who":"NGR","seen":false},{"cls":"8a1","who":"PAH","seen":false},{"cls":"7b4","who":"RAA","seen":false}]},
         {"period":"P2","kind":"lesson","class":"11b","topic":"","homework":"","done":false},
-        {"period":"P3","kind":"free","note":""},
+        {"period":"P3","kind":"free","note":"","obs":[{"cls":"9a3","who":"AJB","seen":false},{"cls":"13d/Ma","who":"BSI","seen":false},{"cls":"8b3","who":"CWI","seen":false},{"cls":"8b1","who":"HCH","seen":false},{"cls":"9a1","who":"NGR","seen":false},{"cls":"9a2","who":"PAH","seen":false}]},
         {"period":"P4a","kind":"lesson","class":"11a","topic":"","homework":"","done":false},
         {"period":"P4b","kind":"lunch"},
-        {"period":"P5","kind":"free","note":""},
-        {"period":"P6","kind":"free","note":""}
+        {"period":"P5","kind":"free","note":"","obs":[{"cls":"12d/Ma","who":"AJB","seen":false},{"cls":"10a3","who":"AWA","seen":false},{"cls":"13e/Fm","who":"BSI","seen":false},{"cls":"9b2","who":"CWI","seen":false},{"cls":"9b3","who":"HCH","seen":false},{"cls":"10a4","who":"PAH","seen":false},{"cls":"10a2","who":"PBY","seen":false},{"cls":"10a1","who":"RAA","seen":false}]},
+        {"period":"P6","kind":"linemgmt","with":"NMU","role":"Line Man"}
       ]},
-      { "date":"2026-09-16","label":"Wed","dateLabel":"16 Sep","inset":false,"entries":[
+      {"date":"2026-09-16","label":"Wed","dateLabel":"16 Sep","inset":false,"entries":[
         {"period":"P1","kind":"lesson","class":"12d","topic":"","homework":"","done":false},
-        {"period":"P2","kind":"free","note":""},
-        {"period":"P3","kind":"linemgmt","with":"PAH"},
+        {"period":"P2","kind":"free","note":"","obs":[{"cls":"8a3","who":"AJB","seen":false},{"cls":"8a2","who":"AWA","seen":false},{"cls":"12b/Fm","who":"BSI","seen":false},{"cls":"7b1","who":"HCH","seen":false},{"cls":"7b3","who":"KCA","seen":false},{"cls":"7b2","who":"NGR","seen":false},{"cls":"8a1","who":"PAH","seen":false},{"cls":"7b4","who":"RAA","seen":false}]},
+        {"period":"P3","kind":"linemgmt","with":"PAH","role":"Mentor"},
         {"period":"P4a","kind":"lunch"},
         {"period":"P4b","kind":"lesson","class":"10b","topic":"","homework":"","done":false},
         {"period":"P5","kind":"lesson","class":"11a","topic":"","homework":"","done":false}
       ]},
-      { "date":"2026-09-17","label":"Thu","dateLabel":"17 Sep","inset":false,"entries":[
+      {"date":"2026-09-17","label":"Thu","dateLabel":"17 Sep","inset":false,"entries":[
         {"period":"P1","kind":"lesson","class":"11a","topic":"","homework":"","done":false},
-        {"period":"P2","kind":"free","note":""},
-        {"period":"P3","kind":"free","note":""},
+        {"period":"P2","kind":"free","note":"","obs":[{"cls":"12d/Ma","who":"AJB","seen":false},{"cls":"13e/Fm","who":"BSI","seen":false},{"cls":"9b2","who":"CWI","seen":false},{"cls":"9b3","who":"HCH","seen":false},{"cls":"104/Ma1","who":"KCA","seen":false},{"cls":"9b1","who":"NGR","seen":false}]},
+        {"period":"P3","kind":"free","note":"","obs":[{"cls":"12b/Fm","who":"BSI","seen":false},{"cls":"7b1","who":"HCH","seen":false},{"cls":"7b3","who":"KCA","seen":false},{"cls":"7b2","who":"NGR","seen":false},{"cls":"8a1","who":"PAH","seen":false},{"cls":"7b4","who":"RAA","seen":false}]},
         {"period":"P4a","kind":"lesson","class":"11b","topic":"","homework":"","done":false},
         {"period":"P4b","kind":"lunch"},
         {"period":"P5","kind":"lesson","class":"10b","topic":"","homework":"","done":false}
       ]},
-      { "date":"2026-09-18","label":"Fri","dateLabel":"18 Sep","inset":false,"entries":[
+      {"date":"2026-09-18","label":"Fri","dateLabel":"18 Sep","inset":false,"entries":[
         {"period":"P1","kind":"lesson","class":"10b","topic":"","homework":"","done":false},
-        {"period":"P2","kind":"linemgmt","with":"AWA"},
+        {"period":"P2","kind":"linemgmt","with":"AWA","role":"Line Man","obs":[{"cls":"8b3","who":"CWI","seen":false},{"cls":"8b1","who":"HCH","seen":false},{"cls":"8b2","who":"KCA","seen":false}]},
         {"period":"P3","kind":"lesson","class":"12d","topic":"","homework":"","done":false},
         {"period":"P4a","kind":"lunch"},
         {"period":"P4b","kind":"oncall"},
         {"period":"P5","kind":"lesson","class":"11b","topic":"","homework":"","done":false}
       ]}
     ]},
-    { "weekType":"1", "range":"21–25 Sep 2026", "days":[
-      { "date":"2026-09-21","label":"Mon","dateLabel":"21 Sep","inset":false,"entries":[
+    {"weekType":"1","range":"21–25 Sep 2026","ht":1,"days":[
+      {"date":"2026-09-21","label":"Mon","dateLabel":"21 Sep","inset":false,"entries":[
         {"period":"P1","kind":"lesson","class":"11b","topic":"","homework":"","done":false},
         {"period":"P2","kind":"lesson","class":"10b","topic":"","homework":"","done":false},
         {"period":"P3","kind":"lesson","class":"11a","topic":"","homework":"","done":false},
         {"period":"P4a","kind":"lunch"},
         {"period":"P4b","kind":"lesson","class":"12d","topic":"","homework":"","done":false},
-        {"period":"P5","kind":"free","note":""},
-        {"period":"P6","kind":"linemgmt","with":"PAH"}
+        {"period":"P5","kind":"free","note":"","obs":[{"cls":"8a3","who":"AJB","seen":false},{"cls":"8a2","who":"AWA","seen":false},{"cls":"12b/Fm","who":"BSI","seen":false},{"cls":"7b3","who":"KCA","seen":false},{"cls":"7b2","who":"NGR","seen":false},{"cls":"8a1","who":"PAH","seen":false},{"cls":"7b4","who":"RAA","seen":false}]},
+        {"period":"P6","kind":"linemgmt","with":"PAH","role":"Mentor"}
       ]},
-      { "date":"2026-09-22","label":"Tue","dateLabel":"22 Sep","inset":false,"entries":[
-        {"period":"P1","kind":"linemgmt","with":"PBY"},
+      {"date":"2026-09-22","label":"Tue","dateLabel":"22 Sep","inset":false,"entries":[
+        {"period":"P1","kind":"linemgmt","with":"PBY","role":"Line Man"},
         {"period":"P2","kind":"lesson","class":"11b","topic":"","homework":"","done":false},
-        {"period":"P3","kind":"free","note":""},
+        {"period":"P3","kind":"free","note":"","obs":[{"cls":"9a3","who":"AJB","seen":false},{"cls":"13d/Ma","who":"BSI","seen":false},{"cls":"13x/Ma","who":"HCH","seen":false},{"cls":"9a1","who":"NGR","seen":false},{"cls":"9a2","who":"PAH","seen":false}]},
         {"period":"P4a","kind":"lesson","class":"11a","topic":"","homework":"","done":false},
         {"period":"P4b","kind":"lunch"},
-        {"period":"P5","kind":"free","note":""},
+        {"period":"P5","kind":"free","note":"","obs":[{"cls":"12d/Ma","who":"AJB","seen":false},{"cls":"10a3","who":"AWA","seen":false},{"cls":"13e/Fm","who":"BSI","seen":false},{"cls":"9b2","who":"CWI","seen":false},{"cls":"9b1","who":"NGR","seen":false},{"cls":"10a4","who":"PAH","seen":false},{"cls":"10a2","who":"PBY","seen":false},{"cls":"10a1","who":"RAA","seen":false}]},
         {"period":"P6","kind":"lesson","class":"11b","topic":"","homework":"","done":false}
       ]},
-      { "date":"2026-09-23","label":"Wed","dateLabel":"23 Sep","inset":false,"entries":[
+      {"date":"2026-09-23","label":"Wed","dateLabel":"23 Sep","inset":false,"entries":[
         {"period":"P1","kind":"lesson","class":"12d","topic":"","homework":"","done":false},
-        {"period":"P2","kind":"linemgmt","with":"CWI"},
-        {"period":"P3","kind":"linemgmt","with":"CB"},
+        {"period":"P2","kind":"linemgmt","with":"CWI","role":"Line Man"},
+        {"period":"P3","kind":"linemgmt","with":"CB","role":"Line Man"},
         {"period":"P4a","kind":"lunch"},
         {"period":"P4b","kind":"lesson","class":"10b","topic":"","homework":"","done":false},
         {"period":"P5","kind":"lesson","class":"11a","topic":"","homework":"","done":false}
       ]},
-      { "date":"2026-09-24","label":"Thu","dateLabel":"24 Sep","inset":false,"entries":[
+      {"date":"2026-09-24","label":"Thu","dateLabel":"24 Sep","inset":false,"entries":[
         {"period":"P1","kind":"lesson","class":"11a","topic":"","homework":"","done":false},
-        {"period":"P2","kind":"free","note":""},
-        {"period":"P3","kind":"free","note":""},
+        {"period":"P2","kind":"free","note":"","obs":[{"cls":"12d/Ma","who":"AJB","seen":false},{"cls":"10a3","who":"AWA","seen":false},{"cls":"13e/Fm","who":"BSI","seen":false},{"cls":"9b2","who":"CWI","seen":false},{"cls":"9b3","who":"HCH","seen":false},{"cls":"9b1","who":"NGR","seen":false},{"cls":"10a4","who":"PAH","seen":false},{"cls":"10a2","who":"PBY","seen":false},{"cls":"10a1","who":"RAA","seen":false}]},
+        {"period":"P3","kind":"free","note":"","obs":[{"cls":"8a3","who":"AJB","seen":false},{"cls":"8a2","who":"AWA","seen":false},{"cls":"12b/Fm","who":"BSI","seen":false},{"cls":"7b1","who":"HCH","seen":false},{"cls":"7b3","who":"KCA","seen":false},{"cls":"7b2","who":"NGR","seen":false},{"cls":"7b4","who":"RAA","seen":false}]},
         {"period":"P4a","kind":"lesson","class":"11b","topic":"","homework":"","done":false},
         {"period":"P4b","kind":"lunch"},
         {"period":"P5","kind":"lesson","class":"10b","topic":"","homework":"","done":false}
       ]},
-      { "date":"2026-09-25","label":"Fri","dateLabel":"25 Sep","inset":false,"entries":[
+      {"date":"2026-09-25","label":"Fri","dateLabel":"25 Sep","inset":false,"entries":[
         {"period":"P1","kind":"lesson","class":"10b","topic":"","homework":"","done":false},
         {"period":"P2","kind":"lesson","class":"11a","topic":"","homework":"","done":false},
         {"period":"P3","kind":"lesson","class":"12d","topic":"","homework":"","done":false},
@@ -440,79 +492,81 @@
         {"period":"P5","kind":"lesson","class":"11b","topic":"","homework":"","done":false}
       ]}
     ]},
-    { "weekType":"2", "range":"28 Sep–2 Oct 2026", "days":[
-      { "date":"2026-09-28","label":"Mon","dateLabel":"28 Sep","inset":false,"entries":[
+    {"weekType":"2","range":"28 Sep–2 Oct 2026","ht":1,"days":[
+      {"date":"2026-09-28","label":"Mon","dateLabel":"28 Sep","inset":false,"entries":[
         {"period":"P1","kind":"lesson","class":"11b","topic":"","homework":"","done":false},
         {"period":"P2","kind":"lesson","class":"10b","topic":"","homework":"","done":false},
         {"period":"P3","kind":"lesson","class":"11a","topic":"","homework":"","done":false},
         {"period":"P4a","kind":"lunch"},
         {"period":"P4b","kind":"lesson","class":"12d","topic":"","homework":"","done":false},
-        {"period":"P5","kind":"free","note":""},
-        {"period":"P6","kind":"free","note":""}
+        {"period":"P5","kind":"free","note":"","obs":[{"cls":"8a3","who":"AJB","seen":false},{"cls":"8a2","who":"AWA","seen":false},{"cls":"7b1","who":"HCH","seen":false},{"cls":"7b3","who":"KCA","seen":false},{"cls":"8a1","who":"PAH","seen":false},{"cls":"12b/Fm","who":"PBY","seen":false},{"cls":"7b4","who":"RAA","seen":false}]},
+        {"period":"P6","kind":"free","note":"","obs":[{"cls":"12r/Ma1","who":"AJB","seen":false},{"cls":"8b3","who":"CWI","seen":false},{"cls":"8b1","who":"HCH","seen":false},{"cls":"8b2","who":"KCA","seen":false},{"cls":"12e/Ma","who":"PBY","seen":false}]}
       ]},
-      { "date":"2026-09-29","label":"Tue","dateLabel":"29 Sep","inset":false,"entries":[
-        {"period":"P1","kind":"free","note":""},
+      {"date":"2026-09-29","label":"Tue","dateLabel":"29 Sep","inset":false,"entries":[
+        {"period":"P1","kind":"free","note":"","obs":[{"cls":"8a3","who":"AJB","seen":false},{"cls":"8a2","who":"AWA","seen":false},{"cls":"12b/Fm","who":"BSI","seen":false},{"cls":"7b1","who":"HCH","seen":false},{"cls":"7b3","who":"KCA","seen":false},{"cls":"7b2","who":"NGR","seen":false},{"cls":"8a1","who":"PAH","seen":false},{"cls":"7b4","who":"RAA","seen":false}]},
         {"period":"P2","kind":"lesson","class":"11b","topic":"","homework":"","done":false},
-        {"period":"P3","kind":"free","note":""},
+        {"period":"P3","kind":"free","note":"","obs":[{"cls":"9a3","who":"AJB","seen":false},{"cls":"13d/Ma","who":"BSI","seen":false},{"cls":"8b3","who":"CWI","seen":false},{"cls":"8b1","who":"HCH","seen":false},{"cls":"9a1","who":"NGR","seen":false},{"cls":"9a2","who":"PAH","seen":false}]},
         {"period":"P4a","kind":"lesson","class":"11a","topic":"","homework":"","done":false},
         {"period":"P4b","kind":"lunch"},
-        {"period":"P5","kind":"free","note":""},
-        {"period":"P6","kind":"free","note":""}
+        {"period":"P5","kind":"free","note":"","obs":[{"cls":"12d/Ma","who":"AJB","seen":false},{"cls":"10a3","who":"AWA","seen":false},{"cls":"13e/Fm","who":"BSI","seen":false},{"cls":"9b2","who":"CWI","seen":false},{"cls":"9b3","who":"HCH","seen":false},{"cls":"10a4","who":"PAH","seen":false},{"cls":"10a2","who":"PBY","seen":false},{"cls":"10a1","who":"RAA","seen":false}]},
+        {"period":"P6","kind":"linemgmt","with":"NMU","role":"Line Man"}
       ]},
-      { "date":"2026-09-30","label":"Wed","dateLabel":"30 Sep","inset":false,"entries":[
+      {"date":"2026-09-30","label":"Wed","dateLabel":"30 Sep","inset":false,"entries":[
         {"period":"P1","kind":"lesson","class":"12d","topic":"","homework":"","done":false},
-        {"period":"P2","kind":"free","note":""},
-        {"period":"P3","kind":"linemgmt","with":"PAH"},
+        {"period":"P2","kind":"free","note":"","obs":[{"cls":"8a3","who":"AJB","seen":false},{"cls":"8a2","who":"AWA","seen":false},{"cls":"12b/Fm","who":"BSI","seen":false},{"cls":"7b1","who":"HCH","seen":false},{"cls":"7b3","who":"KCA","seen":false},{"cls":"7b2","who":"NGR","seen":false},{"cls":"8a1","who":"PAH","seen":false},{"cls":"7b4","who":"RAA","seen":false}]},
+        {"period":"P3","kind":"linemgmt","with":"PAH","role":"Mentor"},
         {"period":"P4a","kind":"lunch"},
         {"period":"P4b","kind":"lesson","class":"10b","topic":"","homework":"","done":false},
         {"period":"P5","kind":"lesson","class":"11a","topic":"","homework":"","done":false}
       ]},
-      { "date":"2026-10-01","label":"Thu","dateLabel":"1 Oct","inset":false,"entries":[
+      {"date":"2026-10-01","label":"Thu","dateLabel":"1 Oct","inset":false,"entries":[
         {"period":"P1","kind":"lesson","class":"11a","topic":"","homework":"","done":false},
-        {"period":"P2","kind":"free","note":""},
-        {"period":"P3","kind":"free","note":""},
+        {"period":"P2","kind":"free","note":"","obs":[{"cls":"12d/Ma","who":"AJB","seen":false},{"cls":"13e/Fm","who":"BSI","seen":false},{"cls":"9b2","who":"CWI","seen":false},{"cls":"9b3","who":"HCH","seen":false},{"cls":"104/Ma1","who":"KCA","seen":false},{"cls":"9b1","who":"NGR","seen":false}]},
+        {"period":"P3","kind":"free","note":"","obs":[{"cls":"12b/Fm","who":"BSI","seen":false},{"cls":"7b1","who":"HCH","seen":false},{"cls":"7b3","who":"KCA","seen":false},{"cls":"7b2","who":"NGR","seen":false},{"cls":"8a1","who":"PAH","seen":false},{"cls":"7b4","who":"RAA","seen":false}]},
         {"period":"P4a","kind":"lesson","class":"11b","topic":"","homework":"","done":false},
         {"period":"P4b","kind":"lunch"},
         {"period":"P5","kind":"lesson","class":"10b","topic":"","homework":"","done":false}
       ]},
-      { "date":"2026-10-02","label":"Fri","dateLabel":"2 Oct","inset":true,"entries":[]}
+      {"date":"2026-10-02","label":"Fri","dateLabel":"2 Oct","inset":true,"entries":[
+
+      ]}
     ]},
-    { "weekType":"1", "range":"5–9 Oct 2026", "days":[
-      { "date":"2026-10-05","label":"Mon","dateLabel":"5 Oct","inset":false,"entries":[
+    {"weekType":"1","range":"5–9 Oct 2026","ht":1,"days":[
+      {"date":"2026-10-05","label":"Mon","dateLabel":"5 Oct","inset":false,"entries":[
         {"period":"P1","kind":"lesson","class":"11b","topic":"","homework":"","done":false},
         {"period":"P2","kind":"lesson","class":"10b","topic":"","homework":"","done":false},
         {"period":"P3","kind":"lesson","class":"11a","topic":"","homework":"","done":false},
         {"period":"P4a","kind":"lunch"},
         {"period":"P4b","kind":"lesson","class":"12d","topic":"","homework":"","done":false},
-        {"period":"P5","kind":"free","note":""},
-        {"period":"P6","kind":"linemgmt","with":"PAH"}
+        {"period":"P5","kind":"free","note":"","obs":[{"cls":"8a3","who":"AJB","seen":false},{"cls":"8a2","who":"AWA","seen":false},{"cls":"12b/Fm","who":"BSI","seen":false},{"cls":"7b3","who":"KCA","seen":false},{"cls":"7b2","who":"NGR","seen":false},{"cls":"8a1","who":"PAH","seen":false},{"cls":"7b4","who":"RAA","seen":false}]},
+        {"period":"P6","kind":"linemgmt","with":"PAH","role":"Mentor"}
       ]},
-      { "date":"2026-10-06","label":"Tue","dateLabel":"6 Oct","inset":false,"entries":[
-        {"period":"P1","kind":"linemgmt","with":"PBY"},
+      {"date":"2026-10-06","label":"Tue","dateLabel":"6 Oct","inset":false,"entries":[
+        {"period":"P1","kind":"linemgmt","with":"PBY","role":"Line Man"},
         {"period":"P2","kind":"lesson","class":"11b","topic":"","homework":"","done":false},
-        {"period":"P3","kind":"free","note":""},
+        {"period":"P3","kind":"free","note":"","obs":[{"cls":"9a3","who":"AJB","seen":false},{"cls":"13d/Ma","who":"BSI","seen":false},{"cls":"13x/Ma","who":"HCH","seen":false},{"cls":"9a1","who":"NGR","seen":false},{"cls":"9a2","who":"PAH","seen":false}]},
         {"period":"P4a","kind":"lesson","class":"11a","topic":"","homework":"","done":false},
         {"period":"P4b","kind":"lunch"},
-        {"period":"P5","kind":"free","note":""},
+        {"period":"P5","kind":"free","note":"","obs":[{"cls":"12d/Ma","who":"AJB","seen":false},{"cls":"10a3","who":"AWA","seen":false},{"cls":"13e/Fm","who":"BSI","seen":false},{"cls":"9b2","who":"CWI","seen":false},{"cls":"9b1","who":"NGR","seen":false},{"cls":"10a4","who":"PAH","seen":false},{"cls":"10a2","who":"PBY","seen":false},{"cls":"10a1","who":"RAA","seen":false}]},
         {"period":"P6","kind":"lesson","class":"11b","topic":"","homework":"","done":false}
       ]},
-      { "date":"2026-10-07","label":"Wed","dateLabel":"7 Oct","inset":false,"entries":[
+      {"date":"2026-10-07","label":"Wed","dateLabel":"7 Oct","inset":false,"entries":[
         {"period":"P1","kind":"lesson","class":"12d","topic":"","homework":"","done":false},
-        {"period":"P2","kind":"linemgmt","with":"CWI"},
-        {"period":"P3","kind":"linemgmt","with":"CB"},
+        {"period":"P2","kind":"linemgmt","with":"CWI","role":"Line Man"},
+        {"period":"P3","kind":"linemgmt","with":"CB","role":"Line Man"},
         {"period":"P4a","kind":"lunch"},
         {"period":"P4b","kind":"lesson","class":"10b","topic":"","homework":"","done":false},
         {"period":"P5","kind":"lesson","class":"11a","topic":"","homework":"","done":false}
       ]},
-      { "date":"2026-10-08","label":"Thu","dateLabel":"8 Oct","inset":false,"entries":[
+      {"date":"2026-10-08","label":"Thu","dateLabel":"8 Oct","inset":false,"entries":[
         {"period":"P1","kind":"lesson","class":"11a","topic":"","homework":"","done":false},
-        {"period":"P2","kind":"free","note":""},
-        {"period":"P3","kind":"free","note":""},
+        {"period":"P2","kind":"free","note":"","obs":[{"cls":"12d/Ma","who":"AJB","seen":false},{"cls":"10a3","who":"AWA","seen":false},{"cls":"13e/Fm","who":"BSI","seen":false},{"cls":"9b2","who":"CWI","seen":false},{"cls":"9b3","who":"HCH","seen":false},{"cls":"9b1","who":"NGR","seen":false},{"cls":"10a4","who":"PAH","seen":false},{"cls":"10a2","who":"PBY","seen":false},{"cls":"10a1","who":"RAA","seen":false}]},
+        {"period":"P3","kind":"free","note":"","obs":[{"cls":"8a3","who":"AJB","seen":false},{"cls":"8a2","who":"AWA","seen":false},{"cls":"12b/Fm","who":"BSI","seen":false},{"cls":"7b1","who":"HCH","seen":false},{"cls":"7b3","who":"KCA","seen":false},{"cls":"7b2","who":"NGR","seen":false},{"cls":"7b4","who":"RAA","seen":false}]},
         {"period":"P4a","kind":"lesson","class":"11b","topic":"","homework":"","done":false},
         {"period":"P4b","kind":"lunch"},
         {"period":"P5","kind":"lesson","class":"10b","topic":"","homework":"","done":false}
       ]},
-      { "date":"2026-10-09","label":"Fri","dateLabel":"9 Oct","inset":false,"entries":[
+      {"date":"2026-10-09","label":"Fri","dateLabel":"9 Oct","inset":false,"entries":[
         {"period":"P1","kind":"lesson","class":"10b","topic":"","homework":"","done":false},
         {"period":"P2","kind":"lesson","class":"11a","topic":"","homework":"","done":false},
         {"period":"P3","kind":"lesson","class":"12d","topic":"","homework":"","done":false},
@@ -521,86 +575,345 @@
         {"period":"P5","kind":"lesson","class":"11b","topic":"","homework":"","done":false}
       ]}
     ]},
-    { "weekType":"2", "range":"12–16 Oct 2026", "days":[
-      { "date":"2026-10-12","label":"Mon","dateLabel":"12 Oct","inset":false,"entries":[
+    {"weekType":"2","range":"12–16 Oct 2026","ht":1,"days":[
+      {"date":"2026-10-12","label":"Mon","dateLabel":"12 Oct","inset":false,"entries":[
         {"period":"P1","kind":"lesson","class":"11b","topic":"","homework":"","done":false},
         {"period":"P2","kind":"lesson","class":"10b","topic":"","homework":"","done":false},
         {"period":"P3","kind":"lesson","class":"11a","topic":"","homework":"","done":false},
         {"period":"P4a","kind":"lunch"},
         {"period":"P4b","kind":"lesson","class":"12d","topic":"","homework":"","done":false},
-        {"period":"P5","kind":"free","note":""},
-        {"period":"P6","kind":"free","note":""}
+        {"period":"P5","kind":"free","note":"","obs":[{"cls":"8a3","who":"AJB","seen":false},{"cls":"8a2","who":"AWA","seen":false},{"cls":"7b1","who":"HCH","seen":false},{"cls":"7b3","who":"KCA","seen":false},{"cls":"8a1","who":"PAH","seen":false},{"cls":"12b/Fm","who":"PBY","seen":false},{"cls":"7b4","who":"RAA","seen":false}]},
+        {"period":"P6","kind":"free","note":"","obs":[{"cls":"12r/Ma1","who":"AJB","seen":false},{"cls":"8b3","who":"CWI","seen":false},{"cls":"8b1","who":"HCH","seen":false},{"cls":"8b2","who":"KCA","seen":false},{"cls":"12e/Ma","who":"PBY","seen":false}]}
       ]},
-      { "date":"2026-10-13","label":"Tue","dateLabel":"13 Oct","inset":false,"entries":[
-        {"period":"P1","kind":"free","note":""},
+      {"date":"2026-10-13","label":"Tue","dateLabel":"13 Oct","inset":false,"entries":[
+        {"period":"P1","kind":"free","note":"","obs":[{"cls":"8a3","who":"AJB","seen":false},{"cls":"8a2","who":"AWA","seen":false},{"cls":"12b/Fm","who":"BSI","seen":false},{"cls":"7b1","who":"HCH","seen":false},{"cls":"7b3","who":"KCA","seen":false},{"cls":"7b2","who":"NGR","seen":false},{"cls":"8a1","who":"PAH","seen":false},{"cls":"7b4","who":"RAA","seen":false}]},
         {"period":"P2","kind":"lesson","class":"11b","topic":"","homework":"","done":false},
-        {"period":"P3","kind":"free","note":""},
+        {"period":"P3","kind":"free","note":"","obs":[{"cls":"9a3","who":"AJB","seen":false},{"cls":"13d/Ma","who":"BSI","seen":false},{"cls":"8b3","who":"CWI","seen":false},{"cls":"8b1","who":"HCH","seen":false},{"cls":"9a1","who":"NGR","seen":false},{"cls":"9a2","who":"PAH","seen":false}]},
         {"period":"P4a","kind":"lesson","class":"11a","topic":"","homework":"","done":false},
         {"period":"P4b","kind":"lunch"},
-        {"period":"P5","kind":"free","note":""},
-        {"period":"P6","kind":"free","note":""}
+        {"period":"P5","kind":"free","note":"","obs":[{"cls":"12d/Ma","who":"AJB","seen":false},{"cls":"10a3","who":"AWA","seen":false},{"cls":"13e/Fm","who":"BSI","seen":false},{"cls":"9b2","who":"CWI","seen":false},{"cls":"9b3","who":"HCH","seen":false},{"cls":"10a4","who":"PAH","seen":false},{"cls":"10a2","who":"PBY","seen":false},{"cls":"10a1","who":"RAA","seen":false}]},
+        {"period":"P6","kind":"linemgmt","with":"NMU","role":"Line Man"}
       ]},
-      { "date":"2026-10-14","label":"Wed","dateLabel":"14 Oct","inset":false,"entries":[
+      {"date":"2026-10-14","label":"Wed","dateLabel":"14 Oct","inset":false,"entries":[
         {"period":"P1","kind":"lesson","class":"12d","topic":"","homework":"","done":false},
-        {"period":"P2","kind":"free","note":""},
-        {"period":"P3","kind":"linemgmt","with":"PAH"},
+        {"period":"P2","kind":"free","note":"","obs":[{"cls":"8a3","who":"AJB","seen":false},{"cls":"8a2","who":"AWA","seen":false},{"cls":"12b/Fm","who":"BSI","seen":false},{"cls":"7b1","who":"HCH","seen":false},{"cls":"7b3","who":"KCA","seen":false},{"cls":"7b2","who":"NGR","seen":false},{"cls":"8a1","who":"PAH","seen":false},{"cls":"7b4","who":"RAA","seen":false}]},
+        {"period":"P3","kind":"linemgmt","with":"PAH","role":"Mentor"},
         {"period":"P4a","kind":"lunch"},
         {"period":"P4b","kind":"lesson","class":"10b","topic":"","homework":"","done":false},
         {"period":"P5","kind":"lesson","class":"11a","topic":"","homework":"","done":false}
       ]},
-      { "date":"2026-10-15","label":"Thu","dateLabel":"15 Oct","inset":false,"entries":[
+      {"date":"2026-10-15","label":"Thu","dateLabel":"15 Oct","inset":false,"entries":[
         {"period":"P1","kind":"lesson","class":"11a","topic":"","homework":"","done":false},
-        {"period":"P2","kind":"free","note":""},
-        {"period":"P3","kind":"free","note":""},
+        {"period":"P2","kind":"free","note":"","obs":[{"cls":"12d/Ma","who":"AJB","seen":false},{"cls":"13e/Fm","who":"BSI","seen":false},{"cls":"9b2","who":"CWI","seen":false},{"cls":"9b3","who":"HCH","seen":false},{"cls":"104/Ma1","who":"KCA","seen":false},{"cls":"9b1","who":"NGR","seen":false}]},
+        {"period":"P3","kind":"free","note":"","obs":[{"cls":"12b/Fm","who":"BSI","seen":false},{"cls":"7b1","who":"HCH","seen":false},{"cls":"7b3","who":"KCA","seen":false},{"cls":"7b2","who":"NGR","seen":false},{"cls":"8a1","who":"PAH","seen":false},{"cls":"7b4","who":"RAA","seen":false}]},
         {"period":"P4a","kind":"lesson","class":"11b","topic":"","homework":"","done":false},
         {"period":"P4b","kind":"lunch"},
         {"period":"P5","kind":"lesson","class":"10b","topic":"","homework":"","done":false}
       ]},
-      { "date":"2026-10-16","label":"Fri","dateLabel":"16 Oct","inset":false,"entries":[
+      {"date":"2026-10-16","label":"Fri","dateLabel":"16 Oct","inset":false,"entries":[
         {"period":"P1","kind":"lesson","class":"10b","topic":"","homework":"","done":false},
-        {"period":"P2","kind":"linemgmt","with":"AWA"},
+        {"period":"P2","kind":"linemgmt","with":"AWA","role":"Line Man","obs":[{"cls":"8b3","who":"CWI","seen":false},{"cls":"8b1","who":"HCH","seen":false},{"cls":"8b2","who":"KCA","seen":false}]},
         {"period":"P3","kind":"lesson","class":"12d","topic":"","homework":"","done":false},
         {"period":"P4a","kind":"lunch"},
         {"period":"P4b","kind":"oncall"},
         {"period":"P5","kind":"lesson","class":"11b","topic":"","homework":"","done":false}
       ]}
     ]},
-    { "weekType":"1", "range":"19–23 Oct 2026", "days":[
-      { "date":"2026-10-19","label":"Mon","dateLabel":"19 Oct","inset":false,"entries":[
+    {"weekType":"1","range":"19–23 Oct 2026","ht":1,"days":[
+      {"date":"2026-10-19","label":"Mon","dateLabel":"19 Oct","inset":false,"entries":[
         {"period":"P1","kind":"lesson","class":"11b","topic":"","homework":"","done":false},
         {"period":"P2","kind":"lesson","class":"10b","topic":"","homework":"","done":false},
         {"period":"P3","kind":"lesson","class":"11a","topic":"","homework":"","done":false},
         {"period":"P4a","kind":"lunch"},
         {"period":"P4b","kind":"lesson","class":"12d","topic":"","homework":"","done":false},
-        {"period":"P5","kind":"free","note":""},
-        {"period":"P6","kind":"linemgmt","with":"PAH"}
+        {"period":"P5","kind":"free","note":"","obs":[{"cls":"8a3","who":"AJB","seen":false},{"cls":"8a2","who":"AWA","seen":false},{"cls":"12b/Fm","who":"BSI","seen":false},{"cls":"7b3","who":"KCA","seen":false},{"cls":"7b2","who":"NGR","seen":false},{"cls":"8a1","who":"PAH","seen":false},{"cls":"7b4","who":"RAA","seen":false}]},
+        {"period":"P6","kind":"linemgmt","with":"PAH","role":"Mentor"}
       ]},
-      { "date":"2026-10-20","label":"Tue","dateLabel":"20 Oct","inset":false,"entries":[
-        {"period":"P1","kind":"linemgmt","with":"PBY"},
+      {"date":"2026-10-20","label":"Tue","dateLabel":"20 Oct","inset":false,"entries":[
+        {"period":"P1","kind":"linemgmt","with":"PBY","role":"Line Man"},
         {"period":"P2","kind":"lesson","class":"11b","topic":"","homework":"","done":false},
-        {"period":"P3","kind":"free","note":""},
+        {"period":"P3","kind":"free","note":"","obs":[{"cls":"9a3","who":"AJB","seen":false},{"cls":"13d/Ma","who":"BSI","seen":false},{"cls":"13x/Ma","who":"HCH","seen":false},{"cls":"9a1","who":"NGR","seen":false},{"cls":"9a2","who":"PAH","seen":false}]},
         {"period":"P4a","kind":"lesson","class":"11a","topic":"","homework":"","done":false},
         {"period":"P4b","kind":"lunch"},
-        {"period":"P5","kind":"free","note":""},
+        {"period":"P5","kind":"free","note":"","obs":[{"cls":"12d/Ma","who":"AJB","seen":false},{"cls":"10a3","who":"AWA","seen":false},{"cls":"13e/Fm","who":"BSI","seen":false},{"cls":"9b2","who":"CWI","seen":false},{"cls":"9b1","who":"NGR","seen":false},{"cls":"10a4","who":"PAH","seen":false},{"cls":"10a2","who":"PBY","seen":false},{"cls":"10a1","who":"RAA","seen":false}]},
         {"period":"P6","kind":"lesson","class":"11b","topic":"","homework":"","done":false}
       ]},
-      { "date":"2026-10-21","label":"Wed","dateLabel":"21 Oct","inset":false,"entries":[
+      {"date":"2026-10-21","label":"Wed","dateLabel":"21 Oct","inset":false,"entries":[
         {"period":"P1","kind":"lesson","class":"12d","topic":"","homework":"","done":false},
-        {"period":"P2","kind":"linemgmt","with":"CWI"},
-        {"period":"P3","kind":"linemgmt","with":"CB"},
+        {"period":"P2","kind":"linemgmt","with":"CWI","role":"Line Man"},
+        {"period":"P3","kind":"linemgmt","with":"CB","role":"Line Man"},
         {"period":"P4a","kind":"lunch"},
         {"period":"P4b","kind":"lesson","class":"10b","topic":"","homework":"","done":false},
         {"period":"P5","kind":"lesson","class":"11a","topic":"","homework":"","done":false}
       ]},
-      { "date":"2026-10-22","label":"Thu","dateLabel":"22 Oct","inset":false,"entries":[
+      {"date":"2026-10-22","label":"Thu","dateLabel":"22 Oct","inset":false,"entries":[
         {"period":"P1","kind":"lesson","class":"11a","topic":"","homework":"","done":false},
-        {"period":"P2","kind":"free","note":""},
-        {"period":"P3","kind":"free","note":""},
+        {"period":"P2","kind":"free","note":"","obs":[{"cls":"12d/Ma","who":"AJB","seen":false},{"cls":"10a3","who":"AWA","seen":false},{"cls":"13e/Fm","who":"BSI","seen":false},{"cls":"9b2","who":"CWI","seen":false},{"cls":"9b3","who":"HCH","seen":false},{"cls":"9b1","who":"NGR","seen":false},{"cls":"10a4","who":"PAH","seen":false},{"cls":"10a2","who":"PBY","seen":false},{"cls":"10a1","who":"RAA","seen":false}]},
+        {"period":"P3","kind":"free","note":"","obs":[{"cls":"8a3","who":"AJB","seen":false},{"cls":"8a2","who":"AWA","seen":false},{"cls":"12b/Fm","who":"BSI","seen":false},{"cls":"7b1","who":"HCH","seen":false},{"cls":"7b3","who":"KCA","seen":false},{"cls":"7b2","who":"NGR","seen":false},{"cls":"7b4","who":"RAA","seen":false}]},
         {"period":"P4a","kind":"lesson","class":"11b","topic":"","homework":"","done":false},
         {"period":"P4b","kind":"lunch"},
         {"period":"P5","kind":"lesson","class":"10b","topic":"","homework":"","done":false}
       ]},
-      { "date":"2026-10-23","label":"Fri","dateLabel":"23 Oct","inset":false,"entries":[
+      {"date":"2026-10-23","label":"Fri","dateLabel":"23 Oct","inset":false,"entries":[
+        {"period":"P1","kind":"lesson","class":"10b","topic":"","homework":"","done":false},
+        {"period":"P2","kind":"lesson","class":"11a","topic":"","homework":"","done":false},
+        {"period":"P3","kind":"lesson","class":"12d","topic":"","homework":"","done":false},
+        {"period":"P4a","kind":"oncall"},
+        {"period":"P4b","kind":"lunch"},
+        {"period":"P5","kind":"lesson","class":"11b","topic":"","homework":"","done":false}
+      ]}
+    ]},
+    {"weekType":"2","ht":2,"range":"9–13 Nov 2026","days":[
+      {"date":"2026-11-09","label":"Mon","dateLabel":"9 Nov","inset":false,"entries":[
+        {"period":"P1","kind":"lesson","class":"11b","topic":"","homework":"","done":false},
+        {"period":"P2","kind":"lesson","class":"10b","topic":"","homework":"","done":false},
+        {"period":"P3","kind":"lesson","class":"11a","topic":"","homework":"","done":false},
+        {"period":"P4a","kind":"lunch"},
+        {"period":"P4b","kind":"lesson","class":"12d","topic":"","homework":"","done":false},
+        {"period":"P5","kind":"free","note":"","obs":[{"cls":"8a3","who":"AJB","seen":false},{"cls":"8a2","who":"AWA","seen":false},{"cls":"7b1","who":"HCH","seen":false},{"cls":"7b3","who":"KCA","seen":false},{"cls":"8a1","who":"PAH","seen":false},{"cls":"12b/Fm","who":"PBY","seen":false},{"cls":"7b4","who":"RAA","seen":false}]},
+        {"period":"P6","kind":"free","note":"","obs":[{"cls":"12r/Ma1","who":"AJB","seen":false},{"cls":"8b3","who":"CWI","seen":false},{"cls":"8b1","who":"HCH","seen":false},{"cls":"8b2","who":"KCA","seen":false},{"cls":"12e/Ma","who":"PBY","seen":false}]}
+      ]},
+      {"date":"2026-11-10","label":"Tue","dateLabel":"10 Nov","inset":false,"entries":[
+        {"period":"P1","kind":"free","note":"","obs":[{"cls":"8a3","who":"AJB","seen":false},{"cls":"8a2","who":"AWA","seen":false},{"cls":"12b/Fm","who":"BSI","seen":false},{"cls":"7b1","who":"HCH","seen":false},{"cls":"7b3","who":"KCA","seen":false},{"cls":"7b2","who":"NGR","seen":false},{"cls":"8a1","who":"PAH","seen":false},{"cls":"7b4","who":"RAA","seen":false}]},
+        {"period":"P2","kind":"lesson","class":"11b","topic":"","homework":"","done":false},
+        {"period":"P3","kind":"free","note":"","obs":[{"cls":"9a3","who":"AJB","seen":false},{"cls":"13d/Ma","who":"BSI","seen":false},{"cls":"8b3","who":"CWI","seen":false},{"cls":"8b1","who":"HCH","seen":false},{"cls":"9a1","who":"NGR","seen":false},{"cls":"9a2","who":"PAH","seen":false}]},
+        {"period":"P4a","kind":"lesson","class":"11a","topic":"","homework":"","done":false},
+        {"period":"P4b","kind":"lunch"},
+        {"period":"P5","kind":"free","note":"","obs":[{"cls":"12d/Ma","who":"AJB","seen":false},{"cls":"10a3","who":"AWA","seen":false},{"cls":"13e/Fm","who":"BSI","seen":false},{"cls":"9b2","who":"CWI","seen":false},{"cls":"9b3","who":"HCH","seen":false},{"cls":"10a4","who":"PAH","seen":false},{"cls":"10a2","who":"PBY","seen":false},{"cls":"10a1","who":"RAA","seen":false}]},
+        {"period":"P6","kind":"linemgmt","with":"NMU","role":"Line Man"}
+      ]},
+      {"date":"2026-11-11","label":"Wed","dateLabel":"11 Nov","inset":false,"entries":[
+        {"period":"P1","kind":"lesson","class":"12d","topic":"","homework":"","done":false},
+        {"period":"P2","kind":"free","note":"","obs":[{"cls":"8a3","who":"AJB","seen":false},{"cls":"8a2","who":"AWA","seen":false},{"cls":"12b/Fm","who":"BSI","seen":false},{"cls":"7b1","who":"HCH","seen":false},{"cls":"7b3","who":"KCA","seen":false},{"cls":"7b2","who":"NGR","seen":false},{"cls":"8a1","who":"PAH","seen":false},{"cls":"7b4","who":"RAA","seen":false}]},
+        {"period":"P3","kind":"linemgmt","with":"PAH","role":"Mentor"},
+        {"period":"P4a","kind":"lunch"},
+        {"period":"P4b","kind":"lesson","class":"10b","topic":"","homework":"","done":false},
+        {"period":"P5","kind":"lesson","class":"11a","topic":"","homework":"","done":false}
+      ]},
+      {"date":"2026-11-12","label":"Thu","dateLabel":"12 Nov","inset":false,"entries":[
+        {"period":"P1","kind":"lesson","class":"11a","topic":"","homework":"","done":false},
+        {"period":"P2","kind":"free","note":"","obs":[{"cls":"12d/Ma","who":"AJB","seen":false},{"cls":"13e/Fm","who":"BSI","seen":false},{"cls":"9b2","who":"CWI","seen":false},{"cls":"9b3","who":"HCH","seen":false},{"cls":"104/Ma1","who":"KCA","seen":false},{"cls":"9b1","who":"NGR","seen":false}]},
+        {"period":"P3","kind":"free","note":"","obs":[{"cls":"12b/Fm","who":"BSI","seen":false},{"cls":"7b1","who":"HCH","seen":false},{"cls":"7b3","who":"KCA","seen":false},{"cls":"7b2","who":"NGR","seen":false},{"cls":"8a1","who":"PAH","seen":false},{"cls":"7b4","who":"RAA","seen":false}]},
+        {"period":"P4a","kind":"lesson","class":"11b","topic":"","homework":"","done":false},
+        {"period":"P4b","kind":"lunch"},
+        {"period":"P5","kind":"lesson","class":"10b","topic":"","homework":"","done":false}
+      ]},
+      {"date":"2026-11-13","label":"Fri","dateLabel":"13 Nov","inset":false,"entries":[
+        {"period":"P1","kind":"lesson","class":"10b","topic":"","homework":"","done":false},
+        {"period":"P2","kind":"linemgmt","with":"AWA","role":"Line Man","obs":[{"cls":"8b3","who":"CWI","seen":false},{"cls":"8b1","who":"HCH","seen":false},{"cls":"8b2","who":"KCA","seen":false}]},
+        {"period":"P3","kind":"lesson","class":"12d","topic":"","homework":"","done":false},
+        {"period":"P4a","kind":"lunch"},
+        {"period":"P4b","kind":"oncall"},
+        {"period":"P5","kind":"lesson","class":"11b","topic":"","homework":"","done":false}
+      ]}
+    ]},
+    {"weekType":"1","ht":2,"range":"16–20 Nov 2026","days":[
+      {"date":"2026-11-16","label":"Mon","dateLabel":"16 Nov","inset":false,"entries":[
+        {"period":"P1","kind":"lesson","class":"11b","topic":"","homework":"","done":false},
+        {"period":"P2","kind":"lesson","class":"10b","topic":"","homework":"","done":false},
+        {"period":"P3","kind":"lesson","class":"11a","topic":"","homework":"","done":false},
+        {"period":"P4a","kind":"lunch"},
+        {"period":"P4b","kind":"lesson","class":"12d","topic":"","homework":"","done":false},
+        {"period":"P5","kind":"free","note":"","obs":[{"cls":"8a3","who":"AJB","seen":false},{"cls":"8a2","who":"AWA","seen":false},{"cls":"12b/Fm","who":"BSI","seen":false},{"cls":"7b3","who":"KCA","seen":false},{"cls":"7b2","who":"NGR","seen":false},{"cls":"8a1","who":"PAH","seen":false},{"cls":"7b4","who":"RAA","seen":false}]},
+        {"period":"P6","kind":"linemgmt","with":"PAH","role":"Mentor"}
+      ]},
+      {"date":"2026-11-17","label":"Tue","dateLabel":"17 Nov","inset":false,"entries":[
+        {"period":"P1","kind":"linemgmt","with":"PBY","role":"Line Man"},
+        {"period":"P2","kind":"lesson","class":"11b","topic":"","homework":"","done":false},
+        {"period":"P3","kind":"free","note":"","obs":[{"cls":"9a3","who":"AJB","seen":false},{"cls":"13d/Ma","who":"BSI","seen":false},{"cls":"13x/Ma","who":"HCH","seen":false},{"cls":"9a1","who":"NGR","seen":false},{"cls":"9a2","who":"PAH","seen":false}]},
+        {"period":"P4a","kind":"lesson","class":"11a","topic":"","homework":"","done":false},
+        {"period":"P4b","kind":"lunch"},
+        {"period":"P5","kind":"free","note":"","obs":[{"cls":"12d/Ma","who":"AJB","seen":false},{"cls":"10a3","who":"AWA","seen":false},{"cls":"13e/Fm","who":"BSI","seen":false},{"cls":"9b2","who":"CWI","seen":false},{"cls":"9b1","who":"NGR","seen":false},{"cls":"10a4","who":"PAH","seen":false},{"cls":"10a2","who":"PBY","seen":false},{"cls":"10a1","who":"RAA","seen":false}]},
+        {"period":"P6","kind":"lesson","class":"11b","topic":"","homework":"","done":false}
+      ]},
+      {"date":"2026-11-18","label":"Wed","dateLabel":"18 Nov","inset":false,"entries":[
+        {"period":"P1","kind":"lesson","class":"12d","topic":"","homework":"","done":false},
+        {"period":"P2","kind":"linemgmt","with":"CWI","role":"Line Man"},
+        {"period":"P3","kind":"linemgmt","with":"CB","role":"Line Man"},
+        {"period":"P4a","kind":"lunch"},
+        {"period":"P4b","kind":"lesson","class":"10b","topic":"","homework":"","done":false},
+        {"period":"P5","kind":"lesson","class":"11a","topic":"","homework":"","done":false}
+      ]},
+      {"date":"2026-11-19","label":"Thu","dateLabel":"19 Nov","inset":false,"entries":[
+        {"period":"P1","kind":"lesson","class":"11a","topic":"","homework":"","done":false},
+        {"period":"P2","kind":"free","note":"","obs":[{"cls":"12d/Ma","who":"AJB","seen":false},{"cls":"10a3","who":"AWA","seen":false},{"cls":"13e/Fm","who":"BSI","seen":false},{"cls":"9b2","who":"CWI","seen":false},{"cls":"9b3","who":"HCH","seen":false},{"cls":"9b1","who":"NGR","seen":false},{"cls":"10a4","who":"PAH","seen":false},{"cls":"10a2","who":"PBY","seen":false},{"cls":"10a1","who":"RAA","seen":false}]},
+        {"period":"P3","kind":"free","note":"","obs":[{"cls":"8a3","who":"AJB","seen":false},{"cls":"8a2","who":"AWA","seen":false},{"cls":"12b/Fm","who":"BSI","seen":false},{"cls":"7b1","who":"HCH","seen":false},{"cls":"7b3","who":"KCA","seen":false},{"cls":"7b2","who":"NGR","seen":false},{"cls":"7b4","who":"RAA","seen":false}]},
+        {"period":"P4a","kind":"lesson","class":"11b","topic":"","homework":"","done":false},
+        {"period":"P4b","kind":"lunch"},
+        {"period":"P5","kind":"lesson","class":"10b","topic":"","homework":"","done":false}
+      ]},
+      {"date":"2026-11-20","label":"Fri","dateLabel":"20 Nov","inset":false,"entries":[
+        {"period":"P1","kind":"lesson","class":"10b","topic":"","homework":"","done":false},
+        {"period":"P2","kind":"lesson","class":"11a","topic":"","homework":"","done":false},
+        {"period":"P3","kind":"lesson","class":"12d","topic":"","homework":"","done":false},
+        {"period":"P4a","kind":"oncall"},
+        {"period":"P4b","kind":"lunch"},
+        {"period":"P5","kind":"lesson","class":"11b","topic":"","homework":"","done":false}
+      ]}
+    ]},
+    {"weekType":"2","ht":2,"range":"23–27 Nov 2026","days":[
+      {"date":"2026-11-23","label":"Mon","dateLabel":"23 Nov","inset":false,"entries":[
+        {"period":"P1","kind":"lesson","class":"11b","topic":"","homework":"","done":false},
+        {"period":"P2","kind":"lesson","class":"10b","topic":"","homework":"","done":false},
+        {"period":"P3","kind":"lesson","class":"11a","topic":"","homework":"","done":false},
+        {"period":"P4a","kind":"lunch"},
+        {"period":"P4b","kind":"lesson","class":"12d","topic":"","homework":"","done":false},
+        {"period":"P5","kind":"free","note":"","obs":[{"cls":"8a3","who":"AJB","seen":false},{"cls":"8a2","who":"AWA","seen":false},{"cls":"7b1","who":"HCH","seen":false},{"cls":"7b3","who":"KCA","seen":false},{"cls":"8a1","who":"PAH","seen":false},{"cls":"12b/Fm","who":"PBY","seen":false},{"cls":"7b4","who":"RAA","seen":false}]},
+        {"period":"P6","kind":"free","note":"","obs":[{"cls":"12r/Ma1","who":"AJB","seen":false},{"cls":"8b3","who":"CWI","seen":false},{"cls":"8b1","who":"HCH","seen":false},{"cls":"8b2","who":"KCA","seen":false},{"cls":"12e/Ma","who":"PBY","seen":false}]}
+      ]},
+      {"date":"2026-11-24","label":"Tue","dateLabel":"24 Nov","inset":false,"entries":[
+        {"period":"P1","kind":"free","note":"","obs":[{"cls":"8a3","who":"AJB","seen":false},{"cls":"8a2","who":"AWA","seen":false},{"cls":"12b/Fm","who":"BSI","seen":false},{"cls":"7b1","who":"HCH","seen":false},{"cls":"7b3","who":"KCA","seen":false},{"cls":"7b2","who":"NGR","seen":false},{"cls":"8a1","who":"PAH","seen":false},{"cls":"7b4","who":"RAA","seen":false}]},
+        {"period":"P2","kind":"lesson","class":"11b","topic":"","homework":"","done":false},
+        {"period":"P3","kind":"free","note":"","obs":[{"cls":"9a3","who":"AJB","seen":false},{"cls":"13d/Ma","who":"BSI","seen":false},{"cls":"8b3","who":"CWI","seen":false},{"cls":"8b1","who":"HCH","seen":false},{"cls":"9a1","who":"NGR","seen":false},{"cls":"9a2","who":"PAH","seen":false}]},
+        {"period":"P4a","kind":"lesson","class":"11a","topic":"","homework":"","done":false},
+        {"period":"P4b","kind":"lunch"},
+        {"period":"P5","kind":"free","note":"","obs":[{"cls":"12d/Ma","who":"AJB","seen":false},{"cls":"10a3","who":"AWA","seen":false},{"cls":"13e/Fm","who":"BSI","seen":false},{"cls":"9b2","who":"CWI","seen":false},{"cls":"9b3","who":"HCH","seen":false},{"cls":"10a4","who":"PAH","seen":false},{"cls":"10a2","who":"PBY","seen":false},{"cls":"10a1","who":"RAA","seen":false}]},
+        {"period":"P6","kind":"linemgmt","with":"NMU","role":"Line Man"}
+      ]},
+      {"date":"2026-11-25","label":"Wed","dateLabel":"25 Nov","inset":false,"entries":[
+        {"period":"P1","kind":"lesson","class":"12d","topic":"","homework":"","done":false},
+        {"period":"P2","kind":"free","note":"","obs":[{"cls":"8a3","who":"AJB","seen":false},{"cls":"8a2","who":"AWA","seen":false},{"cls":"12b/Fm","who":"BSI","seen":false},{"cls":"7b1","who":"HCH","seen":false},{"cls":"7b3","who":"KCA","seen":false},{"cls":"7b2","who":"NGR","seen":false},{"cls":"8a1","who":"PAH","seen":false},{"cls":"7b4","who":"RAA","seen":false}]},
+        {"period":"P3","kind":"linemgmt","with":"PAH","role":"Mentor"},
+        {"period":"P4a","kind":"lunch"},
+        {"period":"P4b","kind":"lesson","class":"10b","topic":"","homework":"","done":false},
+        {"period":"P5","kind":"lesson","class":"11a","topic":"","homework":"","done":false}
+      ]},
+      {"date":"2026-11-26","label":"Thu","dateLabel":"26 Nov","inset":false,"entries":[
+        {"period":"P1","kind":"lesson","class":"11a","topic":"","homework":"","done":false},
+        {"period":"P2","kind":"free","note":"","obs":[{"cls":"12d/Ma","who":"AJB","seen":false},{"cls":"13e/Fm","who":"BSI","seen":false},{"cls":"9b2","who":"CWI","seen":false},{"cls":"9b3","who":"HCH","seen":false},{"cls":"104/Ma1","who":"KCA","seen":false},{"cls":"9b1","who":"NGR","seen":false}]},
+        {"period":"P3","kind":"free","note":"","obs":[{"cls":"12b/Fm","who":"BSI","seen":false},{"cls":"7b1","who":"HCH","seen":false},{"cls":"7b3","who":"KCA","seen":false},{"cls":"7b2","who":"NGR","seen":false},{"cls":"8a1","who":"PAH","seen":false},{"cls":"7b4","who":"RAA","seen":false}]},
+        {"period":"P4a","kind":"lesson","class":"11b","topic":"","homework":"","done":false},
+        {"period":"P4b","kind":"lunch"},
+        {"period":"P5","kind":"lesson","class":"10b","topic":"","homework":"","done":false}
+      ]},
+      {"date":"2026-11-27","label":"Fri","dateLabel":"27 Nov","inset":true,"insetLabel":"Marking Day","entries":[
+
+      ]}
+    ]},
+    {"weekType":"1","ht":2,"range":"30 Nov–4 Dec 2026","days":[
+      {"date":"2026-11-30","label":"Mon","dateLabel":"30 Nov","inset":false,"entries":[
+        {"period":"P1","kind":"lesson","class":"11b","topic":"","homework":"","done":false},
+        {"period":"P2","kind":"lesson","class":"10b","topic":"","homework":"","done":false},
+        {"period":"P3","kind":"lesson","class":"11a","topic":"","homework":"","done":false},
+        {"period":"P4a","kind":"lunch"},
+        {"period":"P4b","kind":"lesson","class":"12d","topic":"","homework":"","done":false},
+        {"period":"P5","kind":"free","note":"","obs":[{"cls":"8a3","who":"AJB","seen":false},{"cls":"8a2","who":"AWA","seen":false},{"cls":"12b/Fm","who":"BSI","seen":false},{"cls":"7b3","who":"KCA","seen":false},{"cls":"7b2","who":"NGR","seen":false},{"cls":"8a1","who":"PAH","seen":false},{"cls":"7b4","who":"RAA","seen":false}]},
+        {"period":"P6","kind":"linemgmt","with":"PAH","role":"Mentor"}
+      ]},
+      {"date":"2026-12-01","label":"Tue","dateLabel":"1 Dec","inset":false,"entries":[
+        {"period":"P1","kind":"linemgmt","with":"PBY","role":"Line Man"},
+        {"period":"P2","kind":"lesson","class":"11b","topic":"","homework":"","done":false},
+        {"period":"P3","kind":"free","note":"","obs":[{"cls":"9a3","who":"AJB","seen":false},{"cls":"13d/Ma","who":"BSI","seen":false},{"cls":"13x/Ma","who":"HCH","seen":false},{"cls":"9a1","who":"NGR","seen":false},{"cls":"9a2","who":"PAH","seen":false}]},
+        {"period":"P4a","kind":"lesson","class":"11a","topic":"","homework":"","done":false},
+        {"period":"P4b","kind":"lunch"},
+        {"period":"P5","kind":"free","note":"","obs":[{"cls":"12d/Ma","who":"AJB","seen":false},{"cls":"10a3","who":"AWA","seen":false},{"cls":"13e/Fm","who":"BSI","seen":false},{"cls":"9b2","who":"CWI","seen":false},{"cls":"9b1","who":"NGR","seen":false},{"cls":"10a4","who":"PAH","seen":false},{"cls":"10a2","who":"PBY","seen":false},{"cls":"10a1","who":"RAA","seen":false}]},
+        {"period":"P6","kind":"lesson","class":"11b","topic":"","homework":"","done":false}
+      ]},
+      {"date":"2026-12-02","label":"Wed","dateLabel":"2 Dec","inset":false,"entries":[
+        {"period":"P1","kind":"lesson","class":"12d","topic":"","homework":"","done":false},
+        {"period":"P2","kind":"linemgmt","with":"CWI","role":"Line Man"},
+        {"period":"P3","kind":"linemgmt","with":"CB","role":"Line Man"},
+        {"period":"P4a","kind":"lunch"},
+        {"period":"P4b","kind":"lesson","class":"10b","topic":"","homework":"","done":false},
+        {"period":"P5","kind":"lesson","class":"11a","topic":"","homework":"","done":false}
+      ]},
+      {"date":"2026-12-03","label":"Thu","dateLabel":"3 Dec","inset":false,"entries":[
+        {"period":"P1","kind":"lesson","class":"11a","topic":"","homework":"","done":false},
+        {"period":"P2","kind":"free","note":"","obs":[{"cls":"12d/Ma","who":"AJB","seen":false},{"cls":"10a3","who":"AWA","seen":false},{"cls":"13e/Fm","who":"BSI","seen":false},{"cls":"9b2","who":"CWI","seen":false},{"cls":"9b3","who":"HCH","seen":false},{"cls":"9b1","who":"NGR","seen":false},{"cls":"10a4","who":"PAH","seen":false},{"cls":"10a2","who":"PBY","seen":false},{"cls":"10a1","who":"RAA","seen":false}]},
+        {"period":"P3","kind":"free","note":"","obs":[{"cls":"8a3","who":"AJB","seen":false},{"cls":"8a2","who":"AWA","seen":false},{"cls":"12b/Fm","who":"BSI","seen":false},{"cls":"7b1","who":"HCH","seen":false},{"cls":"7b3","who":"KCA","seen":false},{"cls":"7b2","who":"NGR","seen":false},{"cls":"7b4","who":"RAA","seen":false}]},
+        {"period":"P4a","kind":"lesson","class":"11b","topic":"","homework":"","done":false},
+        {"period":"P4b","kind":"lunch"},
+        {"period":"P5","kind":"lesson","class":"10b","topic":"","homework":"","done":false}
+      ]},
+      {"date":"2026-12-04","label":"Fri","dateLabel":"4 Dec","inset":false,"entries":[
+        {"period":"P1","kind":"lesson","class":"10b","topic":"","homework":"","done":false},
+        {"period":"P2","kind":"lesson","class":"11a","topic":"","homework":"","done":false},
+        {"period":"P3","kind":"lesson","class":"12d","topic":"","homework":"","done":false},
+        {"period":"P4a","kind":"oncall"},
+        {"period":"P4b","kind":"lunch"},
+        {"period":"P5","kind":"lesson","class":"11b","topic":"","homework":"","done":false}
+      ]}
+    ]},
+    {"weekType":"2","ht":2,"range":"7–11 Dec 2026","days":[
+      {"date":"2026-12-07","label":"Mon","dateLabel":"7 Dec","inset":false,"entries":[
+        {"period":"P1","kind":"lesson","class":"11b","topic":"","homework":"","done":false},
+        {"period":"P2","kind":"lesson","class":"10b","topic":"","homework":"","done":false},
+        {"period":"P3","kind":"lesson","class":"11a","topic":"","homework":"","done":false},
+        {"period":"P4a","kind":"lunch"},
+        {"period":"P4b","kind":"lesson","class":"12d","topic":"","homework":"","done":false},
+        {"period":"P5","kind":"free","note":"","obs":[{"cls":"8a3","who":"AJB","seen":false},{"cls":"8a2","who":"AWA","seen":false},{"cls":"7b1","who":"HCH","seen":false},{"cls":"7b3","who":"KCA","seen":false},{"cls":"8a1","who":"PAH","seen":false},{"cls":"12b/Fm","who":"PBY","seen":false},{"cls":"7b4","who":"RAA","seen":false}]},
+        {"period":"P6","kind":"free","note":"","obs":[{"cls":"12r/Ma1","who":"AJB","seen":false},{"cls":"8b3","who":"CWI","seen":false},{"cls":"8b1","who":"HCH","seen":false},{"cls":"8b2","who":"KCA","seen":false},{"cls":"12e/Ma","who":"PBY","seen":false}]}
+      ]},
+      {"date":"2026-12-08","label":"Tue","dateLabel":"8 Dec","inset":false,"entries":[
+        {"period":"P1","kind":"free","note":"","obs":[{"cls":"8a3","who":"AJB","seen":false},{"cls":"8a2","who":"AWA","seen":false},{"cls":"12b/Fm","who":"BSI","seen":false},{"cls":"7b1","who":"HCH","seen":false},{"cls":"7b3","who":"KCA","seen":false},{"cls":"7b2","who":"NGR","seen":false},{"cls":"8a1","who":"PAH","seen":false},{"cls":"7b4","who":"RAA","seen":false}]},
+        {"period":"P2","kind":"lesson","class":"11b","topic":"","homework":"","done":false},
+        {"period":"P3","kind":"free","note":"","obs":[{"cls":"9a3","who":"AJB","seen":false},{"cls":"13d/Ma","who":"BSI","seen":false},{"cls":"8b3","who":"CWI","seen":false},{"cls":"8b1","who":"HCH","seen":false},{"cls":"9a1","who":"NGR","seen":false},{"cls":"9a2","who":"PAH","seen":false}]},
+        {"period":"P4a","kind":"lesson","class":"11a","topic":"","homework":"","done":false},
+        {"period":"P4b","kind":"lunch"},
+        {"period":"P5","kind":"free","note":"","obs":[{"cls":"12d/Ma","who":"AJB","seen":false},{"cls":"10a3","who":"AWA","seen":false},{"cls":"13e/Fm","who":"BSI","seen":false},{"cls":"9b2","who":"CWI","seen":false},{"cls":"9b3","who":"HCH","seen":false},{"cls":"10a4","who":"PAH","seen":false},{"cls":"10a2","who":"PBY","seen":false},{"cls":"10a1","who":"RAA","seen":false}]},
+        {"period":"P6","kind":"linemgmt","with":"NMU","role":"Line Man"}
+      ]},
+      {"date":"2026-12-09","label":"Wed","dateLabel":"9 Dec","inset":false,"entries":[
+        {"period":"P1","kind":"lesson","class":"12d","topic":"","homework":"","done":false},
+        {"period":"P2","kind":"free","note":"","obs":[{"cls":"8a3","who":"AJB","seen":false},{"cls":"8a2","who":"AWA","seen":false},{"cls":"12b/Fm","who":"BSI","seen":false},{"cls":"7b1","who":"HCH","seen":false},{"cls":"7b3","who":"KCA","seen":false},{"cls":"7b2","who":"NGR","seen":false},{"cls":"8a1","who":"PAH","seen":false},{"cls":"7b4","who":"RAA","seen":false}]},
+        {"period":"P3","kind":"linemgmt","with":"PAH","role":"Mentor"},
+        {"period":"P4a","kind":"lunch"},
+        {"period":"P4b","kind":"lesson","class":"10b","topic":"","homework":"","done":false},
+        {"period":"P5","kind":"lesson","class":"11a","topic":"","homework":"","done":false}
+      ]},
+      {"date":"2026-12-10","label":"Thu","dateLabel":"10 Dec","inset":false,"entries":[
+        {"period":"P1","kind":"lesson","class":"11a","topic":"","homework":"","done":false},
+        {"period":"P2","kind":"free","note":"","obs":[{"cls":"12d/Ma","who":"AJB","seen":false},{"cls":"13e/Fm","who":"BSI","seen":false},{"cls":"9b2","who":"CWI","seen":false},{"cls":"9b3","who":"HCH","seen":false},{"cls":"104/Ma1","who":"KCA","seen":false},{"cls":"9b1","who":"NGR","seen":false}]},
+        {"period":"P3","kind":"free","note":"","obs":[{"cls":"12b/Fm","who":"BSI","seen":false},{"cls":"7b1","who":"HCH","seen":false},{"cls":"7b3","who":"KCA","seen":false},{"cls":"7b2","who":"NGR","seen":false},{"cls":"8a1","who":"PAH","seen":false},{"cls":"7b4","who":"RAA","seen":false}]},
+        {"period":"P4a","kind":"lesson","class":"11b","topic":"","homework":"","done":false},
+        {"period":"P4b","kind":"lunch"},
+        {"period":"P5","kind":"lesson","class":"10b","topic":"","homework":"","done":false}
+      ]},
+      {"date":"2026-12-11","label":"Fri","dateLabel":"11 Dec","inset":false,"entries":[
+        {"period":"P1","kind":"lesson","class":"10b","topic":"","homework":"","done":false},
+        {"period":"P2","kind":"linemgmt","with":"AWA","role":"Line Man","obs":[{"cls":"8b3","who":"CWI","seen":false},{"cls":"8b1","who":"HCH","seen":false},{"cls":"8b2","who":"KCA","seen":false}]},
+        {"period":"P3","kind":"lesson","class":"12d","topic":"","homework":"","done":false},
+        {"period":"P4a","kind":"lunch"},
+        {"period":"P4b","kind":"oncall"},
+        {"period":"P5","kind":"lesson","class":"11b","topic":"","homework":"","done":false}
+      ]}
+    ]},
+    {"weekType":"1","ht":2,"range":"14–18 Dec 2026","days":[
+      {"date":"2026-12-14","label":"Mon","dateLabel":"14 Dec","inset":false,"entries":[
+        {"period":"P1","kind":"lesson","class":"11b","topic":"","homework":"","done":false},
+        {"period":"P2","kind":"lesson","class":"10b","topic":"","homework":"","done":false},
+        {"period":"P3","kind":"lesson","class":"11a","topic":"","homework":"","done":false},
+        {"period":"P4a","kind":"lunch"},
+        {"period":"P4b","kind":"lesson","class":"12d","topic":"","homework":"","done":false},
+        {"period":"P5","kind":"free","note":"","obs":[{"cls":"8a3","who":"AJB","seen":false},{"cls":"8a2","who":"AWA","seen":false},{"cls":"12b/Fm","who":"BSI","seen":false},{"cls":"7b3","who":"KCA","seen":false},{"cls":"7b2","who":"NGR","seen":false},{"cls":"8a1","who":"PAH","seen":false},{"cls":"7b4","who":"RAA","seen":false}]},
+        {"period":"P6","kind":"linemgmt","with":"PAH","role":"Mentor"}
+      ]},
+      {"date":"2026-12-15","label":"Tue","dateLabel":"15 Dec","inset":false,"entries":[
+        {"period":"P1","kind":"linemgmt","with":"PBY","role":"Line Man"},
+        {"period":"P2","kind":"lesson","class":"11b","topic":"","homework":"","done":false},
+        {"period":"P3","kind":"free","note":"","obs":[{"cls":"9a3","who":"AJB","seen":false},{"cls":"13d/Ma","who":"BSI","seen":false},{"cls":"13x/Ma","who":"HCH","seen":false},{"cls":"9a1","who":"NGR","seen":false},{"cls":"9a2","who":"PAH","seen":false}]},
+        {"period":"P4a","kind":"lesson","class":"11a","topic":"","homework":"","done":false},
+        {"period":"P4b","kind":"lunch"},
+        {"period":"P5","kind":"free","note":"","obs":[{"cls":"12d/Ma","who":"AJB","seen":false},{"cls":"10a3","who":"AWA","seen":false},{"cls":"13e/Fm","who":"BSI","seen":false},{"cls":"9b2","who":"CWI","seen":false},{"cls":"9b1","who":"NGR","seen":false},{"cls":"10a4","who":"PAH","seen":false},{"cls":"10a2","who":"PBY","seen":false},{"cls":"10a1","who":"RAA","seen":false}]},
+        {"period":"P6","kind":"lesson","class":"11b","topic":"","homework":"","done":false}
+      ]},
+      {"date":"2026-12-16","label":"Wed","dateLabel":"16 Dec","inset":false,"entries":[
+        {"period":"P1","kind":"lesson","class":"12d","topic":"","homework":"","done":false},
+        {"period":"P2","kind":"linemgmt","with":"CWI","role":"Line Man"},
+        {"period":"P3","kind":"linemgmt","with":"CB","role":"Line Man"},
+        {"period":"P4a","kind":"lunch"},
+        {"period":"P4b","kind":"lesson","class":"10b","topic":"","homework":"","done":false},
+        {"period":"P5","kind":"lesson","class":"11a","topic":"","homework":"","done":false}
+      ]},
+      {"date":"2026-12-17","label":"Thu","dateLabel":"17 Dec","inset":false,"entries":[
+        {"period":"P1","kind":"lesson","class":"11a","topic":"","homework":"","done":false},
+        {"period":"P2","kind":"free","note":"","obs":[{"cls":"12d/Ma","who":"AJB","seen":false},{"cls":"10a3","who":"AWA","seen":false},{"cls":"13e/Fm","who":"BSI","seen":false},{"cls":"9b2","who":"CWI","seen":false},{"cls":"9b3","who":"HCH","seen":false},{"cls":"9b1","who":"NGR","seen":false},{"cls":"10a4","who":"PAH","seen":false},{"cls":"10a2","who":"PBY","seen":false},{"cls":"10a1","who":"RAA","seen":false}]},
+        {"period":"P3","kind":"free","note":"","obs":[{"cls":"8a3","who":"AJB","seen":false},{"cls":"8a2","who":"AWA","seen":false},{"cls":"12b/Fm","who":"BSI","seen":false},{"cls":"7b1","who":"HCH","seen":false},{"cls":"7b3","who":"KCA","seen":false},{"cls":"7b2","who":"NGR","seen":false},{"cls":"7b4","who":"RAA","seen":false}]},
+        {"period":"P4a","kind":"lesson","class":"11b","topic":"","homework":"","done":false},
+        {"period":"P4b","kind":"lunch"},
+        {"period":"P5","kind":"lesson","class":"10b","topic":"","homework":"","done":false}
+      ]},
+      {"date":"2026-12-18","label":"Fri","dateLabel":"18 Dec","inset":false,"note":"Term ends 12:15pm","entries":[
         {"period":"P1","kind":"lesson","class":"10b","topic":"","homework":"","done":false},
         {"period":"P2","kind":"lesson","class":"11a","topic":"","homework":"","done":false},
         {"period":"P3","kind":"lesson","class":"12d","topic":"","homework":"","done":false},
@@ -624,6 +937,13 @@
     "12d": { label: "12d/Ma",  room: "3P5"  }
   };
   var CLASS_KEYS = ["11b","10b","11a","12d"];
+  var HT_META = {
+    1: { label: "Half-term 1", span: "7 Sep – 23 Oct" },
+    2: { label: "Half-term 2", span: "9 Nov – 18 Dec" }
+  };
+  var SCHEMA = 2;
+  var activeHT = null;
+  var openObs = {};
 
   var app = document.getElementById("app");
   var state = JSON.parse(document.getElementById("state-json").textContent);
@@ -640,10 +960,42 @@
       .replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
   }
 
+  function weeksForHT(ht){
+    var list = [];
+    state.weeks.forEach(function(w, wi){ if ((w.ht || 1) === ht) list.push({ w: w, wi: wi }); });
+    return list;
+  }
+
+  function defaultHT(){
+    var today = todayISO();
+    for (var ht = 1; ht <= 2; ht++){
+      var list = weeksForHT(ht);
+      if (!list.length) continue;
+      var lastWeek = list[list.length - 1].w;
+      var lastDay = lastWeek.days[lastWeek.days.length - 1];
+      if (today <= lastDay.date) return ht;
+    }
+    return 2;
+  }
+
+  function obsSummary(entry){
+    var n = entry.obs.length;
+    var seen = entry.obs.filter(function(o){ return o.seen; }).length;
+    return "Can observe · " + n + (seen ? " (" + seen + " seen)" : "");
+  }
+
+  function dayCounts(d){
+    var total = 0, done = 0;
+    d.entries.forEach(function(e){
+      if (e.kind === "lesson"){ total++; if (e.done) done++; }
+    });
+    return { total: total, done: done };
+  }
+
   function renderStatsHTML(){
     var lessons = [];
-    state.weeks.forEach(function(w){
-      w.days.forEach(function(d){
+    weeksForHT(activeHT).forEach(function(item){
+      item.w.days.forEach(function(d){
         d.entries.forEach(function(e){ if (e.kind === "lesson") lessons.push(e); });
       });
     });
@@ -694,27 +1046,36 @@
     return map;
   }
 
+  function renderObsHTML(e, wi, di, ei){
+    if (!e.obs || !e.obs.length) return '';
+    var key = wi + "-" + di + "-" + ei;
+    var chips = e.obs.map(function(o, oi){
+      return '<button type="button" class="obs-chip" data-action="toggle-obs" data-obs="' + oi + '" aria-pressed="' + (o.seen ? "true" : "false") +
+        '" title="Tap to mark ' + esc(o.who) + ' as observed"><span class="who">' + esc(o.who) + '</span><span class="cls">' + esc(o.cls) + '</span></button>';
+    }).join("");
+    return '<details class="obs"' + (openObs[key] ? " open" : "") + '><summary class="obs-sum">' + esc(obsSummary(e)) + '</summary>' +
+      '<div class="obs-list">' + chips + '</div></details>';
+  }
+
+  function renderFixedHTML(e, wi, di, ei, kind, label){
+    return '<li class="fixed-entry" data-kind="' + kind + '" data-week="' + wi + '" data-day="' + di + '" data-entry="' + ei + '">' +
+      '<div class="fixed-row"><span class="period mono">' + e.period + '</span><span class="label">' + label + '</span>' +
+      '<button class="del" type="button" data-action="delete-entry" aria-label="Remove">&#10005;</button></div>' +
+      renderObsHTML(e, wi, di, ei) + '</li>';
+  }
+
   function renderEntryHTML(e, wi, di, ei, carryMap){
-    if (e.kind === "lunch"){
-      return '<li class="fixed-entry" data-kind="lunch" data-week="' + wi + '" data-day="' + di + '" data-entry="' + ei + '">' +
-        '<span class="period mono">' + e.period + '</span><span class="label">Lunch</span>' +
-        '<button class="del" type="button" data-action="delete-entry" aria-label="Remove">&#10005;</button></li>';
-    }
-    if (e.kind === "oncall"){
-      return '<li class="fixed-entry" data-kind="oncall" data-week="' + wi + '" data-day="' + di + '" data-entry="' + ei + '">' +
-        '<span class="period mono">' + e.period + '</span><span class="label">On Call</span>' +
-        '<button class="del" type="button" data-action="delete-entry" aria-label="Remove">&#10005;</button></li>';
-    }
+    if (e.kind === "lunch") return renderFixedHTML(e, wi, di, ei, "lunch", "Lunch");
+    if (e.kind === "oncall") return renderFixedHTML(e, wi, di, ei, "oncall", "On Call");
     if (e.kind === "linemgmt"){
-      return '<li class="fixed-entry" data-kind="linemgmt" data-week="' + wi + '" data-day="' + di + '" data-entry="' + ei + '">' +
-        '<span class="period mono">' + e.period + '</span><span class="label">' + esc(e.with) + ' &mdash; Line Mgmt</span>' +
-        '<button class="del" type="button" data-action="delete-entry" aria-label="Remove">&#10005;</button></li>';
+      return renderFixedHTML(e, wi, di, ei, "linemgmt", esc(e.with) + ' &mdash; ' + esc(e.role || "Line Mgmt"));
     }
     if (e.kind === "free"){
       return '<li class="free-entry" data-kind="free" data-week="' + wi + '" data-day="' + di + '" data-entry="' + ei + '">' +
-        '<span class="period mono">' + e.period + '</span>' +
+        '<div class="free-row"><span class="period mono">' + e.period + '</span>' +
         '<textarea class="note" data-field="note" rows="1" placeholder="PPA / planning notes">' + esc(e.note) + '</textarea>' +
-        '<button class="del" type="button" data-action="delete-entry" aria-label="Remove">&#10005;</button></li>';
+        '<button class="del" type="button" data-action="delete-entry" aria-label="Remove">&#10005;</button></div>' +
+        renderObsHTML(e, wi, di, ei) + '</li>';
     }
     var cls = CLASSES[e.class] || { label: e.class, room: "" };
     var carry = carryMap ? carryMap[wi + "-" + di + "-" + ei] : null;
@@ -736,17 +1097,25 @@
   }
 
   function renderDayHTML(d, wi, di, carryMap){
+    var titleHTML = '<span class="day-title"><span class="day-name">' + d.label + '</span><span class="day-date mono">' + d.dateLabel + '</span></span>';
     if (d.inset){
       return '' +
         '<div class="day inset" data-week="' + wi + '" data-day="' + di + '">' +
-          '<div class="day-head"><span class="day-name">' + d.label + '</span><span class="day-date mono">' + d.dateLabel + '</span></div>' +
-          '<p class="inset-note">INSET Day &mdash; no lessons</p>' +
+          '<div class="day-head">' + titleHTML + '</div>' +
+          '<p class="inset-note">' + esc(d.insetLabel || "INSET Day") + ' &mdash; no lessons</p>' +
         '</div>';
     }
+    var counts = dayCounts(d);
+    var complete = counts.total > 0 && counts.done === counts.total;
+    var partial = counts.done > 0 && counts.done < counts.total;
+    var doneHTML = counts.total ? '<label class="check day-done" title="Mark every lesson on ' + esc(d.label) + ' ' + esc(d.dateLabel) + ' as taught">' +
+      '<input type="checkbox" data-field="day-done"' + (complete ? " checked" : "") + (partial ? ' data-partial="1"' : "") +
+      ' aria-label="Mark ' + esc(d.label) + ' ' + esc(d.dateLabel) + ' complete"><span class="box" aria-hidden="true"></span><span>Day done</span></label>' : '';
     var entries = d.entries.map(function(e, ei){ return renderEntryHTML(e, wi, di, ei, carryMap); }).join("");
     return '' +
-      '<div class="day" data-week="' + wi + '" data-day="' + di + '">' +
-        '<div class="day-head"><span class="day-name">' + d.label + '</span><span class="day-date mono">' + d.dateLabel + '</span></div>' +
+      '<div class="day' + (complete ? " complete" : "") + '" data-week="' + wi + '" data-day="' + di + '">' +
+        '<div class="day-head">' + titleHTML + doneHTML + '</div>' +
+        (d.note ? '<p class="day-note">' + esc(d.note) + '</p>' : '') +
         '<ul class="entries">' + entries + '</ul>' +
         '<div class="add-menu" data-week="' + wi + '" data-day="' + di + '">' +
           CLASS_KEYS.map(function(k){ return '<button type="button" data-action="add-lesson" data-class="' + k + '">+ ' + CLASSES[k].label + '</button>'; }).join("") +
@@ -756,12 +1125,12 @@
       '</div>';
   }
 
-  function renderWeekHTML(w, wi, carryMap){
+  function renderWeekHTML(w, wi, carryMap, pos, count){
     var days = w.days.map(function(d, di){ return renderDayHTML(d, wi, di, carryMap); }).join("");
     return '' +
       '<section class="week" data-week="' + wi + '">' +
         '<div class="week-head">' +
-          '<span class="week-no">Week ' + (wi + 1) + ' of 7</span>' +
+          '<span class="week-no">Week ' + (pos + 1) + ' of ' + count + '</span>' +
           '<span class="week-type">Timetable Week ' + w.weekType + '</span>' +
           '<span class="week-range mono">' + w.range + '</span>' +
         '</div>' +
@@ -771,11 +1140,17 @@
 
   function renderAppHTML(){
     var carryMap = computeCarryMap();
+    var tabs = [1, 2].map(function(ht){
+      return '<button type="button" class="tab" role="tab" data-action="switch-ht" data-ht="' + ht + '" aria-selected="' + (ht === activeHT ? "true" : "false") + '">' +
+        HT_META[ht].label + '<span class="tab-span">' + HT_META[ht].span + '</span></button>';
+    }).join("");
+    var htWeeks = weeksForHT(activeHT);
     return '' +
       '<header class="header">' +
-        '<p class="eyebrow">Bridge Academy &middot; Autumn 1 &middot; Maths</p>' +
-        '<input class="title-input" type="text" data-field="title" value="' + esc(state.title) + '" aria-label="Half term title" placeholder="Half term title">' +
+        '<p class="eyebrow">Bridge Academy &middot; Autumn Term 2026 &middot; Maths</p>' +
+        '<input class="title-input" type="text" data-field="title" value="' + esc(state.title) + '" aria-label="Planner title" placeholder="Planner title">' +
         '<input class="class-input" type="text" data-field="className" value="' + esc(state.className) + '" aria-label="Classes" placeholder="Classes taught">' +
+        '<div class="tabs" role="tablist" aria-label="Half term">' + tabs + '</div>' +
         '<div class="header-row" id="stats-block">' + renderStatsHTML() +
           '<div class="header-actions">' +
             '<span id="save-status" class="save-status" data-state="idle">Ready</span>' +
@@ -783,9 +1158,9 @@
             '<button class="print-btn" type="button" data-action="print">Print</button>' +
           '</div>' +
         '</div>' +
-        '<p class="hint">Built from your 2-week timetable (Week 1 began 7 Sep) and Bridge Academy’s Autumn 1 dates (7 Sep – 23 Oct 2026, half term from 26 Oct). Fri 2 Oct is marked as the additional INSET day. Free periods are shown as dashed slots — use them to note your PPA. An unmarked lesson flags itself on that class’s next occurrence, so nothing slips quietly. Click any topic, homework or PPA note to fill it in — changes save automatically. Opened as a plain file (e.g. from OneDrive) instead of the Claude link, edits autosave to that browser and a “Download copy” button appears so you can overwrite the file with your latest changes.</p>' +
+        '<p class="hint">Built from your 2-week timetable and Bridge Academy’s Autumn dates (half-term 1: 7 Sep – 23 Oct, half-term 2: 9 Nov – 18 Dec). Fri 2 Oct (INSET) and Fri 27 Nov (marking day) have no lessons, and term ends at 12:15pm on Fri 18 Dec. Free periods are dashed slots for your PPA — where colleagues are teaching, open “Can observe” to see who and tap a name once you’ve observed them. Tick “Day done” to mark every lesson that day as taught. An unmarked lesson flags itself on that class’s next occurrence, so nothing slips quietly. Changes save automatically. Opened as a plain file (e.g. from OneDrive) instead of the Claude link, edits autosave to that browser and a “Download copy” button appears so you can overwrite the file with your latest changes.</p>' +
       '</header>' +
-      '<div class="weeks">' + state.weeks.map(function(w, wi){ return renderWeekHTML(w, wi, carryMap); }).join("") + '</div>';
+      '<div class="weeks">' + htWeeks.map(function(item, pos){ return renderWeekHTML(item.w, item.wi, carryMap, pos, htWeeks.length); }).join("") + '</div>';
   }
 
   function autoResize(el){
@@ -794,9 +1169,12 @@
   }
 
   function render(){
+    if (activeHT == null) activeHT = defaultHT();
     app.innerHTML = renderAppHTML();
     var areas = app.querySelectorAll(".topic, .homework, .note");
     for (var i = 0; i < areas.length; i++) autoResize(areas[i]);
+    var partials = app.querySelectorAll('input[data-partial="1"]');
+    for (var j = 0; j < partials.length; j++) partials[j].indeterminate = true;
   }
 
   function fullRerender(){
@@ -827,10 +1205,31 @@
 
   var LOCAL_KEY = "mathsPlannerState_v1";
 
+  function mergeSaved(base, saved){
+    var byDate = {};
+    (saved.weeks || []).forEach(function(w){ (w.days || []).forEach(function(d){ byDate[d.date] = d; }); });
+    base.weeks.forEach(function(w){
+      w.days.forEach(function(d){
+        var sd = byDate[d.date];
+        if (!sd) return;
+        d.entries.forEach(function(e){
+          var m = (sd.entries || []).filter(function(s){ return s.period === e.period && s.kind === e.kind && s["class"] === e["class"]; })[0];
+          if (!m) return;
+          ["done", "topic", "homework", "note"].forEach(function(k){ if (m[k] !== undefined) e[k] = m[k]; });
+        });
+      });
+    });
+    if (saved.className) base.className = saved.className;
+    if (saved.title && saved.title !== "Autumn 1 Half Term") base.title = saved.title;
+    return base;
+  }
+
   function loadLocalState(){
     try {
       var raw = window.localStorage && localStorage.getItem(LOCAL_KEY);
-      return raw ? JSON.parse(raw) : null;
+      if (!raw) return null;
+      var saved = JSON.parse(raw);
+      return saved && saved.schema === SCHEMA ? saved : mergeSaved(state, saved);
     } catch (err){ return null; }
   }
 
@@ -901,8 +1300,26 @@
     }
   });
 
+  app.addEventListener("toggle", function(e){
+    var d = e.target;
+    if (!d.classList || !d.classList.contains("obs")) return;
+    var holder = d.closest("[data-entry]");
+    if (!holder) return;
+    var key = holder.dataset.week + "-" + holder.dataset.day + "-" + holder.dataset.entry;
+    if (d.open) openObs[key] = true; else delete openObs[key];
+  }, true);
+
   app.addEventListener("change", function(e){
     var t = e.target;
+    if (t.dataset.field === "day-done"){
+      var dloc = locate(t);
+      if (dloc){
+        dloc.day.entries.forEach(function(en){ if (en.kind === "lesson") en.done = t.checked; });
+        fullRerender();
+        scheduleSave(300);
+      }
+      return;
+    }
     if (t.dataset.field !== "done") return;
     var loc = locate(t);
     if (!loc || !loc.entry) return;
@@ -912,6 +1329,30 @@
   });
 
   app.addEventListener("click", function(e){
+    var tabBtn = e.target.closest('[data-action="switch-ht"]');
+    if (tabBtn){
+      activeHT = Number(tabBtn.dataset.ht);
+      render();
+      window.scrollTo(0, 0);
+      return;
+    }
+
+    var obsBtn = e.target.closest('[data-action="toggle-obs"]');
+    if (obsBtn){
+      var oloc = locate(obsBtn);
+      if (oloc && oloc.entry && oloc.entry.obs){
+        var o = oloc.entry.obs[Number(obsBtn.dataset.obs)];
+        if (o){
+          o.seen = !o.seen;
+          obsBtn.setAttribute("aria-pressed", o.seen ? "true" : "false");
+          var sum = oloc.el.querySelector(".obs-sum");
+          if (sum) sum.textContent = obsSummary(oloc.entry);
+          scheduleSave(600);
+        }
+      }
+      return;
+    }
+
     var addBtn = e.target.closest('[data-action="add-lesson"]');
     if (addBtn){
       var menu = addBtn.closest(".add-menu");
@@ -996,3 +1437,5 @@
   }
 })();
 </script>
+</body>
+</html>
