@@ -638,13 +638,8 @@
         {"period":"P5","kind":"free","note":"","obs":[{"cls":"12d/Ma","who":"AJB","seen":false},{"cls":"10a3","who":"AWA","seen":false},{"cls":"13e/Fm","who":"BSI","seen":false},{"cls":"9b2","who":"CWI","seen":false},{"cls":"9b1","who":"NGR","seen":false},{"cls":"10a4","who":"PAH","seen":false},{"cls":"10a2","who":"PBY","seen":false},{"cls":"10a1","who":"RAA","seen":false}]},
         {"period":"P6","kind":"lesson","class":"11b","topic":"","homework":"","done":false}
       ]},
-      {"date":"2026-10-21","label":"Wed","dateLabel":"21 Oct","inset":false,"entries":[
-        {"period":"P1","kind":"lesson","class":"12d","topic":"","homework":"","done":false},
-        {"period":"P2","kind":"linemgmt","with":"CWI","role":"Line Man"},
-        {"period":"P3","kind":"linemgmt","with":"CB","role":"Line Man"},
-        {"period":"P4a","kind":"lunch"},
-        {"period":"P4b","kind":"lesson","class":"10b","topic":"","homework":"","done":false},
-        {"period":"P5","kind":"lesson","class":"11a","topic":"","homework":"","done":false}
+      {"date":"2026-10-21","label":"Wed","dateLabel":"21 Oct","inset":true,"insetLabel":"Cultural Capital Day","entries":[
+
       ]},
       {"date":"2026-10-22","label":"Thu","dateLabel":"22 Oct","inset":false,"entries":[
         {"period":"P1","kind":"lesson","class":"11a","topic":"","homework":"","done":false},
@@ -913,13 +908,8 @@
         {"period":"P4b","kind":"lunch"},
         {"period":"P5","kind":"lesson","class":"10b","topic":"","homework":"","done":false}
       ]},
-      {"date":"2026-12-18","label":"Fri","dateLabel":"18 Dec","inset":false,"note":"Term ends 12:15pm","entries":[
-        {"period":"P1","kind":"lesson","class":"10b","topic":"","homework":"","done":false},
-        {"period":"P2","kind":"lesson","class":"11a","topic":"","homework":"","done":false},
-        {"period":"P3","kind":"lesson","class":"12d","topic":"","homework":"","done":false},
-        {"period":"P4a","kind":"oncall"},
-        {"period":"P4b","kind":"lunch"},
-        {"period":"P5","kind":"lesson","class":"11b","topic":"","homework":"","done":false}
+      {"date":"2026-12-18","label":"Fri","dateLabel":"18 Dec","inset":true,"note":"Term ends 12:15pm","insetLabel":"Progression Morning","entries":[
+
       ]}
     ]}
   ]
@@ -1103,6 +1093,7 @@
         '<div class="day inset" data-week="' + wi + '" data-day="' + di + '">' +
           '<div class="day-head">' + titleHTML + '</div>' +
           '<p class="inset-note">' + esc(d.insetLabel || "INSET Day") + ' &mdash; no lessons</p>' +
+          (d.note ? '<p class="day-note">' + esc(d.note) + '</p>' : '') +
         '</div>';
     }
     var counts = dayCounts(d);
@@ -1158,7 +1149,7 @@
             '<button class="print-btn" type="button" data-action="print">Print</button>' +
           '</div>' +
         '</div>' +
-        '<p class="hint">Built from your 2-week timetable and Bridge Academy’s Autumn dates (half-term 1: 7 Sep – 23 Oct, half-term 2: 9 Nov – 18 Dec). Fri 2 Oct (INSET) and Fri 27 Nov (marking day) have no lessons, and term ends at 12:15pm on Fri 18 Dec. Free periods are dashed slots for your PPA — where colleagues are teaching, open “Can observe” to see who and tap a name once you’ve observed them. Tick “Day done” to mark every lesson that day as taught. An unmarked lesson flags itself on that class’s next occurrence, so nothing slips quietly. Changes save automatically. Opened as a plain file (e.g. from OneDrive) instead of the Claude link, edits autosave to that browser and a “Download copy” button appears so you can overwrite the file with your latest changes.</p>' +
+        '<p class="hint">Built from your 2-week timetable and Bridge Academy’s Autumn dates (half-term 1: 7 Sep – 23 Oct, half-term 2: 9 Nov – 18 Dec). Fri 2 Oct (INSET), Wed 21 Oct (Cultural Capital Day), Fri 27 Nov (marking day) and the Fri 18 Dec progression morning have no lessons. Free periods are dashed slots for your PPA — where colleagues are teaching, open “Can observe” to see who and tap a name once you’ve observed them. Tick “Day done” to mark every lesson that day as taught. An unmarked lesson flags itself on that class’s next occurrence, so nothing slips quietly. Changes save automatically. Opened as a plain file (e.g. from OneDrive) instead of the Claude link, edits autosave to that browser and a “Download copy” button appears so you can overwrite the file with your latest changes.</p>' +
       '</header>' +
       '<div class="weeks">' + htWeeks.map(function(item, pos){ return renderWeekHTML(item.w, item.wi, carryMap, pos, htWeeks.length); }).join("") + '</div>';
   }
