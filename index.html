@@ -248,6 +248,8 @@
   .check input:indeterminate + .box::after{ content:""; width:7px; height:2px; background: var(--accent); border-radius:1px; }
   .day-done{ gap:5px; align-items:center; font-size:0.68rem; font-weight:700; color: var(--ink-soft); }
   .day.complete .day-done{ color: var(--accent); }
+  .week-done{ gap:6px; align-items:center; font-size:0.78rem; font-weight:700; color: var(--ink-soft); }
+  .week.complete .week-done{ color: var(--accent); }
 
   .class-tag{ flex:1; min-width:0; display:flex; flex-direction:column; line-height:1.2; }
   .class-tag .code{ font-size: 0.76rem; font-weight:700; }
@@ -344,7 +346,7 @@
 
   @media print{
     body{ background: #fff; }
-    .header-actions, .add-row, .add-menu, .del, .hint, .tabs, .day-done{ display:none !important; }
+    .header-actions, .add-row, .add-menu, .del, .hint, .tabs, .day-done, .week-done{ display:none !important; }
     .week{ break-inside: avoid; box-shadow:none; }
     .header{ box-shadow:none; }
     .days-grid{ grid-template-columns: repeat(5,1fr) !important; }
@@ -1118,12 +1120,20 @@
 
   function renderWeekHTML(w, wi, carryMap, pos, count){
     var days = w.days.map(function(d, di){ return renderDayHTML(d, wi, di, carryMap); }).join("");
+    var total = 0, done = 0;
+    w.days.forEach(function(d){ var c = dayCounts(d); total += c.total; done += c.done; });
+    var complete = total > 0 && done === total;
+    var partial = done > 0 && done < total;
+    var doneHTML = total ? '<label class="check week-done" title="Mark every lesson in this week as taught">' +
+      '<input type="checkbox" data-field="week-done"' + (complete ? " checked" : "") + (partial ? ' data-partial="1"' : "") +
+      ' aria-label="Mark week ' + (pos + 1) + ' complete"><span class="box" aria-hidden="true"></span><span>Week done</span></label>' : '';
     return '' +
-      '<section class="week" data-week="' + wi + '">' +
+      '<section class="week' + (complete ? " complete" : "") + '" data-week="' + wi + '">' +
         '<div class="week-head">' +
           '<span class="week-no">Week ' + (pos + 1) + ' of ' + count + '</span>' +
           '<span class="week-type">Timetable Week ' + w.weekType + '</span>' +
           '<span class="week-range mono">' + w.range + '</span>' +
+          doneHTML +
         '</div>' +
         '<div class="days-grid">' + days + '</div>' +
       '</section>';
@@ -1149,7 +1159,7 @@
             '<button class="print-btn" type="button" data-action="print">Print</button>' +
           '</div>' +
         '</div>' +
-        '<p class="hint">Built from your 2-week timetable and Bridge Academy’s Autumn dates (half-term 1: 7 Sep – 23 Oct, half-term 2: 9 Nov – 18 Dec). Fri 2 Oct (INSET), Wed 21 Oct (Cultural Capital Day), Fri 27 Nov (marking day) and the Fri 18 Dec progression morning have no lessons. Free periods are dashed slots for your PPA — where colleagues are teaching, open “Can observe” to see who and tap a name once you’ve observed them. Tick “Day done” to mark every lesson that day as taught. An unmarked lesson flags itself on that class’s next occurrence, so nothing slips quietly. Changes save automatically. Opened as a plain file (e.g. from OneDrive) instead of the Claude link, edits autosave to that browser and a “Download copy” button appears so you can overwrite the file with your latest changes.</p>' +
+        '<p class="hint">Built from your 2-week timetable and Bridge Academy’s Autumn dates (half-term 1: 7 Sep – 23 Oct, half-term 2: 9 Nov – 18 Dec). Fri 2 Oct (INSET), Wed 21 Oct (Cultural Capital Day), Fri 27 Nov (marking day) and the Fri 18 Dec progression morning have no lessons. Free periods are dashed slots for your PPA — where colleagues are teaching, open “Can observe” to see who and tap a name once you’ve observed them. Tick “Day done” or “Week done” to mark every lesson in that day or week as taught. An unmarked lesson flags itself on that class’s next occurrence, so nothing slips quietly. Changes save automatically. Opened as a plain file (e.g. from OneDrive) instead of the Claude link, edits autosave to that browser and a “Download copy” button appears so you can overwrite the file with your latest changes.</p>' +
       '</header>' +
       '<div class="weeks">' + htWeeks.map(function(item, pos){ return renderWeekHTML(item.w, item.wi, carryMap, pos, htWeeks.length); }).join("") + '</div>';
   }
@@ -1302,6 +1312,18 @@
 
   app.addEventListener("change", function(e){
     var t = e.target;
+    if (t.dataset.field === "week-done"){
+      var sec = t.closest(".week");
+      var wk = sec ? state.weeks[Number(sec.dataset.week)] : null;
+      if (wk){
+        wk.days.forEach(function(d){
+          d.entries.forEach(function(en){ if (en.kind === "lesson") en.done = t.checked; });
+        });
+        fullRerender();
+        scheduleSave(300);
+      }
+      return;
+    }
     if (t.dataset.field === "day-done"){
       var dloc = locate(t);
       if (dloc){
