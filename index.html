@@ -29,6 +29,7 @@
     --linemgmt:#5B6B8C;
     --linemgmt-bg:#E7EAF2;
     --inset-bg:#EFEDE4;
+    --exam-bg:#F8E4DB;
     --shadow: 0 1px 2px rgba(28,43,50,0.06), 0 8px 24px -12px rgba(28,43,50,0.18);
   }
   @media (prefers-color-scheme: dark){
@@ -54,6 +55,7 @@
       --linemgmt:#9FB0D9;
       --linemgmt-bg:#232A38;
       --inset-bg:#1E2528;
+      --exam-bg:#3A2319;
       --shadow: 0 1px 2px rgba(0,0,0,0.3), 0 8px 24px -12px rgba(0,0,0,0.5);
     }
   }
@@ -79,6 +81,7 @@
     --linemgmt:#9FB0D9;
     --linemgmt-bg:#232A38;
     --inset-bg:#1E2528;
+    --exam-bg:#3A2319;
     --shadow: 0 1px 2px rgba(0,0,0,0.3), 0 8px 24px -12px rgba(0,0,0,0.5);
   }
 
@@ -266,6 +269,16 @@
   }
   .del:hover{ color: var(--mark); background: var(--surface); }
 
+  .exam-flag{
+    margin:0; padding:4px 7px; border-radius:6px; font-size:0.7rem; font-weight:700; line-height:1.3;
+    background: var(--exam-bg); color: var(--mark);
+  }
+  .lesson.exam-clash{ border-color: var(--mark); border-left-color: var(--mark); }
+  .exam-note{
+    margin:0; padding:4px 8px; border-radius:6px; font-size:0.7rem; font-weight:600; line-height:1.35;
+    background: var(--exam-bg); color: var(--mark);
+  }
+
   .carry-flag{
     margin:0; display:flex; align-items:center; gap:4px;
     font-size:0.68rem; font-weight:700; color: var(--mark);
@@ -360,7 +373,17 @@
 
 <script id="state-json" type="application/json">
 {
-  "schema":3,
+  "schema":4,
+  "exams":[
+    {"date":"2026-11-09","year":11,"subject":"English Language Paper 2","start":"08:30","end":"10:15"},
+    {"date":"2026-11-09","year":11,"subject":"Triple Science Paper","start":"11:05","end":"12:35"},
+    {"date":"2026-11-10","year":11,"subject":"English Literature Paper 1/2","start":"08:30","end":"10:15"},
+    {"date":"2026-11-11","year":11,"subject":"Biology (Combined)","start":"08:30","end":"10:00"},
+    {"date":"2026-11-13","year":11,"subject":"Maths Paper 1 (Non-Calculator)","start":"08:30","end":"10:00"},
+    {"date":"2026-11-16","year":11,"subject":"Chemistry (Combined)","start":"08:30","end":"10:00"},
+    {"date":"2026-11-17","year":11,"subject":"Maths Paper 2 (Calculator)","start":"08:30","end":"10:00"},
+    {"date":"2026-11-18","year":11,"subject":"Physics (Combined)","start":"08:30","end":"10:00"}
+  ],
   "title":"Autumn Term 2026",
   "className":"10b/Ma2 · 11a/Ma2 · 11b/Ma3 · 12d/Ma — 2-week timetable rotation",
   "weeks":[
@@ -935,7 +958,11 @@
     1: { label: "Half-term 1", span: "7 Sep – 23 Oct" },
     2: { label: "Half-term 2", span: "9 Nov – 18 Dec" }
   };
-  var SCHEMA = 3;
+  var SCHEMA = 4;
+  var PERIOD_TIMES = {
+    P1: ["08:30", "09:25"], P2: ["09:25", "10:20"], P3: ["11:10", "12:05"], P4a: ["12:05", "13:00"],
+    P4b: ["12:45", "13:40"], P5: ["13:45", "14:40"], P6: ["14:40", "15:35"]
+  };
   var activeHT = null;
   var openObs = {};
 
@@ -970,6 +997,22 @@
       if (today <= lastDay.date) return ht;
     }
     return 2;
+  }
+
+  function toMins(t){ var p = t.split(":"); return Number(p[0]) * 60 + Number(p[1]); }
+
+  function examsOn(date){
+    return (state.exams || []).filter(function(x){ return x.date === date; });
+  }
+
+  function examClash(lesson, date){
+    var pt = PERIOD_TIMES[lesson.period];
+    var yr = parseInt(lesson["class"], 10);
+    if (!pt || !yr) return null;
+    var hit = examsOn(date).filter(function(x){
+      return Number(x.year) === yr && toMins(x.start) < toMins(pt[1]) && toMins(x.end) > toMins(pt[0]);
+    })[0];
+    return hit || null;
   }
 
   function obsSummary(entry){
@@ -1077,8 +1120,9 @@
     }
     var cls = CLASSES[e.class] || { label: e.class, room: "" };
     var carry = carryMap ? carryMap[wi + "-" + di + "-" + ei] : null;
+    var clash = examClash(e, state.weeks[wi].days[di].date);
     return '' +
-      '<li class="lesson' + (e.done ? " done" : "") + '" data-week="' + wi + '" data-day="' + di + '" data-entry="' + ei + '" data-class="' + e.class + '">' +
+      '<li class="lesson' + (e.done ? " done" : "") + (clash ? " exam-clash" : "") + '" data-week="' + wi + '" data-day="' + di + '" data-entry="' + ei + '" data-class="' + e.class + '">' +
         '<div class="lesson-top">' +
           '<label class="check">' +
             '<input type="checkbox" data-field="done"' + (e.done ? " checked" : "") + '>' +
@@ -1088,6 +1132,7 @@
             '<span class="meta"><span class="period">' + e.period + '</span> &middot; ' + esc(cls.room) + '</span></span>' +
           '<button class="del" type="button" data-action="delete-entry" aria-label="Remove lesson">&#10005;</button>' +
         '</div>' +
+        (clash ? '<p class="exam-flag">&#9888; Whole-school exam: ' + esc(clash.subject) + ' (' + esc(clash.start) + '&ndash;' + esc(clash.end) + ')</p>' : '') +
         (carry ? '<p class="carry-flag">&#8635; Carried over &mdash; not taught ' + esc(carry.dayLabel) + ' ' + esc(carry.dateLabel) + '</p>' : '') +
         '<textarea class="topic" data-field="topic" rows="1" placeholder="Lesson topic">' + esc(e.topic) + '</textarea>' +
         '<textarea class="homework" data-field="homework" rows="1" placeholder="Homework / notes">' + esc(e.homework) + '</textarea>' +
@@ -1116,6 +1161,7 @@
       '<div class="day' + (complete ? " complete" : "") + '" data-week="' + wi + '" data-day="' + di + '">' +
         '<div class="day-head">' + titleHTML + doneHTML + '</div>' +
         (d.note ? '<p class="day-note">' + esc(d.note) + '</p>' : '') +
+        examsOn(d.date).map(function(x){ return '<p class="exam-note">Year ' + esc(x.year) + ' exam &middot; ' + esc(x.start) + ' ' + esc(x.subject) + '</p>'; }).join("") +
         '<ul class="entries">' + entries + '</ul>' +
         '<div class="add-menu" data-week="' + wi + '" data-day="' + di + '">' +
           CLASS_KEYS.map(function(k){ return '<button type="button" data-action="add-lesson" data-class="' + k + '">+ ' + CLASSES[k].label + '</button>'; }).join("") +
@@ -1166,7 +1212,7 @@
             '<button class="print-btn" type="button" data-action="print">Print</button>' +
           '</div>' +
         '</div>' +
-        '<p class="hint">Built from your 2-week timetable and Bridge Academy’s Autumn dates (half-term 1: 7 Sep – 23 Oct, half-term 2: 9 Nov – 18 Dec). Fri 2 Oct (INSET), Wed 21 Oct (Cultural Capital Day), Fri 27 Nov (marking day) and the Fri 18 Dec progression morning have no lessons. Free periods are dashed slots for your PPA. Every period except lunch and on call has a “Can observe” list showing which colleagues are teaching maths then (with their room) — tap a name once you’ve observed them. Tick “Day done” or “Week done” to mark every lesson in that day or week as taught. An unmarked lesson flags itself on that class’s next occurrence, so nothing slips quietly. Changes save automatically. Opened as a plain file (e.g. from OneDrive) instead of the Claude link, edits autosave to that browser and a “Download copy” button appears so you can overwrite the file with your latest changes.</p>' +
+        '<p class="hint">Built from your 2-week timetable and Bridge Academy’s Autumn dates (half-term 1: 7 Sep – 23 Oct, half-term 2: 9 Nov – 18 Dec). Fri 2 Oct (INSET), Wed 21 Oct (Cultural Capital Day), Fri 27 Nov (marking day) and the Fri 18 Dec progression morning have no lessons. Free periods are dashed slots for your PPA. Every period except lunch and on call has a “Can observe” list showing which colleagues are teaching maths then (with their room) — tap a name once you’ve observed them. Tick “Day done” or “Week done” to mark every lesson in that day or week as taught. Year 11 maths, English and science exams are marked on the day, and any Year 11 lesson that clashes with one is flagged in red. An unmarked lesson flags itself on that class’s next occurrence, so nothing slips quietly. Changes save automatically. Opened as a plain file (e.g. from OneDrive) instead of the Claude link, edits autosave to that browser and a “Download copy” button appears so you can overwrite the file with your latest changes.</p>' +
       '</header>' +
       '<div class="weeks">' + htWeeks.map(function(item, pos){ return renderWeekHTML(item.w, item.wi, carryMap, pos, htWeeks.length); }).join("") + '</div>';
   }
@@ -1176,11 +1222,21 @@
     el.style.height = el.scrollHeight + "px";
   }
 
+  function resizeAll(){
+    var areas = app.querySelectorAll(".topic, .homework, .note");
+    for (var i = 0; i < areas.length; i++) autoResize(areas[i]);
+  }
+
+  var lastWidth = 0;
+  function checkWidth(){
+    var w = app.clientWidth;
+    if (w && w !== lastWidth){ lastWidth = w; resizeAll(); }
+  }
+
   function render(){
     if (activeHT == null) activeHT = defaultHT();
     app.innerHTML = renderAppHTML();
-    var areas = app.querySelectorAll(".topic, .homework, .note");
-    for (var i = 0; i < areas.length; i++) autoResize(areas[i]);
+    resizeAll();
     var partials = app.querySelectorAll('input[data-partial="1"]');
     for (var j = 0; j < partials.length; j++) partials[j].indeterminate = true;
   }
@@ -1446,6 +1502,10 @@
       }
     }
   });
+
+  window.addEventListener("resize", checkWidth);
+  if (window.ResizeObserver) new ResizeObserver(checkWidth).observe(app);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(resizeAll);
 
   if (window.claude && typeof window.claude.use === "function"){
     render();
